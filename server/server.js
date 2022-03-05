@@ -4,7 +4,7 @@ import app from "./app";
 import { connectDb, disconnectDb } from "./db";
 
 const port = parseInt(process.env.PORT || "3000");
-
+//checking with the port
 const server = http.createServer(app);
 
 server.on("listening", () => {
