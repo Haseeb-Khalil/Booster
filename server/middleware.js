@@ -35,3 +35,10 @@ export const pushStateRouting = (apiRoot, staticDir) => (req, res, next) => {
 	}
 	next();
 };
+
+export const logReq = (req, res, next) => {
+  console.log(req.body);
+  console.log(req.params);
+  console.log(req.query);
+  next();
+};
