@@ -3,7 +3,6 @@ require("dotenv").config();
 
 const router = Router();
 
-<<<<<<< Updated upstream
 //load the booster JSON
 //const booster = require("../boosterData.json");
 
@@ -21,20 +20,6 @@ const pool = new Pool({
 	//ssl: { rejectUnauthorized: false },
 });
 
-router.get("/energisers", (req, res) => {
-    console.log(dbUrl);
-    //res.send("Hello");
-    pool.query("SELECT * FROM energisers")
-    .then((result) => {
-        console.log(result);
-        res.json(result.rows);
-    }).catch((err) => {
-        console.log(err);
-        res.status(500).send(err);
-=======
-// router.get("/", (_, res) => {
-// 	res.json({ message: "Hello, world!" });
-// });
 
 
 ///=================POST REQUESTS==================///
@@ -134,15 +119,11 @@ router.get("/energisers/:energiserId", function (req, res) {
     .catch((error) => {
       console.error(error);
       res.status(500).json(error);
->>>>>>> Stashed changes
     });
 });
 
 
 
-<<<<<<< Updated upstream
-=======
 
 
->>>>>>> Stashed changes
 export default router;
