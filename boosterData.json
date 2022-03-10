@@ -1,0 +1,39 @@
+[
+    {
+        "id": 1,
+        "title": "Best friend",
+        "description": "Describe your best friend without his/her name",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVdLSw83ysuzMUNH2oZh9yMqJ9u5JBuFnVjA&usqp=CAU"
+    },
+    {
+        "id": 2,
+        "title": "Kahoot",
+        "description": "Kahoot game-1",
+        "image": "https://kahoot.com/files/2020/11/Kahoot-PR_1120.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Youtube",
+        "description": "What is your funniest video",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROgMg70gmWGeppdtU0wyRJEHx8RKMmWZ9dCw&usqp=CAU"
+    },
+    {
+        "id": 4,
+        "title": "Vacation Destination",
+        "description": "Where is your best vacation destination and why?",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK0hq5X7QfM2z6dMaAIUkDjWkwCRFlMXBzSw&usqp=CAU"
+    },
+    {
+        "id": 5,
+        "title": "Emoji",
+        "description": "Send your funniest emoji from slack",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKy6kotXjk0NmHRW_CACSkNtqgfjNQtqtr_w&usqp=CAU"
+    },
+    {
+        "id": 6,
+        "title": "Bucket list",
+        "description": "Type your 5 bucket list",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQvNQE1sgM5pN_ojArs1TNi_SAKKYGOj415Q&usqp=CAU"
+    }
+]
+
