@@ -21,7 +21,7 @@ router.post("/energisers", function (req, res) {
 	const energiserLink = req.body.link;
 
 	// Basic Url testing. it should be starting with "http" or "https" following://
-	const validateUrl = /^(|http|https):\/\/[^ "]+$/.test(energiserLink);
+	const validateUrl = /^(http|https):\/\/[^ "]+$/.test(energiserLink);
 	if (!validateUrl) {
 		return res.status(400).send({ msg: "Please enter the correct URL !" });
 	}
@@ -84,7 +84,7 @@ router.get("/energisers/search", function (req, res) {
 				res.status(500).json(error);
 			});
 	} else {
-		res.send({ msg: `No Such Energisers found` });
+		res.status(404).send({ msg: `No Such Energisers found` });
 	}
 });
 
