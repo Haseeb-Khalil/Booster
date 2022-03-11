@@ -115,6 +115,34 @@ router.get("/energisers/:energiserId", function (req, res) {
     });
 });
 
+// Create a new energiser
+router.post("/newEnergiser", function (req, res) {
+	const title = req.body.title;
+    const description = req.body.description;
+    const link = req.body.link;
+
+	pool
+		.query("SELECT * FROM energisers WHERE title = $1", [title])
+		.then((result) => {
+			if (result.rows.length > 0) {
+				return res
+					.status(400)
+					.send("An Energiser with the same title is already exists!");
+			} else {
+				pool
+					.query(
+						"INSERT INTO energisers (title, description, link) VALUES ($1, $2, $3)",
+						[title, description, link]
+					)
+					.then((result) => res.json(result.rows))
+					.catch((err) => {
+                        console.log(err);
+                        res.status(500).send(err);
+                    });
+			}
+		});
+});
+
 
 
 
