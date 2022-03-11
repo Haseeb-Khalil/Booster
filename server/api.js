@@ -21,7 +21,7 @@ router.post("/energisers", function (req, res) {
 	const energiserLink = req.body.link;
 
 	// Basic Url testing. it should be starting with "http" or "https" following://
-	const validateUrl = /^(ftp|http|https):\/\/[^ "]+$/.test(energiserLink);
+	const validateUrl = /^(|http|https):\/\/[^ "]+$/.test(energiserLink);
 	if (!validateUrl) {
 		return res.status(400).send({ msg: "Please enter the correct URL !" });
 	}
@@ -72,7 +72,8 @@ router.get("/energisers", function (req, res) {
 router.get("/energisers/search", function (req, res) {
 	let searchQuery = req.query.term;
 
-	if (searchQuery) {
+
+	if (searchQuery.length) {
 		pool
 			.query(
 				`SELECT id, title, description, link FROM energisers WHERE LOWER(title) LIKE LOWER('%${searchQuery}%') ORDER BY title`
@@ -82,7 +83,9 @@ router.get("/energisers/search", function (req, res) {
 				console.error(error);
 				res.status(500).json(error);
 			});
-	}
+	} else{
+    res.send({ msg: `No Such Energisers found` });
+  }
 });
 
 // GET ENERGISER WITH AN ID
