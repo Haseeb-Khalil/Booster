@@ -83,9 +83,9 @@ router.get("/energisers/search", function (req, res) {
 				console.error(error);
 				res.status(500).json(error);
 			});
-	} else{
-    res.send({ msg: `No Such Energisers found` });
-  }
+	} else {
+		res.send({ msg: `No Such Energisers found` });
+	}
 });
 
 // GET ENERGISER WITH AN ID
