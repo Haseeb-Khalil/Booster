@@ -3,13 +3,6 @@ require("dotenv").config();
 
 const router = Router();
 
-//load the booster JSON
-//const booster = require("../boosterData.json");
-
-// router.get("/", (req, res) => {
-// 	//res.status(200).json(booster);
-// 	//res.json({ message: "Hello, world!" });
-// });
 
 const { Pool } = require("pg");
 const dbUrl = process.env.DATABASE_URL;
@@ -56,7 +49,7 @@ router.post("/energisers", function (req, res) {
         pool
           .query(query, params)
           .then(() =>
-            res.send({ msg: `Energiser ${energiserName} added Successfully` })
+            res.send({ msg: `Energiser ${energiserTitle} added Successfully` })
           )
           .catch((error) => {
             console.error(error);
