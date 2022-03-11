@@ -1,7 +1,9 @@
 import { Pool } from "pg";
-const dotenv = require("dotenv");
-dotenv.config();
-const dbUrl = process.env.DATABASE_URL || "postgres://localhost:5432/cyf";
+
+require("dotenv").config();
+
+const dbUrl = process.env.DATABASE_URL || "postgres://localhost:5432/booster";
+
 
 const pool = new Pool({
 	connectionString: dbUrl,
