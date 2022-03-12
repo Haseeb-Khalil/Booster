@@ -8,6 +8,8 @@ import Button from "@material-ui/core/Button";
 import MenuIcon from "@material-ui/icons/Menu";
 import ModalDialog from "./ModalDialog";
 import OfflineBoltIcon from "@mui/icons-material/OfflineBolt";
+import { amber } from "@material-ui/core/colors";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,13 +38,13 @@ const Navbar = () => {
 			<Toolbar>
 				<IconButton
 					edge="start"
-					color="secondary"
+					color="inherit"
 					aria-label="menu"
 					className={classes.menuButton}
 				>
 					<MenuIcon />
 				</IconButton>
-				<OfflineBoltIcon color="primary" />
+				<OfflineBoltIcon sx={{ color: amber[500] }} />
 				<Typography color="secondary" variant="h6" className={classes.title}>
 					booster
 				</Typography>

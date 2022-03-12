@@ -4,15 +4,16 @@ import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 
 import About from "./pages/About";
 import Home from "./pages/Home";
-import { blue } from "@material-ui/core/colors";
 
 
 const theme = createTheme({
 	palette: {
 		primary: {
+			main: "#01579b",
+		},
+		secondary: {
 			main: "#ffc107",
 		},
-		secondary: blue,
 	},
 	typography: {
 		fontFamily: "Quicksand",
