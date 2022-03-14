@@ -15,7 +15,7 @@ const pool = new Pool({
 ///=================POST REQUESTS==================///
 
 //  ADD AN ENERGISER
-router.post("/energisers", function (req, res) {
+router.post("/energiser", function (req, res) {
 	const energiserTitle = req.body.title;
 	const energiserDescription = req.body.description;
 	const energiserLink = req.body.link;
@@ -90,7 +90,7 @@ router.get("/energisers/search", function (req, res) {
 
 // GET ENERGISER WITH AN ID
 // Tested with: http://localhost:3100/api/energisers/3
-router.get("/energisers/:energiserId", function (req, res) {
+router.get("/energiser/:energiserId", function (req, res) {
 	let energiserId = req.params.energiserId;
 	let query = `SELECT id, title, description, link FROM energisers WHERE id = $1`;
 	const params = [energiserId];
@@ -115,7 +115,7 @@ router.get("/energisers/:energiserId", function (req, res) {
 
 // UPDATE AN ENERGISER's DETAILS
 
-router.put("/energisers/:energiserId", function (req, res) {
+router.put("/energiser/:energiserId", function (req, res) {
 	let energiserId = req.params.energiserId;
 	const energiserNewTitle = req.body.title;
 	const energiserNewDescription = req.body.description;
@@ -162,7 +162,7 @@ router.put("/energisers/:energiserId", function (req, res) {
 
 ///==================DELETE REQUESTS===================///
 
-router.delete("/energisers/:energiserId", (req, res) => {
+router.delete("/energiser/:energiserId", (req, res) => {
 	const energiserId = req.params.energiserId;
 	pool
 		.query("SELECT id FROM energisers WHERE id = $1", [energiserId])
