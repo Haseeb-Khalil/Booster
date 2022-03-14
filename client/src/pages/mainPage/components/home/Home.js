@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import IMG from "../../components/energiser-Imgs/Mock-Image.png"
+import IMG from "../../components/energiser-Imgs/city-guesser.png";
 
 import "./Home.css";
-import logo from "./logo.svg";
 import Footer from "../footer/Footer";
-
 
 export function Home() {
 	const [energisers, setEnergisers] = useState();
 
- const backendUrl = "http://localhost:3100/api"; 
+	const backendUrl = "http://localhost:3100/api";
 
 	useEffect(() => {
 		fetch(backendUrl + "/energisers")
@@ -46,20 +44,20 @@ export function Home() {
 							return (
 								<article key={energiser.id} className="energiser__item">
 									<div>
-										<h2>{energiser.Name}</h2>
+										<h2>{energiser.title}</h2>
 									</div>
 									<div className="energiser__item-image">
-										<img
-											src={energiser.Image}
-											alt="Fake-logo"
-											className="energiser__img"
-										/>
+										<img src={IMG} alt="Fake-logo" className="energiser__img" />
 									</div>
 									<div>
-										<p>{energiser.Description}</p>
+										<p>{energiser.description}</p>
 									</div>
 									<div className="energiser__item-buttons">
-										<a href={energiser.link} className="btn">
+										<a
+											href={energiser.link}
+											className="btn"
+											target="_blank"
+										>
 											Play
 										</a>
 										<button className="btn">Add to favorite</button>
