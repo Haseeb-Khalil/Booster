@@ -50,7 +50,7 @@ export function Home() {
 										<img src={IMG} alt="Fake-logo" className="energiser__img" />
 									</div>
 									<div>
-										<p>{energiser.description}</p>
+										<p>Select to play</p>
 									</div>
 									<div className="energiser__item-buttons">
 										<a
