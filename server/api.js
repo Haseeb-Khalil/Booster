@@ -21,10 +21,10 @@ router.post("/energisers", function (req, res) {
 	const energiserLink = req.body.link;
 
 	// Basic Url testing. it should be starting with "http" or "https" following://
-	const validateUrl = /^(http|https):\/\/[^ "]+$/.test(energiserLink);
-	if (!validateUrl) {
-		return res.status(400).send({ msg: "Please enter the correct URL !" });
-	}
+	// const validateUrl = /^(http|https):\/\/[^ "]+$/.test(energiserLink);
+	// if (!validateUrl) {
+	// 	return res.status(400).send({ msg: "Please enter the correct URL !" });
+	// }
 
 	if (!energiserTitle || !energiserDescription) {
 		return res

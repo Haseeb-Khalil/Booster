@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import IMG from "../../components/energiser-Imgs/city-guesser.png";
+import IMG from "../../components/energiser-Imgs/Mock-Image.png";
 
 import "./Home.css";
 import Footer from "../footer/Footer";
@@ -54,13 +54,11 @@ export function Home() {
 									</div>
 									<div className="energiser__item-buttons">
 										<a
-											href={energiser.link}
+											href={energiser.link ? energiser.link : ""}
 											className="btn"
-											target="_blank"
 										>
-											Play
+											Select
 										</a>
-										<button className="btn">Add to favorite</button>
 									</div>
 								</article>
 							);
