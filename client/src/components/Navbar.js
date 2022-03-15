@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 	appBar: {
 		maxHeight: theme.spacing(10),
+		boxShadow: "none",
 	},
 }));
 
