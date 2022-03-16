@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import ModalDialog from "./ModalDialog";
 import ElectricBoltRoundedIcon from "@mui/icons-material/ElectricBoltRounded";
 import { red } from "@material-ui/core/colors";
-import cyf_brand from "../images/cyf_brand.png";
+import cyf_brand from "../../assets/cyf_brand.png";
 import "./navbar.css";
 
 
