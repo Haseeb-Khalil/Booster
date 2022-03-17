@@ -55,9 +55,11 @@ function ProductHeroLayout(props) {
 					}}
 				/>
 				<Background sx={sxBackground} />
+
 				<Box>
 					<KeyboardArrowDownIcon fontSize="large" sx={{ position: "absolute", bottom: 32 }} />
 				</Box>
+
 			</Container>
 		</HeroLayoutRoot>
 	);
