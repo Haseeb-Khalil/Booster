@@ -64,7 +64,6 @@ class Registration extends Component {
 			passwordConfrim: this.state.passwordConfrim,
 		};
 		console.log("this.props.newUserCredentials", newUserCredentials);
-		//dispath to userActions
 	};
 
 	render() {
