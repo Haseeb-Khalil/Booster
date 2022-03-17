@@ -1,8 +1,8 @@
-import { Route, Routes } from "react-router-dom";
-import Energise from "./pages/mainPage/components/home/Energise";
+import Energise from "./components/CardsCarousel/Energise";
 import { useState, useEffect } from "react";
 import About from "./pages/secondPage/About";
-import Home from "./pages/mainPage/components/home/Home.js";
+import Home from "./pages/Home";
+import { Route, Routes } from "react-router-dom";
 
 const App = () => {
 	const [energisers, setEnergisers] = useState();

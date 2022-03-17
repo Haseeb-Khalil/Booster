@@ -30,6 +30,7 @@ export function Home({ energisers }) {
 									</div>
 									<div className="energiser__item-buttons">
 										<Link className="btn" to={`/energiser/${energiser.id}`} >Select</Link>
+										<Link to={`/energiser/${energiser.id}`} >Select</Link>
 									</div>
 								</article>
 							);

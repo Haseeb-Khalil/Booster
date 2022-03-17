@@ -1,4 +1,8 @@
-
+body {
+  margin: 100;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 /* WARNING */
 /* MAKING CHANGES TO THIS FILE CAN CHANGE THE DESIGN  OF WHOLE APP*/
