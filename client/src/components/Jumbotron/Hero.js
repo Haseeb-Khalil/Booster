@@ -5,9 +5,6 @@ import Registration from "./Registration";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 
-
-
-
 const backgroundImage =
 	"https://images.unsplash.com/photo-1476018040064-32e98fec7648?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2338&q=80";
 function Hero(){
@@ -15,7 +12,7 @@ return (
 	<HeroLayout
 		sxBackground={{
 			backgroundImage: `url(${backgroundImage})`,
-			backgroundColor: "#7fc7d9", // Average color of the background image.
+			backgroundColor: "#7fc7d9",
 			backgroundPosition: "center",
 		}}
 	>
