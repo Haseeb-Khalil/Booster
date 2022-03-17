@@ -1,6 +1,6 @@
-import React from 'react'
-import "./Footer.css"
-import{BsGithub} from "react-icons/bs"
+import React from "react";
+import "./Footer.css";
+import{ BsGithub } from "react-icons/bs";
 import { BsLinkedin } from "react-icons/bs";
 
 export default function Footer() {
@@ -31,10 +31,10 @@ export default function Footer() {
 
 			{/* Social Profiles */}
 			<div className="footer__socials">
-				<a href="https://github.com" target="_blank">
+				<a href="https://github.com" target="_blank" rel="noreferrer">
 					<BsGithub />
 				</a>
-				<a href="https://linkedin.com" target="_blank">
+				<a href="https://linkedin.com" target="_blank" rel="noreferrer">
 					<BsLinkedin />
 				</a>
 			</div>

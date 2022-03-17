@@ -32,14 +32,14 @@ router.post("/energisers", function (req, res) {
 			.send({ msg: "Please fill in all the required fields" });
 	}
 	pool
-		.query(`SELECT title FROM energisers WHERE title = $1`, [energiserTitle])
+		.query("SELECT title FROM energisers WHERE title = $1", [energiserTitle])
 		.then((result) => {
 			if (result.rows.length > 0) {
 				return res
 					.status(400)
 					.send({ msg: `Energiser name:${energiserTitle} already exist` });
 			} else {
-				let query = `INSERT INTO energisers(title, description, link) VALUES ($1,$2,$3)`;
+				let query = "INSERT INTO energisers(title, description, link) VALUES ($1,$2,$3)";
 				let params = [energiserTitle, energiserDescription, energiserLink];
 				pool
 					.query(query, params)
@@ -84,7 +84,7 @@ router.get("/energisers/search", function (req, res) {
 				res.status(500).json(error);
 			});
 	} else {
-		res.status(404).send({ msg: `No Such Energisers found` });
+		res.status(404).send({ msg: "No Such Energisers found" });
 	}
 });
 
@@ -92,7 +92,7 @@ router.get("/energisers/search", function (req, res) {
 // Tested with: http://localhost:3100/api/energisers/3
 router.get("/energisers/:energiserId", function (req, res) {
 	let energiserId = req.params.energiserId;
-	let query = `SELECT id, title, description, link FROM energisers WHERE id = $1`;
+	let query = "SELECT id, title, description, link FROM energisers WHERE id = $1";
 	const params = [energiserId];
 
 	pool
@@ -123,7 +123,7 @@ router.put("/energisers/:energiserId", function (req, res) {
 
 	// Checking if the energiser with Id entered exist or not
 	pool
-		.query(`SELECT id FROM energisers WHERE id = $1`, [energiserId])
+		.query("SELECT id FROM energisers WHERE id = $1", [energiserId])
 		.then((result) => {
 			if (result.rows.length == 0) {
 				return res
@@ -135,7 +135,7 @@ router.put("/energisers/:energiserId", function (req, res) {
 	// First we select the energiser then we can update the changes else we will can return the old info
 	pool
 		.query(
-			`SELECT id, title, description, link FROM energisers WHERE id = $1`,
+			"SELECT id, title, description, link FROM energisers WHERE id = $1",
 			[energiserId]
 		)
 		.then((result) => {
