@@ -28,7 +28,7 @@ const Form = ({ handleClose }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(email, password);
+		console.log(name, email, password);
 		handleClose();
 	};
 
