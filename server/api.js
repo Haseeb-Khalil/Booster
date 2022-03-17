@@ -46,7 +46,9 @@ router.post("/energiser", function (req, res) {
 					.status(400)
 					.send({ msg: `Energiser name: ${energiserTitle} already exist` });
 			} else {
-				let query = "INSERT INTO energisers(title, description, playing_instructions, link) VALUES ($1,$2,$3,$4)";
+
+				let query = `INSERT INTO energisers(title, description, playing_instructions, link) VALUES ($1,$2,$3,$4)`;
+
 				let params = [
 					energiserTitle,
 					energiserDescription,
@@ -105,7 +107,7 @@ router.get("/energisers/search", function (req, res) {
 // Tested with: http://localhost:3100/api/energisers/3
 router.get("/energiser/:energiserId", function (req, res) {
 	let energiserId = req.params.energiserId;
-	let query = "SELECT id, title, description, playing_instructions, link, likes, dislikes  FROM energisers WHERE id = $1";
+	let query = `SELECT id, title, description, playing_instructions, link, likes, dislikes  FROM energisers WHERE id = $1`;
 	const params = [energiserId];
 
 	pool
@@ -149,7 +151,7 @@ router.put("/energiser/:energiserId", function (req, res) {
 	// First we select the energiser then we can update the changes else we will can return the old info
 	pool
 		.query(
-			"SELECT id, title, description, playing_instructions, link  FROM energisers WHERE id = $1",
+			`SELECT id, title, description, playing_instructions, link  FROM energisers WHERE id = $1`,
 			[energiserId]
 		)
 		.then((result) => {
