@@ -7,7 +7,7 @@ import Hero from "../components/Jumbotron/Hero";
 import Theme from "../components/Theme";
 import { ThemeProvider } from "@material-ui/core/styles";
 
-export function Home() {
+export function Home({ energisers }) {
 	const [message, setMessage] = useState("Loading...");
 
 	useEffect(() => {
@@ -32,7 +32,7 @@ export function Home() {
 				<ThemeProvider theme={Theme}>
 					<Header />
 					<Hero />
-					<CardsSection />
+					<CardsSection energisers={energisers} />
 				</ThemeProvider>
 			</div>
 		</main>

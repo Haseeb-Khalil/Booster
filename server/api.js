@@ -38,13 +38,14 @@ router.post("/energiser", function (req, res) {
 			.send({ msg: "Please fill in all the required fields" });
 	}
 	pool
-		.query(`SELECT title FROM energisers WHERE title = $1`, [energiserTitle])
+		.query("SELECT title FROM energisers WHERE title = $1", [energiserTitle])
 		.then((result) => {
 			if (result.rows.length > 0) {
 				return res
 					.status(400)
 					.send({ msg: `Energiser name: ${energiserTitle} already exist` });
 			} else {
+
 				let query = `INSERT INTO energisers(title, description, playing_instructions, link) VALUES ($1,$2,$3,$4)`;
 				let params = [
 					energiserTitle,
@@ -96,7 +97,7 @@ router.get("/energisers/search", function (req, res) {
 				res.status(500).json(error);
 			});
 	} else {
-		res.status(404).send({ msg: `No Such Energisers found` });
+		res.status(404).send({ msg: "No Such Energisers found" });
 	}
 });
 
@@ -136,7 +137,7 @@ router.put("/energiser/:energiserId", function (req, res) {
 
 	// Checking if the energiser with Id entered exist or not
 	pool
-		.query(`SELECT id FROM energisers WHERE id = $1`, [energiserId])
+		.query("SELECT id FROM energisers WHERE id = $1", [energiserId])
 		.then((result) => {
 			if (result.rows.length == 0) {
 				return res

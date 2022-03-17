@@ -14,83 +14,83 @@ import { CardActions } from "@mui/material";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import ShareIcon from "@material-ui/icons/Share";
+import { Link } from "react-router-dom";
+
+// const energisers = [
+// 	{
+// 		id: 1,
+// 		title: "Energiser 1",
+// 		description: "Energiser 1 description",
+// 		image: "https://source.unsplash.com/random/400x400",
+// 		link: "https://www.google.com",
+// 		instructions: "Lorem ipsum",
+// 		likes: "100",
+// 		dislikes: "10",
+// 	},
+// 	{
+// 		id: 2,
+// 		title: "Energiser 2",
+// 		description: "Energiser 2 description",
+// 		image: "https://source.unsplash.com/random/400x400",
+// 		link: "https://www.google.com",
+// 		instructions: "Lorem ipsum",
+// 		likes: "100",
+// 		dislikes: "10",
+// 	},
+// 	{
+// 		id: 3,
+// 		title: "Energiser 3",
+// 		description: "Energiser 3 description",
+// 		image: "https://source.unsplash.com/random/400x400",
+// 		link: "https://www.google.com",
+// 		instructions: "Lorem ipsum",
+// 		likes: "100",
+// 		dislikes: "10",
+// 	},
+// 	{
+// 		id: 4,
+// 		title: "Energiser 4",
+// 		description: "Energiser 4 description",
+// 		image: "https://source.unsplash.com/random/400x400",
+// 		link: "https://www.google.com",
+// 		instructions: "Lorem ipsum",
+// 		likes: "100",
+// 		dislikes: "10",
+// 	},
+// 	{
+// 		id: 5,
+// 		title: "Energiser 5",
+// 		description: "Energiser 5 description",
+// 		image: "https://source.unsplash.com/random/400x400",
+// 		link: "https://www.google.com",
+// 		instructions: "Lorem ipsum",
+// 		likes: "100",
+// 		dislikes: "10",
+// 	},
+// 	{
+// 		id: 6,
+// 		title: "Energiser 6",
+// 		description: "Energiser 6 description",
+// 		image: "https://source.unsplash.com/random/400x400",
+// 		link: "https://www.google.com",
+// 		instructions: "Lorem ipsum",
+// 		likes: "100",
+// 		dislikes: "10",
+// 	},
+// 	{
+// 		id: 7,
+// 		title: "Energiser 7",
+// 		description: "Energiser 7 description",
+// 		image: "https://source.unsplash.com/random/400x400",
+// 		link: "https://www.google.com",
+// 		instructions: "Lorem ipsum",
+// 		likes: "100",
+// 		dislikes: "10",
+// 	},
+// ];
 
 
-const energisers = [
-	{
-		id: 1,
-		title: "Energiser 1",
-		description: "Energiser 1 description",
-		image: "https://source.unsplash.com/random/400x400",
-		link: "https://www.google.com",
-		instructions: "Lorem ipsum",
-		likes: "100",
-		dislikes: "10",
-	},
-	{
-		id: 2,
-		title: "Energiser 2",
-		description: "Energiser 2 description",
-		image: "https://source.unsplash.com/random/400x400",
-		link: "https://www.google.com",
-		instructions: "Lorem ipsum",
-		likes: "100",
-		dislikes: "10",
-	},
-	{
-		id: 3,
-		title: "Energiser 3",
-		description: "Energiser 3 description",
-		image: "https://source.unsplash.com/random/400x400",
-		link: "https://www.google.com",
-		instructions: "Lorem ipsum",
-		likes: "100",
-		dislikes: "10",
-	},
-	{
-		id: 4,
-		title: "Energiser 4",
-		description: "Energiser 4 description",
-		image: "https://source.unsplash.com/random/400x400",
-		link: "https://www.google.com",
-		instructions: "Lorem ipsum",
-		likes: "100",
-		dislikes: "10",
-	},
-	{
-		id: 5,
-		title: "Energiser 5",
-		description: "Energiser 5 description",
-		image: "https://source.unsplash.com/random/400x400",
-		link: "https://www.google.com",
-		instructions: "Lorem ipsum",
-		likes: "100",
-		dislikes: "10",
-	},
-	{
-		id: 6,
-		title: "Energiser 6",
-		description: "Energiser 6 description",
-		image: "https://source.unsplash.com/random/400x400",
-		link: "https://www.google.com",
-		instructions: "Lorem ipsum",
-		likes: "100",
-		dislikes: "10",
-	},
-	{
-		id: 7,
-		title: "Energiser 7",
-		description: "Energiser 7 description",
-		image: "https://source.unsplash.com/random/400x400",
-		link: "https://www.google.com",
-		instructions: "Lorem ipsum",
-		likes: "100",
-		dislikes: "10",
-	},
-];
-
-
-function CardCarousel (){
+function CardCarousel ({energisers}){
 	const itemsPerPage = 3;
 	const [page, setPage] = React.useState(1);
 
@@ -160,13 +160,14 @@ function CardCarousel (){
 										</Typography>
 									</CardContent>
 									<CardActions disableSpacing>
-										<Button
+										{/* <Button
 											variant="outlined"
 											href={energiser.link}
 											color="primary"
 										>
 											Select
-										</Button>
+										</Button> */}
+										<Link to={`/energiser/${energiser.id}`} >Select</Link>
 										<IconButton aria-label="thumbs-up">
 											<ThumbUpOffAltIcon />
 											{energiser.likes}
