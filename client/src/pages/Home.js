@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
+import Hero from "../components/Jumbotron/Hero";
+
 
 export function Home() {
 	const [message, setMessage] = useState("Loading...");
@@ -26,6 +28,7 @@ export function Home() {
 		<main role="main">
 			<div>
 				<Header />
+				<Hero />
 			</div>
 		</main>
 	);
