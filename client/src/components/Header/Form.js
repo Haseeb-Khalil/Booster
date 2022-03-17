@@ -23,9 +23,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Form = ({ handleClose }) => {
 	const classes = useStyles();
-	// create state variables for each input
-	// const [Name, setName] = useState("");
-	// const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -39,14 +36,14 @@ const Form = ({ handleClose }) => {
 		<form className={classes.root} onSubmit={handleSubmit}>
 			<TextField
 				label="Email"
-				variant="filled"
+				variant="outlined"
 				type="email"
 				value={email}
 				onChange={(e) => setEmail(e.target.value)}
 			/>
 			<TextField
 				label="Password"
-				variant="filled"
+				variant="outlined"
 				type="password"
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}

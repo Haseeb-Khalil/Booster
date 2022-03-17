@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import CardsSection from "../components/CardsCarousel/CardsSection";
 
 import Header from "../components/Header/Header";
 import Hero from "../components/Jumbotron/Hero";
-
+import Theme from "../components/Theme";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 export function Home() {
 	const [message, setMessage] = useState("Loading...");
@@ -27,8 +29,11 @@ export function Home() {
 	return (
 		<main role="main">
 			<div>
-				<Header />
-				<Hero />
+				<ThemeProvider theme={Theme}>
+					<Header />
+					<Hero />
+					<CardsSection />
+				</ThemeProvider>
 			</div>
 		</main>
 	);

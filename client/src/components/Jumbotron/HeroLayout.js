@@ -1,11 +1,10 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
-
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-const ProductHeroLayoutRoot = styled("section")(({ theme }) => ({
+const HeroLayoutRoot = styled("section")(({ theme }) => ({
   color: theme.palette.common.white,
   position: "relative",
   display: "flex",
@@ -31,8 +30,8 @@ const Background = styled(Box)({
 function ProductHeroLayout(props) {
   const { sxBackground, children } = props;
 
-  return (
-		<ProductHeroLayoutRoot>
+	return (
+		<HeroLayoutRoot>
 			<Container
 				sx={{
 					mt: 3,
@@ -56,28 +55,14 @@ function ProductHeroLayout(props) {
 					}}
 				/>
 				<Background sx={sxBackground} />
-				{/* <Box
-					component="img"
-					src="/static/themes/onepirate/productHeroArrowDown.png"
-					height="16"
-					width="12"
-					alt="arrow down"
-					sx={{ position: "absolute", bottom: 32 }}
-				/> */}
+				<Box>
+					<KeyboardArrowDownIcon fontSize="large" sx={{ position: "absolute", bottom: 32 }} />
+				</Box>
 			</Container>
-		</ProductHeroLayoutRoot>
+		</HeroLayoutRoot>
 	);
 }
 
-ProductHeroLayout.propTypes = {
-  children: PropTypes.node,
-  sxBackground: PropTypes.oneOfType([
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-    ),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
-};
+
 
 export default ProductHeroLayout;
