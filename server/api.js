@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import { Router } from "express";
 require("dotenv").config();
 
@@ -47,6 +48,7 @@ router.post("/energiser", function (req, res) {
 			} else {
 
 				let query = `INSERT INTO energisers(title, description, playing_instructions, link) VALUES ($1,$2,$3,$4)`;
+
 				let params = [
 					energiserTitle,
 					energiserDescription,

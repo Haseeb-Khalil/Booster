@@ -90,7 +90,8 @@ import { Link } from "react-router-dom";
 // ];
 
 
-function CardCarousel ({energisers}){
+function CardCarousel ({ energisers }){
+	console.log(energisers);
 	const itemsPerPage = 3;
 	const [page, setPage] = React.useState(1);
 
@@ -136,7 +137,7 @@ function CardCarousel ({energisers}){
 			<Container maxWidth="lg" component="main">
 				<Grid container spacing={5}>
 					{energisers
-						.slice((page - 1) * itemsPerPage, page * itemsPerPage)
+						// .slice((page - 1) * itemsPerPage, page * itemsPerPage)
 						.map((energiser, index) => (
 							<Grid item key={index} xs={4} md={4}>
 								<Card>
