@@ -1,25 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-const Energise = ({ energisers }) => {
-    const { id } = useParams();
-    console.log("id", typeof(id));
-    console.log(typeof(energisers[0].id));
+const Energise = () => {
+	const { id } = useParams();
+	const [energisers, setEnergisers] = useState([]);
+	const api = "http://localhost:3100/api";
 
-    return (
-        <>
-        {energisers.filter((energiser) => energiser.id === parseInt(id)).map((energiser) => {
-                return (
-                <div key={energiser.id}>
-                    <h1>{energiser.title}</h1>
-                    <p>{energiser.description}</p>
-                    <p>{energiser.link}</p>
-                </div>
-            );
-            })
-        }
-        </>
-    );
+	useEffect(() => {
+		fetch(api + "/energisers")
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error(res.statusText);
+				}
+				return res.json();
+			})
+			.then((data) => {
+				console.log(data);
+				setEnergisers(data);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	}, []);
+
+	return (
+		<>
+			<div>
+				Haseeb
+				{energisers
+					.filter((energiser) => energiser.id === id)
+					.map((energiser) => (
+							<div key={energiser.id}>
+								<h1>{energiser.title}</h1>
+								<p>{energiser.description}</p>
+								<p>{energiser.link}</p>
+							</div>
+						)
+                    )}
+			</div>
+		</>
+	);
 };
 
 export default Energise;
