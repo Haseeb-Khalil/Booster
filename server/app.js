@@ -1,8 +1,6 @@
 import express from "express";
 import morgan from "morgan";
 import path from "path";
-import cors from "cors";
-
 
 import router from "./api";
 import {
@@ -24,12 +22,6 @@ app.use(morgan("dev"));
 if (app.get("env") === "production") {
 	app.enable("trust proxy");
 	app.use(httpsOnly());
-} else {
-	app.use(
-		cors({
-			origin: "http://localhost:3000",
-		})
-	);
 }
 
 app.use(apiRoot, router);
