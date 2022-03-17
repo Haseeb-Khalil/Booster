@@ -1,42 +1,53 @@
-import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
-import { register } from "./RegistrationStyles";
-import InputAdornment from "@material-ui/core/InputAdornment";
-
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Paper from "@material-ui/core/Paper";
-import { FormControl, Input, InputLabel, Button } from "@material-ui/core";
-import Snackbar from "@material-ui/core/Snackbar";
-import SnackbarContent from "@material-ui/core/SnackbarContent";
-import IconButton from "@material-ui/core/IconButton";
-import ErrorIcon from "@material-ui/icons/Error";
+import React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@material-ui/core/Button";
+import IconButton from "@mui/material/IconButton";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@material-ui/core/Typography";
-import VisibilityTwoToneIcon from "@material-ui/icons/VisibilityTwoTone";
-import VisibilityOffTwoToneIcon from "@material-ui/icons/VisibilityOffTwoTone";
-import CloseIcon from "@material-ui/icons/Close";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
+import Checkbox from "@mui/material/Checkbox";
+import FormControl from "@mui/material/FormControl";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import InputLabel from "@mui/material/InputLabel";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 
-class Registration extends Component {
-	state = {
-		email: "",
-		password: "",
-		passwordConfrim: "",
-		hidePassword: true,
-		error: null,
-		errorOpen: false,
+function Registration (){
+	const [values, setValues] = React.useState({
+			password: "",
+			showPassword: false,
+	});
+
+	const handleChange = (prop) => (event) => {
+		setValues({ ...values, [prop]: event.target.value });
 	};
 
-	errorClose = (e) => {
-		this.setState({
-			errorOpen: false,
+	const handleClickShowPassword = () => {
+		setValues({
+			...values,
+			showPassword: !values.showPassword,
 		});
 	};
 
-	handleChange = (name) => (e) => {
-		this.setState({
-			[name]: e.target.value,
-		});
+	const handleMouseDownPassword = (event) => {
+		event.preventDefault();
 	};
+
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		const data = new FormData(event.currentTarget);
+		console.log({
+			email: data.get("email"),
+			password: data.get("password"),
+		});
 
 	passwordMatch = () => this.state.password === this.state.passwordConfrim;
 
@@ -64,154 +75,96 @@ class Registration extends Component {
 			passwordConfrim: this.state.passwordConfrim,
 		};
 		console.log("this.props.newUserCredentials", newUserCredentials);
+
 	};
 
-	render() {
-		const { classes } = this.props;
-		return (
-			<div className={classes.main}>
-				<CssBaseline />
 
-				<Paper className={classes.paper}>
-					<form
-						className={classes.form}
-						onSubmit={() => this.submitRegistration}
-					>
-						<Typography variant="h5" color="primary" sx={{ mt: 1 }}>
-							Discover the experience
-						</Typography>
-						<FormControl required fullWidth margin="normal">
-							<InputLabel htmlFor="email" className={classes.labels}>
-								e-mail
-							</InputLabel>
-							<Input
-								name="email"
-								type="email"
-								autoComplete="email"
-								className={classes.inputs}
-								disableUnderline={true}
-								onChange={this.handleChange("email")}
-							/>
-						</FormControl>
-
-						<FormControl required fullWidth margin="normal">
-							<InputLabel htmlFor="password" className={classes.labels}>
-								password
-							</InputLabel>
-							<Input
-								name="password"
-								autoComplete="password"
-								className={classes.inputs}
-								disableUnderline={true}
-								onChange={this.handleChange("password")}
-								type={this.state.hidePassword ? "password" : "input"}
-								endAdornment={
-									this.state.hidePassword ? (
-										<InputAdornment position="end">
-											<VisibilityOffTwoToneIcon
-												fontSize="default"
-												className={classes.passwordEye}
-												onClick={this.showPassword}
-											/>
-										</InputAdornment>
-									) : (
-										<InputAdornment position="end">
-											<VisibilityTwoToneIcon
-												fontSize="default"
-												className={classes.passwordEye}
-												onClick={this.showPassword}
-											/>
-										</InputAdornment>
-									)
-								}
-							/>
-						</FormControl>
-
-						<FormControl required fullWidth margin="normal">
-							<InputLabel htmlFor="passwordConfrim" className={classes.labels}>
-								confrim password
-							</InputLabel>
-							<Input
-								name="passwordConfrim"
-								autoComplete="passwordConfrim"
-								className={classes.inputs}
-								disableUnderline={true}
-								onClick={this.state.showPassword}
-								onChange={this.handleChange("passwordConfrim")}
-								type={this.state.hidePassword ? "password" : "input"}
-								endAdornment={
-									this.state.hidePassword ? (
-										<InputAdornment position="end">
-											<VisibilityOffTwoToneIcon
-												fontSize="default"
-												className={classes.passwordEye}
-												onClick={this.showPassword}
-											/>
-										</InputAdornment>
-									) : (
-										<InputAdornment position="end">
-											<VisibilityTwoToneIcon
-												fontSize="default"
-												className={classes.passwordEye}
-												onClick={this.showPassword}
-											/>
-										</InputAdornment>
-									)
-								}
-							/>
-						</FormControl>
-						<Button
-							disabled={!this.isValid()}
-							disableRipple
-							fullWidth
-							variant="outlined"
-							className={classes.button}
-							type="submit"
-							onClick={this.submitRegistration}
-                            color="primary"
-						>
-							Join
-						</Button>
-					</form>
-
-					{this.state.error ? (
-						<Snackbar
-							variant="error"
-							key={this.state.error}
-							anchorOrigin={{
-								vertical: "bottom",
-								horizontal: "center",
-							}}
-							open={this.state.errorOpen}
-							onClose={this.errorClose}
-							autoHideDuration={3000}
-						>
-							<SnackbarContent
-								className={classes.error}
-								message={
-									<div>
-										<span style={{ marginRight: "8px" }}>
-											<ErrorIcon fontSize="large" color="error" />
-										</span>
-										<span> {this.state.error} </span>
-									</div>
-								}
-								action={[
+	return (
+		<Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+			<Box
+				sx={{
+					my: 8,
+					mx: 4,
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+				}}
+			>
+				<Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+					<LockOutlinedIcon />
+				</Avatar>
+				<Typography component="h1" variant="h5">
+					Discover the experience
+				</Typography>
+				<Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+					<TextField
+						margin="normal"
+						required
+						fullWidth
+						id="outlined-required"
+						label="Name"
+						name="name"
+						autoComplete="name"
+						variant="outlined"
+					/>
+					<TextField
+						margin="normal"
+						required
+						fullWidth
+						id="email"
+						label="Email Address"
+						name="email"
+						autoComplete="email"
+						variant="outlined"
+					/>
+					<FormControl variant="outlined" sx={{ mt: 1, width: "35ch" }}>
+						<InputLabel htmlFor="outlined-adornment-password">
+							Password
+						</InputLabel>
+						<OutlinedInput
+							id="outlined-adornment-password"
+							type={values.showPassword ? "text" : "password"}
+							value={values.password}
+							onChange={handleChange("password")}
+							endAdornment={
+								<InputAdornment position="end">
 									<IconButton
-										key="close"
-										aria-label="close"
-										onClick={this.errorClose}
+										aria-label="toggle password visibility"
+										onClick={handleClickShowPassword}
+										onMouseDown={handleMouseDownPassword}
+										edge="end"
 									>
-										<CloseIcon color="error" />
-									</IconButton>,
-								]}
-							/>
-						</Snackbar>
-					) : null}
-				</Paper>
-			</div>
-		);
-	}
+										{values.showPassword ? <VisibilityOff /> : <Visibility />}
+									</IconButton>
+								</InputAdornment>
+							}
+							label="Password"
+						/>
+					</FormControl>
+					<FormControlLabel
+						control={<Checkbox value="remember" color="primary" />}
+						label="Remember me"
+					/>
+					<Button
+						type="submit"
+						fullWidth
+						variant="contained"
+						sx={{ mt: 3, mb: 2 }}
+						color="primary"
+					>
+						Sign Up
+					</Button>
+					<Grid container>
+						<Grid item xs>
+							<Link href="#" variant="body2">
+								Forgot password?
+							</Link>
+						</Grid>
+					</Grid>
+				</Box>
+			</Box>
+		</Grid>
+	);
 }
 
-export default withStyles(register)(Registration);
+export default Registration;
