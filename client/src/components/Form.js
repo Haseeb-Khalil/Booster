@@ -23,15 +23,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Form = ({ handleClose }) => {
 	const classes = useStyles();
-	// create state variables for each input
-	// const [Name, setName] = useState("");
-	// const [lastName, setLastName] = useState("");
+	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(email, password);
+		console.log(name, email, password);
 		handleClose();
 	};
 
