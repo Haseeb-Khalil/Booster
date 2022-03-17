@@ -40,7 +40,6 @@ function Registration (){
 		event.preventDefault();
 	};
 
-
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
@@ -48,34 +47,6 @@ function Registration (){
 			email: data.get("email"),
 			password: data.get("password"),
 		});
-
-	passwordMatch = () => this.state.password === this.state.passwordConfrim;
-
-	showPassword = () => {
-		this.setState((prevState) => ({ hidePassword: !prevState.hidePassword }));
-	};
-
-	isValid = () => {
-		if (this.state.email === "") {
-			return false;
-		}
-		return true;
-	};
-	submitRegistration = (e) => {
-		e.preventDefault();
-		if (!this.passwordMatch()) {
-			this.setState({
-				errorOpen: true,
-				error: "Passwords don't match",
-			});
-		}
-		const newUserCredentials = {
-			email: this.state.email,
-			password: this.state.password,
-			passwordConfrim: this.state.passwordConfrim,
-		};
-		console.log("this.props.newUserCredentials", newUserCredentials);
-
 	};
 
 
