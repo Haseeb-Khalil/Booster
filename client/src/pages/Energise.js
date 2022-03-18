@@ -5,6 +5,7 @@ import Footer from "../components/Footer/Footer";
 import Theme from "../components/Theme";
 import { ThemeProvider } from "@material-ui/core/styles";
 import Timer from "../components/Timer";
+import { Grid, Box, Typography } from "@material-ui/core";
 
 const Energise = () => {
 	const { id } = useParams();
@@ -20,7 +21,6 @@ const Energise = () => {
 				return res.json();
 			})
 			.then((data) => {
-				console.log(data);
 				setEnergisers(data);
 			})
 			.catch((err) => {
@@ -30,20 +30,38 @@ const Energise = () => {
 
 	return (
 		<ThemeProvider theme={Theme}>
-			<div>
-				<Header />
-				{energisers
-					.filter((energiser) => energiser.id === id)
-					.map((energiser) => (
-						<div key={energiser.id}>
-							<h1>{energiser.title}</h1>
-							<p>{energiser.description}</p>
-							<p>{energiser.link}</p>
-						</div>
-					))}
+			<Header />
+			<Grid>
 				<Timer />
-				<Footer />
-			</div>
+				{console.log(energisers)}
+				{energisers
+					.filter((energiser) => energiser.id === parseInt(id))
+					.map((item) => (
+						<Grid key={item.id}>
+							{console.log(item)}
+							<Box>
+								<Typography variant="h4">{item.title}</Typography>
+							</Box>
+							<Box>
+								<img
+									src="https://images.unsplash.com/photo-1553603227-2358aabe821e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
+									height="480px"
+									alt={item.title}
+								/>
+							</Box>
+
+							<Box>
+								<Typography variant="h6">{item.description}</Typography>
+							</Box>
+							<Box>
+								<Typography variant="body">
+									{item.playing_instructions}
+								</Typography>
+							</Box>
+						</Grid>
+					))}
+			</Grid>
+			<Footer />
 		</ThemeProvider>
 	);
 };
