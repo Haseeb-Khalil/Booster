@@ -27,7 +27,6 @@ function CardCarousel() {
 				return res.json();
 			})
 			.then((data) => {
-				console.log(data);
 				setEnergisers(data);
 			})
 			.catch((err) => {
