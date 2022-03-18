@@ -9,6 +9,7 @@ import ElectricBoltRoundedIcon from "@mui/icons-material/ElectricBoltRounded";
 import { red } from "@material-ui/core/colors";
 import cyf_brand from "../../assets/cyf_brand.png";
 import "./navbar.css";
+import { Box, Link } from "@material-ui/core";
 
 
 
@@ -45,15 +46,23 @@ const Navbar = () => {
 
 	return (
 		<AppBar className={classes.appBar} position="static" color="secondary">
-			<img className="cyfLogo" src={cyf_brand} alt="cyf_brand" />
+			<Link href="https://codeyourfuture.io/" target="_blank">
+				<img className="cyfLogo" src={cyf_brand} alt="cyf_brand" />
+			</Link>
 			<Toolbar>
 				<ElectricBoltRoundedIcon
 					className={classes.icon}
 					sx={{ color: red[500] }}
 				/>
-				<Typography color="primary" variant="h6" className={classes.title}>
+				<Link
+					color="primary"
+					variant="h6"
+					className={classes.title}
+					href="/"
+					underline="none"
+				>
 					booster
-				</Typography>
+				</Link>
 				<Button
 					variant="outlined"
 					color="primary"

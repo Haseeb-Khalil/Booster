@@ -1,4 +1,4 @@
-import Energise from "./components/CardsCarousel/Energise";
+import Energise from "./pages/Energise";
 import { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";

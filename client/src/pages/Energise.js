@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+import Theme from "../components/Theme";
+import { ThemeProvider } from "@material-ui/core/styles";
 const Energise = () => {
 	const { id } = useParams();
 	const [energisers, setEnergisers] = useState([]);
@@ -24,21 +27,21 @@ const Energise = () => {
 	}, []);
 
 	return (
-		<>
+		<ThemeProvider theme={Theme}>
 			<div>
-				Haseeb
+				<Header />
 				{energisers
 					.filter((energiser) => energiser.id === id)
 					.map((energiser) => (
-							<div key={energiser.id}>
-								<h1>{energiser.title}</h1>
-								<p>{energiser.description}</p>
-								<p>{energiser.link}</p>
-							</div>
-						)
-                    )}
+						<div key={energiser.id}>
+							<h1>{energiser.title}</h1>
+							<p>{energiser.description}</p>
+							<p>{energiser.link}</p>
+						</div>
+					))}
+				<Footer />
 			</div>
-		</>
+		</ThemeProvider>
 	);
 };
 

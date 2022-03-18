@@ -3,6 +3,7 @@ import Header from "../components/Header/Header";
 import Hero from "../components/Jumbotron/Hero";
 import Theme from "../components/Theme";
 import { ThemeProvider } from "@material-ui/core/styles";
+import Footer from "../components/Footer/Footer";
 
 export function Home() {
 	return (
@@ -12,6 +13,7 @@ export function Home() {
 					<Header />
 					<Hero />
 					<CardsSection />
+					<Footer />
 				</ThemeProvider>
 			</div>
 		</main>
