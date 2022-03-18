@@ -81,6 +81,7 @@
 		"helmet": "^5.0.2",
 		"morgan": "^1.10.0",
 		"pg": "^8.7.3",
+		"react-countdown-circle-timer": "^3.0.9",
 		"react-icons": "^4.3.1",
 		"react-material-ui-carousel": "^3.2.0",
 		"styled-components": "^5.3.3"

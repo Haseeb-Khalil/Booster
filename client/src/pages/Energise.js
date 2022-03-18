@@ -4,6 +4,8 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Theme from "../components/Theme";
 import { ThemeProvider } from "@material-ui/core/styles";
+import Timer from "../components/Timer";
+
 const Energise = () => {
 	const { id } = useParams();
 	const [energisers, setEnergisers] = useState([]);
@@ -39,6 +41,7 @@ const Energise = () => {
 							<p>{energiser.link}</p>
 						</div>
 					))}
+				<Timer />
 				<Footer />
 			</div>
 		</ThemeProvider>
