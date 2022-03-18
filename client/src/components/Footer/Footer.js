@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Box, Grid, Link } from "@material-ui/core";
 import { red } from "@mui/material/colors";
 import ElectricBoltRoundedIcon from "@mui/icons-material/ElectricBoltRounded";
-import Typography from "@material-ui/core/Typography";
 import cyf_brand from "../../assets/cyf_brand.png";
 
 
@@ -23,35 +22,35 @@ export default function Footer(){
 							<Grid item xs={12} sm={4}>
 								<Box borderBottom={1}>Help</Box>
 								<Box>
-									<Link href="/" color="inherit">
+									<Link href="/" color="inherit" variant="h6">
 										Contact
 									</Link>
 								</Box>
 								<Box>
-									<Link href="/" color="inherit">
+									<Link href="/" color="inherit" variant="h6">
 										Support
 									</Link>
 								</Box>
 								<Box>
-									<Link href="/" color="inherit">
+									<Link href="/" color="inherit" variant="h6">
 										Privacy
 									</Link>
 								</Box>
 								<Box>
-									<Link href="/" color="inherit">
-										CodeYourFuture
+									<Link href="/https://codeyourfuture.io/">
+										<img className="cyfLogo" src={cyf_brand} alt="cyf_brand" />
 									</Link>
 								</Box>
 							</Grid>
 							<Grid item xs={12} sm={4}>
-								<Box borderBottom={1}>Account</Box>
+								<Box borderBottom={1} variant="h6">Account</Box>
 								<Box>
-									<Link href="/" color="inherit">
+									<Link href="/" color="inherit" variant="h6">
 										Login
 									</Link>
 								</Box>
 								<Box>
-									<Link href="/" color="inherit">
+									<Link href="/" color="inherit" variant="h6">
 										Register
 									</Link>
 								</Box>
@@ -59,38 +58,30 @@ export default function Footer(){
 							<Grid item xs={12} sm={4}>
 								<Box borderBottom={1}>Energisers</Box>
 								<Box>
-									<Link href="/" color="inherit">
+									<Link href="/" color="inherit" variant="h6">
 										Backup
 									</Link>
 								</Box>
 								<Box>
-									<Link href="/" color="inherit">
+									<Link href="/" color="inherit" variant="h6">
 										History
 									</Link>
 								</Box>
 								<Box>
-									<Link href="/" color="inherit">
+									<Link href="/" color="inherit" variant="h6">
 										Resources
 									</Link>
 								</Box>
 							</Grid>
 						</Grid>
-						<Box
-							textAlign="center"
-							pt={{ xs: 5, sm: 5 }}
-							pb={{ xs: 5, sm: 0 }}
-						>
-							<img className="cyfLogo" src={cyf_brand} alt="cyf_brand" />
-						</Box>
-						<Box
-							textAlign="center"
-							pt={{ xs: 1, sm: 1 }}
-							pb={{ xs: 5, sm: 0 }}
-						>
-							<ElectricBoltRoundedIcon sx={{ color: red[150] }} />
-							<Typography color="secondary" variant="h6">
+						<Box textAlign="center" pt={{ xs: 1, sm: 1 }} pb={{ xs: 5, sm: 0 }}>
+							<ElectricBoltRoundedIcon
+								sx={{ color: red[150] }}
+								fontSize="large"
+							/>
+							<Link color="secondary" variant="h4" href="./" underline="none">
 								booster &reg; {new Date().getFullYear()}
-							</Typography>
+							</Link>
 						</Box>
 					</Container>
 				</Box>
