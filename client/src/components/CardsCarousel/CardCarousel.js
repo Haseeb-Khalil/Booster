@@ -61,6 +61,12 @@ function CardCarousel() {
 		});
 	};
 
+	const cardStyle = {
+		display: "block",
+		transitionDuration: "0.3s",
+		height: "5vw",
+	};
+
 	return (
 		<Carousel
 			autoPlay={false}
@@ -68,7 +74,7 @@ function CardCarousel() {
 			onChangePage={handleChangePage}
 			next={noLoopNext}
 			prev={noLoopPrev}
-			sx={{ overflow:"visible", padding: 5 }}
+			sx={{ overflow: "visible", padding: 5 }}
 			navButtonsProps={{
 				style: {
 					backgroundColor: "red",
@@ -86,7 +92,7 @@ function CardCarousel() {
 									<CardMedia
 										component="img"
 										height="240px"
-										image="https://images.unsplash.com/photo-1553603227-2358aabe821e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
+										image={energiser.image}
 										alt={energiser.title}
 									/>
 									<CardContent>
@@ -97,6 +103,7 @@ function CardCarousel() {
 											variant="body2"
 											color="textSecondary"
 											component="p"
+											style={cardStyle}
 										>
 											{energiser.description}
 										</Typography>
