@@ -5,17 +5,17 @@ import {
 	Button,
 	CardContent,
 	CardMedia,
-	IconButton,
 	Typography,
 	Grid,
 } from "@material-ui/core";
 import { CardActions } from "@mui/material";
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
-import ShareIcon from "@material-ui/icons/Share";
+
+import Vote from"./Vote";
 
 function CardCarousel() {
 	const [energisers, setEnergisers] = useState([]);
+
+	// console.log(data);
 	const api = "http://localhost:3100/api";
 
 	useEffect(() => {
@@ -28,6 +28,7 @@ function CardCarousel() {
 			})
 			.then((data) => {
 				setEnergisers(data);
+				console.log(data);
 			})
 			.catch((err) => {
 				console.error(err);
@@ -86,7 +87,7 @@ function CardCarousel() {
 									<CardMedia
 										component="img"
 										height="240px"
-										image="https://images.unsplash.com/photo-1553603227-2358aabe821e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
+										image={energiser.image}
 										alt={energiser.title}
 									/>
 									<CardContent>
@@ -109,17 +110,7 @@ function CardCarousel() {
 										>
 											Select
 										</Button>
-										<IconButton aria-label="thumbs-up">
-											<ThumbUpOffAltIcon />
-											{energiser.likes}
-										</IconButton>
-										<IconButton aria-label="thumbs-down">
-											<ThumbDownOffAltIcon />
-											{energiser.dislikes}
-										</IconButton>
-										<IconButton aria-label="share">
-											<ShareIcon />
-										</IconButton>
+										<Vote energiser={energiser} />
 									</CardActions>
 								</Card>
 							</Grid>
