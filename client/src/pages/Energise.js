@@ -6,6 +6,8 @@ import Theme from "../components/Theme";
 import { ThemeProvider } from "@material-ui/core/styles";
 import Timer from "../components/Timer";
 import { Grid, Box, Typography } from "@material-ui/core";
+import Divider from "@mui/material/Divider";
+import BottomNav from "../components/CardsCarousel/BottomNav"
 
 const Energise = () => {
 	const { id } = useParams();
@@ -58,6 +60,7 @@ const Energise = () => {
 								>
 									<Typography variant="h4">{item.description}</Typography>
 								</Box>
+								<Divider />
 								<Box
 									sx={{
 										mb: "10em",
@@ -71,6 +74,7 @@ const Energise = () => {
 										{item.playing_instructions}
 									</Typography>
 								</Box>
+								<BottomNav />
 							</Grid>
 						</Grid>
 					</Box>

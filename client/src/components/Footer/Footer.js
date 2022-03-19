@@ -48,15 +48,10 @@ export default function Footer(){
 								</Box>
 							</Grid>
 							<Grid item xs={12} sm={4}>
-								<Box borderBottom={1}>Energisers</Box>
+								<Box borderBottom={1}>Github</Box>
 								<Box>
 									<Link href="/" color="inherit" variant="h6">
-										Backup
-									</Link>
-								</Box>
-								<Box>
-									<Link href="/" color="inherit" variant="h6">
-										History
+										Team
 									</Link>
 								</Box>
 								<Box>

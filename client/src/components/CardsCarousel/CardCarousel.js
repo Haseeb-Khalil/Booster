@@ -5,17 +5,17 @@ import {
 	Button,
 	CardContent,
 	CardMedia,
-	IconButton,
 	Typography,
 	Grid,
 } from "@material-ui/core";
 import { CardActions } from "@mui/material";
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
-import ShareIcon from "@material-ui/icons/Share";
+
+import Vote from"./Vote";
 
 function CardCarousel() {
 	const [energisers, setEnergisers] = useState([]);
+
+	// console.log(data);
 	const api = "http://localhost:3100/api";
 
 	useEffect(() => {
@@ -28,6 +28,7 @@ function CardCarousel() {
 			})
 			.then((data) => {
 				setEnergisers(data);
+				console.log(data);
 			})
 			.catch((err) => {
 				console.error(err);
@@ -116,17 +117,7 @@ function CardCarousel() {
 										>
 											Select
 										</Button>
-										<IconButton aria-label="thumbs-up">
-											<ThumbUpOffAltIcon />
-											{energiser.likes}
-										</IconButton>
-										<IconButton aria-label="thumbs-down">
-											<ThumbDownOffAltIcon />
-											{energiser.dislikes}
-										</IconButton>
-										<IconButton aria-label="share">
-											<ShareIcon />
-										</IconButton>
+										<Vote energiser={energiser} />
 									</CardActions>
 								</Card>
 							</Grid>
