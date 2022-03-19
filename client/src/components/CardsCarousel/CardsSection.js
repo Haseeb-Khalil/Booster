@@ -8,7 +8,7 @@ function CardsSection() {
 	return (
 		<Box sx={{ height: "40em", bgcolor: "#DDEE14", padding: 5 }}>
 			<Typography variant="h4" color="primary" align="center">
-				Chose your favourite energiser and start boosted
+				Pick your favourite energiser and start boosted
 			</Typography>
 			<CardCarousel />
 		</Box>

@@ -5,8 +5,7 @@ import Registration from "./Registration";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 
-const backgroundImage =
-	"https://images.unsplash.com/photo-1476018040064-32e98fec7648?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2338&q=80";
+const backgroundImage ="https://images.pexels.com/photos/6152103/pexels-photo-6152103.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
 function Hero(){
 return (
 	<HeroLayout
@@ -37,13 +36,13 @@ return (
 						variant="h2"
 						marked="center"
 					>
-						Welcome to the effortless energiser!
+						Welcome to Booster!
 					</Typography>
 					<Typography color="primary" align="left" variant="h4">
-						get boosted before your meeting
+						Get boosted before your meeting
 					</Typography>
 					<Typography color="secondary" align="left" variant="h6">
-						booster app will help you to boost your energy level before your meeting or class by providing you an energiser with an easy to use interface.
+						Booster helps you to boost your energy level before your meeting or class by providing you an energiser with an easy to use interface.
 					</Typography>
 				</Grid>
 				<Grid item xs={2} md={2}>
