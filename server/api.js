@@ -177,6 +177,77 @@ router.put("/energiser/:energiserId", function (req, res) {
 		});
 });
 
+
+
+// UPDATE AN ENERGISER's LIKE
+
+router.put("/energiser/:energiserId/like", function (req, res) {
+	let energiserId = req.params.energiserId;
+	
+	// Checking if the energiser with Id entered exist or not
+	pool
+		.query("SELECT id FROM energisers WHERE id = $1", [energiserId])
+		.then((result) => {
+			if (result.rows.length == 0) {
+				return res
+					.status(404)
+					.send({ msg: `Energiser: ${energiserId} doesn't exist` });
+			}
+		});
+
+	// First we select the energiser then we can update the likes-dislikes else we will can return the old info
+	pool
+		.query(`SELECT id, likes  FROM energisers WHERE id = $1`, [energiserId])
+		.then(() => {
+			let updateQuery = `UPDATE energisers SET likes = likes + 1 WHERE id = $1`;
+			let params = [energiserId];
+
+			pool
+				.query(updateQuery, params)
+				.then(() => res.send(`Energiser:${energiserId} Liked!`))
+				.catch((error) => {
+					console.error(error);
+					res.status(500).json(error);
+				});
+		});
+});
+
+
+
+// UPDATE AN ENERGISER's DISLIKE
+
+router.put("/energiser/:energiserId/dislike", function (req, res) {
+	let energiserId = req.params.energiserId;
+
+	// Checking if the energiser with Id entered exist or not
+	pool
+		.query("SELECT id FROM energisers WHERE id = $1", [energiserId])
+		.then((result) => {
+			if (result.rows.length == 0) {
+				return res
+					.status(404)
+					.send({ msg: `Energiser: ${energiserId} doesn't exist` });
+			}
+		});
+
+	// First we select the energiser then we can update the likes-dislikes else we will can return the old info
+	pool
+		.query(`SELECT id, dislikes  FROM energisers WHERE id = $1`, [energiserId])
+		.then(() => {
+			let updateQuery = `UPDATE energisers SET dislikes = dislikes + 1 WHERE id = $1`;
+			let params = [energiserId];
+
+			pool
+				.query(updateQuery, params)
+				.then(() => res.send(`Energiser:${energiserId} Disliked!`))
+				.catch((error) => {
+					console.error(error);
+					res.status(500).json(error);
+				});
+		});
+});
+
+
 ///==================DELETE REQUESTS===================///
 
 router.delete("/energiser/:energiserId", (req, res) => {
