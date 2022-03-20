@@ -83,6 +83,20 @@ router.get("/energisers", function (req, res) {
 		});
 });
 
+
+// GET MOST POPULAR ENERGISERS
+router.get("/energisers/popular", function (req, res) {
+	pool
+		.query(
+			`SELECT id, title, description, playing_instructions, link, likes, dislikes,image FROM energisers ORDER BY likes DESC LIMIT 10`
+		)
+		.then((result) => res.json(result.rows))
+		.catch((error) => {
+			console.error(error);
+			res.status(500).json(error);
+		});
+});
+
 // GET ENERGISERS USING SEARCH
 // Tested with: http://localhost:3100/api/energisers/search?term=test
 router.get("/energisers/search", function (req, res) {
