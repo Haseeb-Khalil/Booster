@@ -23,7 +23,6 @@ router.post("/energiser", function (req, res) {
 	const energiserLink = req.body.link;
 	const energiserImage = req.body.image;
 
-
 	// Basic Url testing. it should be starting with "http" or "https" following://
 	const validateUrl = /^(http|https):\/\/[^ "]+$/.test(energiserLink);
 	if (energiserLink) {
@@ -48,8 +47,8 @@ router.post("/energiser", function (req, res) {
 					.status(400)
 					.send({ msg: `Energiser name: ${energiserTitle} already exist` });
 			} else {
-
-				let query = "INSERT INTO energisers(title, description, playing_instructions, link, image) VALUES ($1,$2,$3,$4,$5)";
+				let query =
+					"INSERT INTO energisers(title, description, playing_instructions, link, image) VALUES ($1,$2,$3,$4,$5)";
 
 				let params = [
 					energiserTitle,
@@ -71,6 +70,67 @@ router.post("/energiser", function (req, res) {
 		});
 });
 
+//  CREATE AND ADD RANDOM GAME CODE OF A SELECTED ENERGISER
+
+const generateRandomCode = () => {
+	var result = "";
+	let resultLength = 7;
+	var characters =
+		"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	var charactersLength = characters.length;
+	for (var i = 0; i < resultLength; i++) {
+		result += characters.charAt(Math.floor(Math.random() * charactersLength));
+	}
+	return result;
+};
+
+router.post("/game/:energiserId", function (req, res) {
+	let energiserId = req.params.energiserId;
+
+	let code = generateRandomCode();
+	console.log("Code:", code);
+
+	// Checking if the energiser with Id entered exist or not
+	pool
+		.query("SELECT id FROM energisers WHERE id = $1", [energiserId])
+		.then((result) => {
+			if (result.rows.length == 0) {
+				return res
+					.status(404)
+					.send({ msg: `Energiser: ${energiserId} doesn't exist` });
+			}
+		});
+
+	let startTime = Date.now();
+
+	let query = `INSERT INTO game (energiser_id, share_code, start_time) VALUES ($1,$2,$3) RETURNING *`;
+
+	const params = [energiserId, code, startTime];
+
+	pool
+		.query(query, params)
+		.then((result1) => {
+			const gameRow = result1.rows[0];
+			// console.log(gameRow)
+			pool
+				.query(
+					"SELECT id, title, description, playing_instructions, link, likes, dislikes, image FROM energisers WHERE id =$1",
+					[energiserId]
+				)
+				.then((result2) => {
+					const energiserRow = result2.rows[0];
+					// console.log(result2);
+					let secondsLeft =
+						gameRow.timer_seconds - (Date.now() - gameRow.start_time) / 1000;
+					res.json({ ...energiserRow, secondsLeft, code });
+				});
+		})
+		.catch((error) => {
+			console.error(error);
+			res.status(500).json(error);
+		});
+});
+
 ///==================GET REQUESTS===================///
 
 // GET ALL THE Energisers
@@ -85,7 +145,6 @@ router.get("/energisers", function (req, res) {
 			res.status(500).json(error);
 		});
 });
-
 
 // GET MOST POPULAR ENERGISERS
 router.get("/energisers/popular", function (req, res) {
@@ -120,11 +179,59 @@ router.get("/energisers/search", function (req, res) {
 	}
 });
 
+// ///////////////////////////////////////////////////////////////////////////////////////
+// router.get("/game/:code", function (req, res) {
+// 	let code = req.params.code;
+// 	pool
+// 		.query(
+// 			`SELECT * from game WHERE share_code =$1`, [code])
+// 		.then((result) => res.json(result.rows))
+// 		.catch((error) => {
+// 			console.error(error);
+// 			res.status(500).json(error);
+// 		});
+// });
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+// GET AN ENERGISER USING SHARE CODE CREATED BY HOST
+
+router.get("/game/:code", function (req, res) {
+	let code = req.params.code;
+
+	console.log("Code:", code);
+	pool
+		.query(
+			`SELECT energisers.id, energisers.title, energisers.description, energisers.playing_instructions, energisers.link, energisers.likes, energisers.dislikes, energisers.image FROM energisers
+			JOIN game 
+			ON game.energiser_id = energisers.id
+			WHERE share_code =$1`,
+			[code]
+		)
+		.then((result) => {
+			console.log(result);
+			if (result.length) {
+				const gameRow = result.rows;
+				// res.send(result.rows);
+				let secondsLeft =
+					gameRow.timer_seconds - (Date.now() - gameRow.start_time) / 1000;
+				res.send({ gameRow, secondsLeft });
+			} else {
+				return res.status(404).send({ msg: `Game: ${code} doesn't exist` });
+			}
+		})
+		.catch((error) => {
+			console.error(error);
+			res.status(500).json(error);
+		});
+});
+
 // GET ENERGISER WITH AN ID
 // Tested with: http://localhost:3100/api/energisers/3
 router.get("/energiser/:energiserId", function (req, res) {
 	let energiserId = req.params.energiserId;
-	let query = "SELECT id, title, description, playing_instructions, link, likes, dislikes, image  FROM energisers WHERE id = $1";
+	let query =
+		"SELECT id, title, description, playing_instructions, link, likes, dislikes, image  FROM energisers WHERE id = $1";
 	const params = [energiserId];
 
 	pool
@@ -155,7 +262,6 @@ router.put("/energiser/:energiserId", function (req, res) {
 	const energiserNewLink = req.body.link;
 	const energiserNewImage = req.body.image;
 
-
 	// Checking if the energiser with Id entered exist or not
 	pool
 		.query("SELECT id FROM energisers WHERE id = $1", [energiserId])
@@ -184,7 +290,7 @@ router.put("/energiser/:energiserId", function (req, res) {
 				energiserNewDescription || originalEnergiser.description,
 				energiserNewInstructions || originalEnergiser.playing_instructions,
 				energiserNewLink || originalEnergiser.link,
-				energiserNewImage || originalEnergiser.image
+				energiserNewImage || originalEnergiser.image,
 			];
 
 			pool
@@ -197,13 +303,11 @@ router.put("/energiser/:energiserId", function (req, res) {
 		});
 });
 
-
-
 // LIKE AN ENERGISER
 
 router.put("/energiser/:energiserId/like", function (req, res) {
 	let energiserId = req.params.energiserId;
-	
+
 	// Checking if the energiser with Id entered exist or not
 	pool
 		.query("SELECT id FROM energisers WHERE id = $1", [energiserId])
@@ -231,8 +335,6 @@ router.put("/energiser/:energiserId/like", function (req, res) {
 				});
 		});
 });
-
-
 
 // DISLIKE AN ENERGISER
 
@@ -266,7 +368,6 @@ router.put("/energiser/:energiserId/dislike", function (req, res) {
 				});
 		});
 });
-
 
 ///==================DELETE REQUESTS===================///
 
