@@ -21,6 +21,8 @@ router.post("/energiser", function (req, res) {
 	const energiserDescription = req.body.description;
 	const energiserInstructions = req.body.playing_instructions;
 	const energiserLink = req.body.link;
+	const energiserImage = req.body.image;
+
 
 	// Basic Url testing. it should be starting with "http" or "https" following://
 	const validateUrl = /^(http|https):\/\/[^ "]+$/.test(energiserLink);
@@ -47,13 +49,14 @@ router.post("/energiser", function (req, res) {
 					.send({ msg: `Energiser name: ${energiserTitle} already exist` });
 			} else {
 
-				let query = "INSERT INTO energisers(title, description, playing_instructions, link) VALUES ($1,$2,$3,$4)";
+				let query = "INSERT INTO energisers(title, description, playing_instructions, link, image) VALUES ($1,$2,$3,$4,$5)";
 
 				let params = [
 					energiserTitle,
 					energiserDescription,
 					energiserInstructions,
 					energiserLink,
+					energiserImage,
 				];
 				pool
 					.query(query, params)
@@ -74,7 +77,7 @@ router.post("/energiser", function (req, res) {
 router.get("/energisers", function (req, res) {
 	pool
 		.query(
-			"SELECT id, title, description, playing_instructions, link, likes, dislikes,image FROM energisers"
+			"SELECT id, title, description, playing_instructions, link, likes, dislikes, image FROM energisers"
 		)
 		.then((result) => res.json(result.rows))
 		.catch((error) => {
@@ -88,7 +91,7 @@ router.get("/energisers", function (req, res) {
 router.get("/energisers/popular", function (req, res) {
 	pool
 		.query(
-			`SELECT id, title, description, playing_instructions, link, likes, dislikes,image FROM energisers ORDER BY likes DESC LIMIT 10`
+			`SELECT id, title, description, playing_instructions, link, likes, dislikes, image FROM energisers ORDER BY likes DESC LIMIT 10`
 		)
 		.then((result) => res.json(result.rows))
 		.catch((error) => {
@@ -105,7 +108,7 @@ router.get("/energisers/search", function (req, res) {
 	if (searchQuery.length) {
 		pool
 			.query(
-				`SELECT id, title, description, playing_instructions, link, likes, dislikes  FROM energisers WHERE LOWER(title) LIKE LOWER('%${searchQuery}%') ORDER BY title`
+				`SELECT id, title, description, playing_instructions, link, likes, dislikes, image  FROM energisers WHERE LOWER(title) LIKE LOWER('%${searchQuery}%') ORDER BY title`
 			)
 			.then((result) => res.json(result.rows))
 			.catch((error) => {
@@ -121,7 +124,7 @@ router.get("/energisers/search", function (req, res) {
 // Tested with: http://localhost:3100/api/energisers/3
 router.get("/energiser/:energiserId", function (req, res) {
 	let energiserId = req.params.energiserId;
-	let query = "SELECT id, title, description, playing_instructions, link, likes, dislikes  FROM energisers WHERE id = $1";
+	let query = "SELECT id, title, description, playing_instructions, link, likes, dislikes, image  FROM energisers WHERE id = $1";
 	const params = [energiserId];
 
 	pool
@@ -150,6 +153,8 @@ router.put("/energiser/:energiserId", function (req, res) {
 	const energiserNewDescription = req.body.description;
 	const energiserNewInstructions = req.body.playing_instructions;
 	const energiserNewLink = req.body.link;
+	const energiserNewImage = req.body.image;
+
 
 	// Checking if the energiser with Id entered exist or not
 	pool
@@ -165,13 +170,13 @@ router.put("/energiser/:energiserId", function (req, res) {
 	// First we select the energiser then we can update the changes else we will can return the old info
 	pool
 		.query(
-			"SELECT id, title, description, playing_instructions, link  FROM energisers WHERE id = $1",
+			"SELECT id, title, description, playing_instructions, link, image  FROM energisers WHERE id = $1",
 			[energiserId]
 		)
 		.then((result) => {
 			let originalEnergiser = result.rows[0];
 			let updateQuery = `UPDATE energisers
-        SET title = $2, description  = $3, playing_instructions = $4, link = $5
+        SET title = $2, description  = $3, playing_instructions = $4, link = $5, image = $6
         WHERE id = $1`;
 			let params = [
 				energiserId,
@@ -179,6 +184,7 @@ router.put("/energiser/:energiserId", function (req, res) {
 				energiserNewDescription || originalEnergiser.description,
 				energiserNewInstructions || originalEnergiser.playing_instructions,
 				energiserNewLink || originalEnergiser.link,
+				energiserNewImage || originalEnergiser.image
 			];
 
 			pool
@@ -193,7 +199,7 @@ router.put("/energiser/:energiserId", function (req, res) {
 
 
 
-// UPDATE AN ENERGISER's LIKE
+// LIKE AN ENERGISER
 
 router.put("/energiser/:energiserId/like", function (req, res) {
 	let energiserId = req.params.energiserId;
@@ -228,7 +234,7 @@ router.put("/energiser/:energiserId/like", function (req, res) {
 
 
 
-// UPDATE AN ENERGISER's DISLIKE
+// DISLIKE AN ENERGISER
 
 router.put("/energiser/:energiserId/dislike", function (req, res) {
 	let energiserId = req.params.energiserId;
