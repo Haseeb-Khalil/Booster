@@ -73,12 +73,12 @@ router.post("/energiser", function (req, res) {
 //  CREATE AND ADD RANDOM GAME CODE OF A SELECTED ENERGISER
 
 const generateRandomCode = () => {
-	var result = "";
+	let result = "";
 	let resultLength = 7;
-	var characters =
+	let characters =
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	var charactersLength = characters.length;
-	for (var i = 0; i < resultLength; i++) {
+	let charactersLength = characters.length;
+	for (let i = 0; i < resultLength; i++) {
 		result += characters.charAt(Math.floor(Math.random() * charactersLength));
 	}
 	return result;
@@ -179,20 +179,6 @@ router.get("/energisers/search", function (req, res) {
 	}
 });
 
-// ///////////////////////////////////////////////////////////////////////////////////////
-// router.get("/game/:code", function (req, res) {
-// 	let code = req.params.code;
-// 	pool
-// 		.query(
-// 			`SELECT * from game WHERE share_code =$1`, [code])
-// 		.then((result) => res.json(result.rows))
-// 		.catch((error) => {
-// 			console.error(error);
-// 			res.status(500).json(error);
-// 		});
-// });
-
-/////////////////////////////////////////////////////////////////////////////////////
 
 // GET AN ENERGISER USING SHARE CODE CREATED BY HOST
 
@@ -208,16 +194,22 @@ router.get("/game/:code", function (req, res) {
 			WHERE share_code =$1`,
 			[code]
 		)
-		.then((result) => {
-			console.log(result);
-			if (result.length) {
-				const gameRow = result.rows;
-				// res.send(result.rows);
-				let secondsLeft =
-					gameRow.timer_seconds - (Date.now() - gameRow.start_time) / 1000;
-				res.send({ gameRow, secondsLeft });
+		.then((result1) => {
+			if (result1.length == 0) {
+				res.status(404).send({ msg: `Game: ${code} doesn't exist` });
+				
 			} else {
-				return res.status(404).send({ msg: `Game: ${code} doesn't exist` });
+				pool.query(`SELECT * FROM game WHERE share_code = $1`, [code])
+				.then((result2) =>{
+					let game =result2.rows[0]
+
+					let gameRow = result1.rows[0];
+					let secondsLeft =
+						game.timer_seconds - (Date.now() - game.start_time) / 1000;
+					res.json({ ...gameRow, secondsLeft });
+				})
+					.catch((error)=>(console.log(error)))
+				 
 			}
 		})
 		.catch((error) => {
