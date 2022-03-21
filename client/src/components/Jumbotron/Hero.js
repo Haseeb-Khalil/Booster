@@ -5,7 +5,7 @@ import Registration from "./Registration";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 
-const backgroundImage ="https://images.pexels.com/photos/6152103/pexels-photo-6152103.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+const backgroundImage ="https://images.unsplash.com/photo-1476018040064-32e98fec7648?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80";
 function Hero(){
 return (
 	<HeroLayout

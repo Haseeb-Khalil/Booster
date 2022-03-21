@@ -16,7 +16,29 @@ const Theme = createTheme({
 		},
 	},
 	typography: {
-		fontFamily: "Electrolize",
+		h1: {
+			fontFamily: "Electrolize",
+		},
+		h2: {
+			fontFamily: "Electrolize",
+		},
+		h3: {
+			fontFamily: "Electrolize",
+		},
+		h4: {
+			fontFamily: "Electrolize",
+		},
+		h5: {
+			fontFamily: "Electrolize",
+		},
+		h6: {
+			fontFamily: "QuickSand",
+		},
+		body1: {
+			fontFamily: "QuickSand",
+			fontWeight: 600,
+			fontStyle: "italic",
+		},
 	},
 });
 

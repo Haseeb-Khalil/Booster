@@ -25,10 +25,10 @@ const App = () => {
 	}, []);
 
 	return (
-	<Routes>
-		<Route path="/" element={<Home energisers={energisers} />} />
-		<Route path="/energiser/:id" element={<Energise energisers={energisers} />} />
-	</Routes>
+		<Routes>
+			<Route path="/" element={<Home energisers={energisers} />} />
+			<Route path="/energiser/:id" element={<Energise energisers={energisers} />} />
+		</Routes>
 	);
 };
 

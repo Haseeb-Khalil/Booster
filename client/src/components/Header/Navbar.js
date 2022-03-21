@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	loginButton: {
 		marginTop: theme.spacing(-10),
+		marginLeft: theme.spacing(1),
 	},
 
 	appBar: {
@@ -63,13 +64,27 @@ const Navbar = () => {
 				>
 					booster
 				</Link>
+
+				<Link
+					href="/energisers"
+					underline="none"
+					sx={{ marginLeft: "10px" }}
+				>
+					<Button
+						variant="outlined"
+						color="primary"
+						className={classes.loginButton}
+					>
+						host
+					</Button>
+				</Link>
 				<Button
 					variant="outlined"
 					color="primary"
 					onClick={handleOpen}
 					className={classes.loginButton}
 				>
-					login
+					user
 				</Button>
 			</Toolbar>
 			<ModalDialog open={open} handleClose={handleClose} />
