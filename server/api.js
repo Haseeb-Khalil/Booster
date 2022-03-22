@@ -91,7 +91,7 @@ router.get("/energisers", function (req, res) {
 router.get("/energisers/popular", function (req, res) {
 	pool
 		.query(
-			`SELECT id, title, description, playing_instructions, link, likes, dislikes, image FROM energisers ORDER BY likes DESC LIMIT 10`
+			"SELECT id, title, description, playing_instructions, link, likes, dislikes, image FROM energisers ORDER BY likes DESC LIMIT 10"
 		)
 		.then((result) => res.json(result.rows))
 		.catch((error) => {
@@ -143,6 +143,29 @@ router.get("/energiser/:energiserId", function (req, res) {
 		});
 });
 
+router.get("/energiser/:energiserId/like", function (req, res) {
+	let energiserId = req.params.energiserId;
+	let query = "SELECT id, likes FROM energisers WHERE id = $1";
+	const params = [energiserId];
+
+	pool
+		.query(query, params)
+		.then((result) => {
+			if (result.rows.length == 0) {
+				return res
+					.status(404)
+					.send({ msg: `Energiser: ${energiserId} doesn't exist` });
+			}
+			res.json(result.rows);
+		})
+		.catch((error) => {
+			console.error(error);
+			res.status(500).json(error);
+		});
+});
+
+
+
 ///==================PUT REQUESTS===================///
 
 // UPDATE AN ENERGISER's DETAILS
@@ -184,7 +207,7 @@ router.put("/energiser/:energiserId", function (req, res) {
 				energiserNewDescription || originalEnergiser.description,
 				energiserNewInstructions || originalEnergiser.playing_instructions,
 				energiserNewLink || originalEnergiser.link,
-				energiserNewImage || originalEnergiser.image
+				energiserNewImage || originalEnergiser.image,
 			];
 
 			pool
@@ -203,7 +226,7 @@ router.put("/energiser/:energiserId", function (req, res) {
 
 router.put("/energiser/:energiserId/like", function (req, res) {
 	let energiserId = req.params.energiserId;
-	
+
 	// Checking if the energiser with Id entered exist or not
 	pool
 		.query("SELECT id FROM energisers WHERE id = $1", [energiserId])
@@ -217,20 +240,25 @@ router.put("/energiser/:energiserId/like", function (req, res) {
 
 	// First we select the energiser then we can update the likes-dislikes else we will can return the old info
 	pool
-		.query(`SELECT id, likes  FROM energisers WHERE id = $1`, [energiserId])
+		.query("SELECT id, likes  FROM energisers WHERE id = $1", [energiserId])
 		.then(() => {
-			let updateQuery = `UPDATE energisers SET likes = likes + 1 WHERE id = $1`;
+
+			let updateQuery = "UPDATE energisers SET likes = likes + 1 WHERE id = $1 RETURNING likes";
 			let params = [energiserId];
 
 			pool
 				.query(updateQuery, params)
-				.then(() => res.send(`Energiser:${energiserId} Liked!`))
+				.then((result) =>{
+					// console.log(result.rows,"hello");
+					return res.send((result.rows));
+				} )
 				.catch((error) => {
 					console.error(error);
 					res.status(500).json(error);
 				});
 		});
 });
+
 
 
 
@@ -252,14 +280,17 @@ router.put("/energiser/:energiserId/dislike", function (req, res) {
 
 	// First we select the energiser then we can update the likes-dislikes else we will can return the old info
 	pool
-		.query(`SELECT id, dislikes  FROM energisers WHERE id = $1`, [energiserId])
+		.query("SELECT id, dislikes  FROM energisers WHERE id = $1", [energiserId])
 		.then(() => {
-			let updateQuery = `UPDATE energisers SET dislikes = dislikes + 1 WHERE id = $1`;
+			let updateQuery = "UPDATE energisers SET dislikes = dislikes + 1 WHERE id = $1 RETURNING dislikes";
 			let params = [energiserId];
 
 			pool
 				.query(updateQuery, params)
-				.then(() => res.send(`Energiser:${energiserId} Disliked!`))
+				.then((result) =>{
+					// console.log(result.rows,"hello");
+					return res.send((result.rows));
+				} )
 				.catch((error) => {
 					console.error(error);
 					res.status(500).json(error);
