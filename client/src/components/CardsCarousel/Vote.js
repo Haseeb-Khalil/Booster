@@ -4,21 +4,53 @@ import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import ShareIcon from "@material-ui/icons/Share";
 const Vote = ({ energiser } ) => {
+
+    const [energiserId, setEnergiserId] = useState(energiser.id);
     const [voteUp, setVoteUp] = useState(energiser.likes);
     const [voteDown, setVoteDown] = useState(energiser.dislikes);
+
     const likeBtn=()=>{
-        setVoteUp(voteUp+1);
-    };
-    const disLikeBtn=()=>{
-        setVoteDown(voteDown+1);
+        fetch(`http://localhost:3100/api/energiser/${energiserId}/like`,
+           {
+            method: "PUT",
+            headers:{
+              "Accept":"application/json",
+              "Content-Type":"application/json",
+            },
+
+          })
+          .then((res) => res.json())
+          .then((data) => {
+            //   console.log(data[0].likes);
+              setVoteUp(data[0].likes);
+            })
+            .catch((err)=>console.log(err));
         };
+
+    const dislikeBtn=()=>{
+            fetch(`http://localhost:3100/api/energiser/${energiserId}/dislike`,
+               {
+                method: "PUT",
+                headers:{
+                  "Accept":"application/json",
+                  "Content-Type":"application/json",
+                },
+              })
+              .then((res) => res.json())
+              .then((data) => {
+                //   console.log(data[0].dislikes);
+                  setVoteDown(data[0].dislikes);
+                })
+                .catch((err)=>console.log(err));
+            };
+
   return (
     <section>
     <IconButton aria-label="thumbs-up" onClick={()=>likeBtn()}>
         <ThumbUpOffAltIcon />
         {voteUp}
     </IconButton>
-    <IconButton aria-label="thumbs-down" onClick={()=>disLikeBtn()}>
+    <IconButton aria-label="thumbs-down" onClick={()=>dislikeBtn()}>
         <ThumbDownOffAltIcon />
         {voteDown}
     </IconButton>
