@@ -4,8 +4,7 @@ import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import ShareIcon from "@material-ui/icons/Share";
 const Vote = ({ energiser } ) => {
-
-    const [energiserId, setEnergiserId] = useState(energiser.id);
+    console.log(energiser)
     const [voteUp, setVoteUp] = useState(energiser.likes);
     const [voteDown, setVoteDown] = useState(energiser.dislikes);
 
