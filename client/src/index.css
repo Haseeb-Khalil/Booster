@@ -86,3 +86,13 @@ h1 {
   color: var(--color-text);
   border: 1px solid var(--color-primary)
 }
+
+
+.container.favourites__container {
+  padding: 1rem;
+  
+}
+
+.favourites {
+padding: 2rem;
+}

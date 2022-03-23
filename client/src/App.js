@@ -16,7 +16,7 @@ const App = () => {
 				return res.json();
 			})
 			.then((data) => {
-				console.log(data);
+				// console.log(data);
 				setEnergisers(data);
 			})
 			.catch((err) => {
