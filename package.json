@@ -84,7 +84,8 @@
 		"react-countdown-circle-timer": "^3.0.9",
 		"react-icons": "^4.3.1",
 		"react-material-ui-carousel": "^3.2.0",
-		"styled-components": "^5.3.3"
+		"styled-components": "^5.3.3",
+		"swiper": "^8.0.7"
 	},
 	"engines": {
 		"node": "^12 || ^14 || ^16 || ^17",

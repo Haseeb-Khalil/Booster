@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Carousel from "react-material-ui-carousel";
 import Card from "@material-ui/core/Card";
 import {
 	Button,
@@ -12,10 +11,21 @@ import { CardActions } from "@mui/material";
 
 import Vote from "./Vote";
 
+// import Swiper core and required modules
+import { Navigation, Pagination } from "swiper";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 function PopularEnergisers() {
 	const [popular, setPopular] = useState([]);
 
-	console.log(popular);
+	// console.log(popular);
 	const api = "http://localhost:3100/api/energisers/popular";
 
 	useEffect(() => {
@@ -28,67 +38,37 @@ function PopularEnergisers() {
 			})
 			.then((data) => {
 				setPopular(data);
-				// console.log(data);
+				console.log("popular-energisers", data);
 			})
 			.catch((err) => {
 				console.error(err);
 			});
 	}, []);
 
-	const itemsPerPage = 3;
-	const [page, setPage] = React.useState(1);
-
-	const handleChangePage = (event, value) => {
-		setPage(value);
-	};
-
-	const noLoopNext = (event, value) => {
-		setPage((currPage) => {
-			if (currPage + 1 > Math.ceil(popular.length / itemsPerPage)) {
-				return currPage;
-			} else {
-				return currPage + 1;
-			}
-		});
-	};
-
-	const noLoopPrev = (event, value) => {
-		setPage((currPage) => {
-			if (currPage === 1) {
-				return currPage;
-			} else {
-				return currPage - 1;
-			}
-		});
-	};
-
 	const cardStyle = {
 		display: "block",
 		transitionDuration: "0.3s",
-		height: "5vw",
+		height: "4vw",
 	};
 
 	return (
-		<Carousel
-			autoPlay={false}
-			indicators={true}
-			onChangePage={handleChangePage}
-			next={noLoopNext}
-			prev={noLoopPrev}
-			sx={{ overflow: "visible", padding: 5 }}
-			navButtonsProps={{
-				style: {
-					backgroundColor: "red",
-					borderRadius: 0,
-				},
-			}}
-		>
-			<Grid component="main">
-				<Grid container spacing={5}>
-					{popular
-						.slice((page - 1) * itemsPerPage, page * itemsPerPage)
-						.map((energiser, index) => (
-							<Grid item key={index} xs={4} md={4}>
+		<>
+			<Typography variant="h5" color="primary" align="center">
+				Swipe to see the most popular energisers
+			</Typography>
+			<Swiper
+				className="container favourites__container"
+				// install Swiper modules
+				modules={[Navigation, Pagination]}
+				spaceBetween={10}
+				slidesPerView={3}
+				navigation
+				pagination={{ clickable: true }}
+			>
+				<Grid component="main">
+					{popular.map((energiser, index) => {
+						return (
+							<SwiperSlide key={index} className="favourites">
 								<Card>
 									<CardMedia
 										component="img"
@@ -120,11 +100,12 @@ function PopularEnergisers() {
 										<Vote energiser={energiser} />
 									</CardActions>
 								</Card>
-							</Grid>
-						))}
+							</SwiperSlide>
+						);
+					})}
 				</Grid>
-			</Grid>
-		</Carousel>
+			</Swiper>
+		</>
 	);
 }
 
