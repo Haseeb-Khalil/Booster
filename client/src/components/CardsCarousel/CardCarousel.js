@@ -62,6 +62,12 @@ function CardCarousel() {
 		});
 	};
 
+	const cardStyle = {
+		display: "block",
+		transitionDuration: "0.3s",
+		height: "5vw",
+	};
+
 	return (
 		<Carousel
 			autoPlay={false}
@@ -69,7 +75,7 @@ function CardCarousel() {
 			onChangePage={handleChangePage}
 			next={noLoopNext}
 			prev={noLoopPrev}
-			sx={{ overflow:"visible", padding: 5 }}
+			sx={{ overflow: "visible", padding: 5 }}
 			navButtonsProps={{
 				style: {
 					backgroundColor: "red",
@@ -98,6 +104,7 @@ function CardCarousel() {
 											variant="body2"
 											color="textSecondary"
 											component="p"
+											style={cardStyle}
 										>
 											{energiser.description}
 										</Typography>

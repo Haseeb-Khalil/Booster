@@ -2,6 +2,7 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
+import Link from "@material-ui/core/Link";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const HeroLayoutRoot = styled("section")(({ theme }) => ({
@@ -57,9 +58,13 @@ function ProductHeroLayout(props) {
 				<Background sx={sxBackground} />
 
 				<Box>
-					<KeyboardArrowDownIcon fontSize="large" sx={{ position: "absolute", bottom: 32 }} />
+					<Link color="inherit" href="#CardsSection">
+						<KeyboardArrowDownIcon
+							fontSize="large"
+							sx={{ position: "absolute", bottom: 32 }}
+						/>
+					</Link>
 				</Box>
-
 			</Container>
 		</HeroLayoutRoot>
 	);
