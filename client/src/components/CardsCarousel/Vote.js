@@ -5,7 +5,6 @@ import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import ShareIcon from "@material-ui/icons/Share";
 const Vote = ({ energiser }) => {
 	let energiserId = energiser.id;
-	// console.log(energiser);
 	const [voteUp, setVoteUp] = useState(energiser.likes);
 	const [voteDown, setVoteDown] = useState(energiser.dislikes);
 
@@ -19,7 +18,6 @@ const Vote = ({ energiser }) => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				//   console.log(data[0].likes);
 				setVoteUp(data[0].likes);
 			})
 			.catch((err) => console.log(err));
@@ -35,7 +33,6 @@ const Vote = ({ energiser }) => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				//   console.log(data[0].dislikes);
 				setVoteDown(data[0].dislikes);
 			})
 			.catch((err) => console.log(err));

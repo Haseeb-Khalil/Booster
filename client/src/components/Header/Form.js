@@ -23,23 +23,21 @@ const useStyles = makeStyles((theme) => ({
 
 const Form = ({ handleClose }) => {
 	const classes = useStyles();
-	const [email, setEmail] = useState("");
-	// const [password, setPassword] = useState("");
+	const [code, setCode] = useState("");
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// console.log(name, email, password);
-		handleClose();
+		handleClose(code);
 	};
 
 	return (
 		<form className={classes.root} onSubmit={handleSubmit}>
 			<TextField
-				label="Link"
+				label="Code"
 				variant="outlined"
-				type="email"
-				value={email}
-				onChange={(e) => setEmail(e.target.value)}
+				type="text"
+				value={code}
+				onChange={(e) => setCode(e.target.value)}
 			/>
 			<div>
 				<Button variant="outlined" color="primary" onClick={handleClose}>

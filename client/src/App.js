@@ -2,6 +2,9 @@ import Energise from "./pages/Energise";
 import { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
+import AllEnergisers from "./pages/AllEnergisers";
+import Theme from "./components/Theme";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 const App = () => {
 	const [energisers, setEnergisers] = useState();
@@ -24,14 +27,23 @@ const App = () => {
 			});
 	}, []);
 
-	return (
-
-	<Routes>
-		<Route path="/" element={<Home energisers={energisers} />} />
-		<Route path="/energisers" element={<Energise energisers={energisers} />} />
-		<Route path="/energiser/:id" element={<Energise energisers={energisers} />} />
-	</Routes>
-
+	return energisers ? (
+		<ThemeProvider theme={Theme}>
+		<Routes>
+			<Route path="/" element={<Home energisers={energisers} />} />
+			<Route
+				path="/energisers"
+				element={<AllEnergisers energisers={energisers} />}
+			/>
+			<Route
+				path="/energiser/:id"
+				element={<Energise energisers={energisers} />}
+			/>
+			<Route path="/game/:code" element={<Energise />} />
+		</Routes>
+		</ThemeProvider>
+	) : (
+		<div>Loading...</div>
 	);
 };
 
