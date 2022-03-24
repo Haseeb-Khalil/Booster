@@ -20,14 +20,14 @@ const renderTime = ({ remainingTime }) => {
 	);
 };
 
-export default function Timer() {
+export default function Timer({ duration, remaining }) {
 	return (
 		<div className="App">
 			<div className="timer-wrapper">
 				<CountdownCircleTimer
 					isPlaying={true}
-					duration={15 * 60}
-					initialRemainingTime={15 * 60}
+					duration={duration} //900
+					initialRemainingTime={remaining} //850
 					rotation={"counterclockwise"}
 					colors={"#004777"}
 				>

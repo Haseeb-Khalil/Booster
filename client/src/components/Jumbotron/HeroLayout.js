@@ -70,6 +70,4 @@ function ProductHeroLayout(props) {
 	);
 }
 
-
-
 export default ProductHeroLayout;
