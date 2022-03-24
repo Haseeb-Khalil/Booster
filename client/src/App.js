@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import AllEnergisers from "./pages/AllEnergisers";
 import Theme from "./components/Theme";
 import { ThemeProvider } from "@material-ui/core/styles";
-
+import Host from "./pages/Host"
 const App = () => {
 	const [energisers, setEnergisers] = useState();
 	const api = "http://localhost:3100/api";
@@ -40,6 +40,7 @@ const App = () => {
 				element={<Energise energisers={energisers} />}
 			/>
 			<Route path="/game/:code" element={<Energise />} />
+			<Route path="/game/:energiserId" element={<Host />} />
 		</Routes>
 		</ThemeProvider>
 	) : (

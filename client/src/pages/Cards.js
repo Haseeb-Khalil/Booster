@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import { CardActions } from "@mui/material";
 import Vote from "../components/CardsCarousel/Vote";
+import Host from "./Host"
 
 function Cards( { listEnergisers } ) {
 	return (
@@ -40,7 +41,8 @@ function Cards( { listEnergisers } ) {
 									<CardActions disableSpacing>
 										<Button
 											variant="outlined"
-											href={`/energiser/${energiser.id}`}
+											// href={`/energiser/${energiser.id}`}
+											onClick={Host}
 											color="primary"
 										>
 											Select

@@ -8,32 +8,53 @@ import Timer from "../components/Timer";
 import { Grid, Box, Typography } from "@material-ui/core";
 import Divider from "@mui/material/Divider";
 import BottomNav from "../components/CardsCarousel/BottomNav";
-import Vote from "../components/CardsCarousel/Vote";
 
-const Energise = () => {
-	const { code } = useParams();
-	console.log(code);
-	const [energiser, setEnergiser] = useState([]);
-	const api = "http://localhost:3100/api";
 
+const Host = () => {
+    console.log("Hosting");
+		const { id } = useParams();
+        console.log(id);
+    const [energiser, setEnergiser] = useState();
+    const [energiserId, setEnergiserId] = useState(id);
+
+	
+    let selectedId = () =>{
+        		fetch(`http://localhost:3100/api/energiser/${id}`)
+							.then((res) => {
+								console.log(res);
+								if (!res.ok) {
+									throw new Error(res.statusText);
+								}
+								 res.json();
+							})
+							.then((data) => {
+								setEnergiserId(data.id);
+								console.log(data);
+							})
+							.catch((err) => {
+								console.error(err);
+							});
+    }
+	
+	
 	useEffect(() => {
-		console.log("Energise");
-		fetch(api + `/game/${code}`)
-			.then((res) => {
-				console.log(res);
-				if (!res.ok) {
-					throw new Error(res.statusText);
-				}
-				return res.json();
+		fetch(`http://localhost:3100/api/game/${selectedId}`, {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+		})
+			.then((response) => {
+				console.log(response);
+				setEnergiser(response.rows[0]);
+				// window.location.reload(true); // Refreshes the page
 			})
-			.then((data) => {
-				setEnergiser(data);
-				console.log(data);
-			})
-			.catch((err) => {
-				console.error(err);
+			.catch((error) => {
+				console.log(error);
+				alert(error);
 			});
-	}, [code]);
+	}, [selectedId]);
 
 	return (
 		<ThemeProvider theme={Theme}>
@@ -77,13 +98,6 @@ const Energise = () => {
 							</Typography>
 						</Box>
 						<BottomNav />
-						{/* <Box
-							sx={{ ml: "auto", mr: "auto", mb: "5em", width: 500 }}
-							textAlign="center"
-							bgcolor="primary"
-						>
-							<Vote energiser={energiser} />
-						</Box> */}
 					</Grid>
 				</Grid>
 			</Box>
@@ -92,4 +106,4 @@ const Energise = () => {
 	);
 };
 
-export default Energise;
+export default Host;
