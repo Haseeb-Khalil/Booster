@@ -46,7 +46,7 @@ const Energise = () => {
 							style={{ display: "flex", gap: "1rem", alignItems: "center" }}
 						>
 							<Box xs={2} sx={{ ml: "10px", mt: "5px" }}>
-								<Timer duration={900} remaining={850} />
+								<Timer duration={900} remaining={energiser.secondsLeft} />
 							</Box>
 							<Box sx={{ ml: "auto", mr: "auto" }} textAlign="center">
 								<Typography variant="h3">{energiser.title}</Typography>
