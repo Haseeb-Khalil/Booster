@@ -50,7 +50,7 @@ const Navbar = () => {
 
 	const handleHost = (e) => {
 		e.preventDefault();
-		navigate("/host");
+		navigate("/energisers");
 	};
 
 	return (

@@ -41,12 +41,7 @@ const App = () => {
 					element={<Energise energisers={energisers} />}
 				/> */}
 				<Route path="/game/:code" element={<Energise />} />
-				<Route
-					path="/energiser/:id"
-					element={
-						<Host />
-					}
-				/>
+				<Route path="/energiser/:id" element={<Host />} />
 			</Routes>
 
 		</ThemeProvider>

@@ -14,22 +14,20 @@ const Host = () => {
 	const { id } = useParams();
 	console.log(id);
 
-	useEffect(() => {
-		console.log("in useEffect");
+  useEffect(() => {
 		fetch(`http://localhost:3100/api/game/${id}`, {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
 			},
-
-
-		}).then((response) => {
+		})
+			.then((response) => {
 				return response.json();
-		}).then((gameData) => {
+			})
+			.then((gameData) => {
 				console.log(gameData);
 				setGame(gameData);
-				// console.log(game);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -37,10 +35,9 @@ const Host = () => {
 			});
 	}, [id]);
 
-	return (
-		<>
+	return game ? (
+		<Box>
 			<Header />
-			{game ? (
 			<Box bgcolor="primary">
 				<Grid container>
 					<Grid item xs={12}>
@@ -75,22 +72,24 @@ const Host = () => {
 								maxWidth: "50em",
 							}}
 						>
-							<Typography variant="h6">
-								{game.playing_instructions}
-							</Typography>
-							<Typography variant="h6">
-								Share-Code: {game.code}
-							</Typography>
+							<Typography variant="h6">{game.playing_instructions}</Typography>
+							<Typography variant="h4">{game.code}</Typography>
 						</Box>
-						<Vote energiser={game} />
+						<Box
+							display="flex"
+							justifyContent="center"
+							alignItems="center"
+							sx={{ mb: "5em" }}
+						>
+							<Vote energiser={game} />
+						</Box>
 					</Grid>
 				</Grid>
 			</Box>
-			) : (<p>Loading</p>)
-			}
 			<Footer />
-		</>
-	);
+		</Box>
+			) : (<p>Loading</p>);
+
 };
 
 export default Host;
