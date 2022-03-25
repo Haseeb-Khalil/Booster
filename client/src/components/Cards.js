@@ -13,9 +13,12 @@ import SearchBar from "../components/SearchBar/SearchBar";
 
 function Cards( { listEnergisers } ) {
   const [search, setSearch] = useState("");
-    let filteredEnergisers = energisers.filter((energiser) => {
-      return energiser.title.toLowerCase().includes(search.toLowerCase()) || energiser.description.toLowerCase().includes(search.toLowerCase());
-    });
+    let filteredEnergisers = listEnergisers.filter((energiser) => {
+			return (
+				energiser.title.toLowerCase().includes(search.toLowerCase()) ||
+				energiser.description.toLowerCase().includes(search.toLowerCase())
+			);
+		});
 	return (
 		<>
 			<Grid component="main">
