@@ -21,7 +21,7 @@ function Cards( { listEnergisers } ) {
 			<Grid component="main">
         <SearchBar search={search} setSearch={setSearch} />
 				<Grid container spacing={5}>
-					{listEnergisers
+					{filteredEnergisers
            .map((energiser, index) => (
 							<Grid item key={index} xs={4} md={4}>
 								<Card>

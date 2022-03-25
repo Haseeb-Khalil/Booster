@@ -8,6 +8,7 @@ import Timer from "../components/Timer";
 import { Grid, Box, Typography } from "@material-ui/core";
 import Divider from "@mui/material/Divider";
 import BottomNav from "../components/CardsCarousel/BottomNav";
+import Vote from "../components/CardsCarousel/Vote";
 
 const Energise = () => {
 	const { code } = useParams();
@@ -46,7 +47,7 @@ const Energise = () => {
 							style={{ display: "flex", gap: "1rem", alignItems: "center" }}
 						>
 							<Box xs={2} sx={{ ml: "10px", mt: "5px" }}>
-								<Timer duration={900} remaining={850} />
+								<Timer duration={900} remaining={energiser.secondsLeft} />
 							</Box>
 							<Box sx={{ ml: "auto", mr: "auto" }} textAlign="center">
 								<Typography variant="h3">{energiser.title}</Typography>
@@ -76,6 +77,13 @@ const Energise = () => {
 							</Typography>
 						</Box>
 						<BottomNav />
+						{/* <Box
+							sx={{ ml: "auto", mr: "auto", mb: "5em", width: 500 }}
+							textAlign="center"
+							bgcolor="primary"
+						>
+							<Vote energiser={energiser} />
+						</Box> */}
 					</Grid>
 				</Grid>
 			</Box>
