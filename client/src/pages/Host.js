@@ -3,37 +3,57 @@ import { useParams } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Timer from "../components/Timer";
+import Vote from "../components/CardsCarousel/Vote.js";
 import { Grid, Box, Typography } from "@material-ui/core";
 import Divider from "@mui/material/Divider";
-import Vote from "../components/CardsCarousel/Vote.js";
 
-const Energise = () => {
-	const { code } = useParams();
-	console.log(code);
-	const [energiser, setEnergiser] = useState([]);
-	const api = "http://localhost:3100/api";
+const Host = () => {
+	console.log("Hosting");
+	const { id } = useParams();
+	console.log(id);
+	const [energiser, setEnergiser] = useState();
+	const [energiserId, setEnergiserId] = useState(id);
 
-	useEffect(() => {
-		console.log("Energise");
-		fetch(api + `/game/${code}`)
-			.then((res) => {
-				console.log(res);
-				if (!res.ok) {
-					throw new Error(res.statusText);
-				}
-				return res.json();
-			})
+    useEffect(() => {
+        fetch(`http://localhost:3100/api/energiser/${id}`)
+		.then((res) => {
+			console.log(res);
+			if (!res.ok) {
+				throw new Error(res.statusText);
+			}
+			res.json();
+		})
 			.then((data) => {
-				setEnergiser(data);
+				setEnergiserId(data.id);
 				console.log(data);
 			})
 			.catch((err) => {
 				console.error(err);
 			});
-	}, [code]);
+    }, [id]);
 
-	return (
-		<>
+
+    useEffect(() => {
+        fetch(`http://localhost:3100/api/game/${energiserId}`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        })
+            .then((response) => {
+                console.log(response);
+                setEnergiser(response.rows[0]);
+                // window.location.reload(true); // Refreshes the page
+            })
+            .catch((error) => {
+                console.log(error);
+                alert(error);
+            });
+}, [energiserId]);
+
+	return energiser ? (
+		<Box>
 			<Header />
 			<Box key={energiser.id} bgcolor="primary">
 				<Grid container>
@@ -44,7 +64,7 @@ const Energise = () => {
 							style={{ display: "flex", gap: "1rem", alignItems: "center" }}
 						>
 							<Box xs={2} sx={{ ml: "10px", mt: "5px" }}>
-								<Timer duration={900} remaining={850} />
+								<Timer duration={900} remaining={900} />
 							</Box>
 							<Box sx={{ ml: "auto", mr: "auto" }} textAlign="center">
 								<Typography variant="h3">{energiser.title}</Typography>
@@ -62,7 +82,7 @@ const Energise = () => {
 						<Divider />
 						<Box
 							sx={{
-								mb: "5em",
+								mb: "10em",
 								mt: "5em",
 								mr: "auto",
 								ml: "auto",
@@ -73,19 +93,15 @@ const Energise = () => {
 								{energiser.playing_instructions}
 							</Typography>
 						</Box>
-						<Box
-							display="flex"
-							justifyContent="center"
-							alignItems="center"
-						>
-							<Vote energiser={energiser} />
-						</Box>
+						<Vote energiser={energiser} />
 					</Grid>
 				</Grid>
 			</Box>
 			<Footer />
-		</>
-	);
+		</Box>
+	) : (
+		<div>Loading...</div>
+    );
 };
 
-export default Energise;
+export default Host;

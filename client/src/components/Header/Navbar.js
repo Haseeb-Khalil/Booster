@@ -11,9 +11,6 @@ import cyf_brand from "../../assets/cyf_brand.png";
 import "./navbar.css";
 import { Box, Link } from "@material-ui/core";
 
-
-
-
 const useStyles = makeStyles((theme) => ({
 	icon: {
 		marginTop: theme.spacing(-6),
@@ -51,6 +48,11 @@ const Navbar = () => {
 
 	};
 
+	const handleHost = (e) => {
+		e.preventDefault();
+		navigate("/host");
+	};
+
 	return (
 		<AppBar className={classes.appBar} position="static" color="secondary">
 			<Link href="https://codeyourfuture.io/" target="_blank">
@@ -71,15 +73,12 @@ const Navbar = () => {
 					booster
 				</Link>
 
-				<Link
-					href="/energisers"
-					underline="none"
-					sx={{ marginLeft: "10px" }}
-				>
+				<Link underline="none" sx={{ marginLeft: "10px" }}>
 					<Button
 						variant="outlined"
 						color="primary"
 						className={classes.loginButton}
+						onClick={handleHost}
 					>
 						host
 					</Button>
@@ -93,7 +92,10 @@ const Navbar = () => {
 					join
 				</Button>
 			</Toolbar>
-			<ModalDialog open={open} handleClose={handleClose} />
+			<ModalDialog
+				open={open}
+				handleClose={handleClose}
+			/>
 		</AppBar>
 	);
 };
