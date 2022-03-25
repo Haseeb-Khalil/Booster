@@ -2,9 +2,10 @@ import Energise from "./pages/Energise";
 import { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
+import AllEnergisers from "./pages/AllEnergisers";
 
 const App = () => {
-	const [energisers, setEnergisers] = useState();
+	const [energisers, setEnergisers] = useState([]);
 	const api = "http://localhost:3100/api";
 
 	useEffect(() => {
@@ -28,7 +29,7 @@ const App = () => {
 
 	<Routes>
 		<Route path="/" element={<Home energisers={energisers} />} />
-		<Route path="/energisers" element={<Energise energisers={energisers} />} />
+		<Route path="/energisers" element={<AllEnergisers energisers={energisers} setEnergisers={setEnergisers} />} />
 		<Route path="/energiser/:id" element={<Energise energisers={energisers} />} />
 	</Routes>
 

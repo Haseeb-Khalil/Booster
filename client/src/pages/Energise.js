@@ -7,7 +7,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import Timer from "../components/Timer";
 import { Grid, Box, Typography } from "@material-ui/core";
 import Divider from "@mui/material/Divider";
-import BottomNav from "../components/CardsCarousel/BottomNav"
+import BottomNav from "../components/CardsCarousel/BottomNav";
 
 const Energise = () => {
 	const { id } = useParams();
