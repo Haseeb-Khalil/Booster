@@ -3,59 +3,45 @@ import { useParams } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Timer from "../components/Timer";
-import Vote from "../components/CardsCarousel/Vote.js";
 import { Grid, Box, Typography } from "@material-ui/core";
 import Divider from "@mui/material/Divider";
+import Vote from "../components/CardsCarousel/Vote";
+
 
 const Host = () => {
 	console.log("Hosting");
+	const [game, setGame] = useState();
 	const { id } = useParams();
 	console.log(id);
-	const [energiser, setEnergiser] = useState();
-	const [energiserId, setEnergiserId] = useState(id);
 
-    useEffect(() => {
-        fetch(`http://localhost:3100/api/energiser/${id}`)
-		.then((res) => {
-			console.log(res);
-			if (!res.ok) {
-				throw new Error(res.statusText);
-			}
-			res.json();
-		})
-			.then((data) => {
-				setEnergiserId(data.id);
-				console.log(data);
+	useEffect(() => {
+		console.log("in useEffect");
+		fetch(`http://localhost:3100/api/game/${id}`, {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+
+
+		}).then((response) => {
+				return response.json();
+		}).then((gameData) => {
+				console.log(gameData);
+				setGame(gameData);
+				// console.log(game);
 			})
-			.catch((err) => {
-				console.error(err);
+			.catch((error) => {
+				console.log(error);
+				alert(error);
 			});
-    }, [id]);
+	}, [id]);
 
-
-    useEffect(() => {
-        fetch(`http://localhost:3100/api/game/${energiserId}`, {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-        })
-            .then((response) => {
-                console.log(response);
-                setEnergiser(response.rows[0]);
-                // window.location.reload(true); // Refreshes the page
-            })
-            .catch((error) => {
-                console.log(error);
-                alert(error);
-            });
-}, [energiserId]);
-
-	return energiser ? (
-		<Box>
+	return (
+		<>
 			<Header />
-			<Box key={energiser.id} bgcolor="primary">
+			{game ? (
+			<Box bgcolor="primary">
 				<Grid container>
 					<Grid item xs={12}>
 						<Grid
@@ -64,20 +50,20 @@ const Host = () => {
 							style={{ display: "flex", gap: "1rem", alignItems: "center" }}
 						>
 							<Box xs={2} sx={{ ml: "10px", mt: "5px" }}>
-								<Timer duration={900} remaining={900} />
+								<Timer duration={900} remaining={game.secondsLeft} />
 							</Box>
 							<Box sx={{ ml: "auto", mr: "auto" }} textAlign="center">
-								<Typography variant="h3">{energiser.title}</Typography>
+								<Typography variant="h3">{game.title}</Typography>
 							</Box>
 						</Grid>
 						<Box textAlign="center" sx={{ m: 6 }}>
-							<img src={energiser.image} height="480px" alt={energiser.title} />
+							<img src={game.image} height="480px" alt={game.title} />
 						</Box>
 						<Box
 							textAlign="center"
 							sx={{ mr: "auto", ml: "auto", maxWidth: "50em" }}
 						>
-							<Typography variant="h4">{energiser.description}</Typography>
+							<Typography variant="h4">{game.description}</Typography>
 						</Box>
 						<Divider />
 						<Box
@@ -90,18 +76,21 @@ const Host = () => {
 							}}
 						>
 							<Typography variant="h6">
-								{energiser.playing_instructions}
+								{game.playing_instructions}
+							</Typography>
+							<Typography variant="h6">
+								Share-Code: {game.code}
 							</Typography>
 						</Box>
-						<Vote energiser={energiser} />
+						<Vote energiser={game} />
 					</Grid>
 				</Grid>
 			</Box>
+			) : (<p>Loading</p>)
+			}
 			<Footer />
-		</Box>
-	) : (
-		<div>Loading...</div>
-    );
+		</>
+	);
 };
 
 export default Host;

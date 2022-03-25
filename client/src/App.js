@@ -8,7 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 
 const App = () => {
-	const [energisers, setEnergisers] = useState();
+	const [energisers, setEnergisers] = useState([]);
 	const api = "http://localhost:3100/api";
 
 	useEffect(() => {
@@ -36,13 +36,19 @@ const App = () => {
 					path="/energisers"
 					element={<AllEnergisers energisers={energisers} />}
 				/>
-				<Route
+				{/* <Route
 					path="/energiser/:id"
 					element={<Energise energisers={energisers} />}
-				/>
+				/> */}
 				<Route path="/game/:code" element={<Energise />} />
-				<Route path="/host" element={<Host />} />
+				<Route
+					path="/energiser/:id"
+					element={
+						<Host />
+					}
+				/>
 			</Routes>
+
 		</ThemeProvider>
 	) : (
 		<div>Loading...</div>

@@ -5,8 +5,9 @@ import Header from "../components/Header/Header";
 import { Box, Grid } from "@material-ui/core";
 
 
-const AllEnergisers = ({ energisers }) => {
+const AllEnergisers = ({ energisers, setEnergisers }) => {
 	console.log("Energisers:", energisers);
+    console.log(setEnergisers);
 
     return (
 			<>
