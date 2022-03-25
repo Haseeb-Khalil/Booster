@@ -6,8 +6,9 @@ import AllEnergisers from "./pages/AllEnergisers";
 import Theme from "./components/Theme";
 import { ThemeProvider } from "@material-ui/core/styles";
 
+
 const App = () => {
-	const [energisers, setEnergisers] = useState();
+	const [energisers, setEnergisers] = useState([]);
 	const api = "http://localhost:3100/api";
 
 	useEffect(() => {
@@ -33,7 +34,7 @@ const App = () => {
 			<Route path="/" element={<Home energisers={energisers} />} />
 			<Route
 				path="/energisers"
-				element={<AllEnergisers energisers={energisers} />}
+				element={<AllEnergisers energisers={energisers} setEnergisers={setEnergisers} />}
 			/>
 			<Route
 				path="/energiser/:id"

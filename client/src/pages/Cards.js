@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState } from "react";
 import Card from "@material-ui/core/Card";
 import {
 	Button,
@@ -9,14 +9,20 @@ import {
 } from "@material-ui/core";
 import { CardActions } from "@mui/material";
 import Vote from "../components/CardsCarousel/Vote";
+import SearchBar from "../components/SearchBar/SearchBar";
 
 function Cards( { listEnergisers } ) {
+  const [search, setSearch] = useState("");
+    let filteredEnergisers = energisers.filter((energiser) => {
+      return energiser.title.toLowerCase().includes(search.toLowerCase()) || energiser.description.toLowerCase().includes(search.toLowerCase());
+    });
 	return (
 		<>
 			<Grid component="main">
+        <SearchBar search={search} setSearch={setSearch} />
 				<Grid container spacing={5}>
 					{listEnergisers
-						.map((energiser, index) => (
+           .map((energiser, index) => (
 							<Grid item key={index} xs={4} md={4}>
 								<Card>
 									<CardMedia
