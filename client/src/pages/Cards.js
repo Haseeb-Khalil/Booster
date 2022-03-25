@@ -10,23 +10,19 @@ import {
 import { CardActions } from "@mui/material";
 import Vote from "../components/CardsCarousel/Vote";
 import SearchBar from "../components/SearchBar/SearchBar";
-//import SortBar from "../components/SortBar/SortBar";
 
-function Cards({ energisers }) {
-	const [search, setSearch] = useState("");
+function Cards( { listEnergisers } ) {
+  const [search, setSearch] = useState("");
     let filteredEnergisers = energisers.filter((energiser) => {
       return energiser.title.toLowerCase().includes(search.toLowerCase()) || energiser.description.toLowerCase().includes(search.toLowerCase());
     });
-
 	return (
 		<>
-		<SearchBar search={search} setSearch={setSearch} />
-		{/* <SortBar energisers={energisers} /> */}
 			<Grid component="main">
+        <SearchBar search={search} setSearch={setSearch} />
 				<Grid container spacing={5}>
-					{filteredEnergisers
-						//.slice((page - 1) * itemsPerPage, page * itemsPerPage)
-						.map((energiser, index) => (
+					{listEnergisers
+           .map((energiser, index) => (
 							<Grid item key={index} xs={4} md={4}>
 								<Card>
 									<CardMedia
