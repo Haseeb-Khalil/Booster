@@ -36,12 +36,12 @@ const App = () => {
 					path="/energisers"
 					element={<AllEnergisers energisers={energisers} />}
 				/>
-				<Route
+				{/* <Route
 					path="/energiser/:id"
 					element={<Energise energisers={energisers} />}
-				/>
+				/> */}
 				<Route path="/game/:code" element={<Energise />} />
-				<Route path="/host" element={<Host />} />
+				<Route path="/energiser/:id" element={<Host />} />
 			</Routes>
 		</ThemeProvider>
 	) : (

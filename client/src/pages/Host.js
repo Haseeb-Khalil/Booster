@@ -9,53 +9,35 @@ import Divider from "@mui/material/Divider";
 
 const Host = () => {
 	console.log("Hosting");
+	const [game, setGame] = useState();
 	const { id } = useParams();
 	console.log(id);
-	const [energiser, setEnergiser] = useState();
-	const [energiserId, setEnergiserId] = useState(id);
 
-    useEffect(() => {
-        fetch(`http://localhost:3100/api/energiser/${id}`)
-		.then((res) => {
-			console.log(res);
-			if (!res.ok) {
-				throw new Error(res.statusText);
-			}
-			res.json();
+  useEffect(() => {
+		fetch(`http://localhost:3100/api/game/${id}`, {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
 		})
-			.then((data) => {
-				setEnergiserId(data.id);
-				console.log(data);
+			.then((response) => {
+				return response.json();
 			})
-			.catch((err) => {
-				console.error(err);
+			.then((gameData) => {
+				console.log(gameData);
+				setGame(gameData);
+			})
+			.catch((error) => {
+				console.log(error);
+				alert(error);
 			});
-    }, [id]);
+	}, [id]);
 
-
-    useEffect(() => {
-        fetch(`http://localhost:3100/api/game/${energiserId}`, {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-        })
-            .then((response) => {
-                console.log(response);
-                setEnergiser(response.rows[0]);
-                // window.location.reload(true); // Refreshes the page
-            })
-            .catch((error) => {
-                console.log(error);
-                alert(error);
-            });
-}, [energiserId]);
-
-	return energiser ? (
+	return game ? (
 		<Box>
 			<Header />
-			<Box key={energiser.id} bgcolor="primary">
+			<Box bgcolor="primary">
 				<Grid container>
 					<Grid item xs={12}>
 						<Grid
@@ -67,17 +49,17 @@ const Host = () => {
 								<Timer duration={900} remaining={900} />
 							</Box>
 							<Box sx={{ ml: "auto", mr: "auto" }} textAlign="center">
-								<Typography variant="h3">{energiser.title}</Typography>
+								<Typography variant="h3">{game.title}</Typography>
 							</Box>
 						</Grid>
 						<Box textAlign="center" sx={{ m: 6 }}>
-							<img src={energiser.image} height="480px" alt={energiser.title} />
+							<img src={game.image} height="480px" alt={game.title} />
 						</Box>
 						<Box
 							textAlign="center"
 							sx={{ mr: "auto", ml: "auto", maxWidth: "50em" }}
 						>
-							<Typography variant="h4">{energiser.description}</Typography>
+							<Typography variant="h4">{game.description}</Typography>
 						</Box>
 						<Divider />
 						<Box
@@ -89,11 +71,17 @@ const Host = () => {
 								maxWidth: "50em",
 							}}
 						>
-							<Typography variant="h6">
-								{energiser.playing_instructions}
-							</Typography>
+							<Typography variant="h6">{game.playing_instructions}</Typography>
+							<Typography variant="h4">{game.code}</Typography>
 						</Box>
-						<Vote energiser={energiser} />
+						<Box
+							display="flex"
+							justifyContent="center"
+							alignItems="center"
+							sx={{ mb: "5em" }}
+						>
+							<Vote energiser={game} />
+						</Box>
 					</Grid>
 				</Grid>
 			</Box>
@@ -101,7 +89,7 @@ const Host = () => {
 		</Box>
 	) : (
 		<div>Loading...</div>
-    );
+	);
 };
 
 export default Host;
