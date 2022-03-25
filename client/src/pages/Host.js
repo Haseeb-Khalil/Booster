@@ -9,7 +9,7 @@ import { Grid, Box, Typography } from "@material-ui/core";
 import Divider from "@mui/material/Divider";
 import BottomNav from "../components/CardsCarousel/BottomNav";
 
-
+// tHIS HAS BEEN EXPORTED TO CARDS.JS
 const Host = () => {
     console.log("Hosting");
 		const { id } = useParams();
@@ -48,7 +48,6 @@ const Host = () => {
 			.then((response) => {
 				console.log(response);
 				setEnergiser(response.rows[0]);
-				// window.location.reload(true); // Refreshes the page
 			})
 			.catch((error) => {
 				console.log(error);
