@@ -27,6 +27,7 @@ if (app.get("env") === "production") {
 	app.use(
 		cors({
 			origin: "http://localhost:3000",
+			methods: ['GET', 'POST', 'PUT']
 		})
 	);
 }

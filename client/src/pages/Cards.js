@@ -9,49 +9,49 @@ import {
 } from "@material-ui/core";
 import { CardActions } from "@mui/material";
 import Vote from "../components/CardsCarousel/Vote";
-import Host from "./Host"
+// import Host from "./Host"
 
 function Cards( { listEnergisers } ) {
+	// let hosting = <Host />
 	return (
 		<>
 			<Grid component="main">
 				<Grid container spacing={5}>
-					{listEnergisers
-						.map((energiser, index) => (
-							<Grid item key={index} xs={4} md={4}>
-								<Card>
-									<CardMedia
-										component="img"
-										height="240px"
-										image={energiser.image}
-										alt={energiser.title}
-									/>
-									<CardContent>
-										<Typography gutterBottom variant="h5" component="h2">
-											{energiser.title}
-										</Typography>
-										<Typography
-											variant="body2"
-											color="textSecondary"
-											component="p"
-										>
-											{energiser.description}
-										</Typography>
-									</CardContent>
-									<CardActions disableSpacing>
-										<Button
-											variant="outlined"
-											// href={`/energiser/${energiser.id}`}
-											onClick={Host}
-											color="primary"
-										>
-											Select
-										</Button>
-										<Vote energiser={energiser} />
-									</CardActions>
-								</Card>
-							</Grid>
-						))}
+					{listEnergisers.map((energiser, index) => (
+						<Grid item key={index} xs={4} md={4}>
+							<Card>
+								<CardMedia
+									component="img"
+									height="240px"
+									image={energiser.image}
+									alt={energiser.title}
+								/>
+								<CardContent>
+									<Typography gutterBottom variant="h5" component="h2">
+										{energiser.title}
+									</Typography>
+									<Typography
+										variant="body2"
+										color="textSecondary"
+										component="p"
+									>
+										{energiser.description}
+									</Typography>
+								</CardContent>
+								<CardActions disableSpacing>
+									<Button
+										variant="outlined"
+										href={`/energiser/${energiser.id}`}
+										// onClick={hosting}
+										color="primary"
+									>
+										Select
+									</Button>
+									<Vote energiser={energiser} />
+								</CardActions>
+							</Card>
+						</Grid>
+					))}
 				</Grid>
 			</Grid>
 		</>

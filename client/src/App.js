@@ -29,19 +29,24 @@ const App = () => {
 
 	return energisers ? (
 		<ThemeProvider theme={Theme}>
-		<Routes>
-			<Route path="/" element={<Home energisers={energisers} />} />
-			<Route
-				path="/energisers"
-				element={<AllEnergisers energisers={energisers} />}
-			/>
-			<Route
-				path="/energiser/:id"
-				element={<Energise energisers={energisers} />}
-			/>
-			<Route path="/game/:code" element={<Energise />} />
-			<Route path="/game/:energiserId" element={<Host />} />
-		</Routes>
+			<Routes>
+				<Route path="/" element={<Home energisers={energisers} />} />
+				<Route
+					path="/energisers"
+					element={<AllEnergisers energisers={energisers} />}
+				/>
+				{/* <Route
+					path="/energiser/:id"
+					element={<Energise energisers={energisers} />}
+				/> */}
+				<Route path="/game/:code" element={<Energise />} />
+				<Route
+					path="/energiser/:id"
+					element={
+						<Host />
+					}
+				/>
+			</Routes>
 		</ThemeProvider>
 	) : (
 		<div>Loading...</div>
