@@ -30,17 +30,22 @@ const Form = ({ handleClose }) => {
 		handleClose(code);
 	};
 
+	const onCancel = (e) => {
+		e.preventDefault();
+		handleClose();
+	};
+
 	return (
 		<form className={classes.root} onSubmit={handleSubmit}>
 			<TextField
-				label="Code"
+				label="Please Enter the Code"
 				variant="outlined"
 				type="text"
 				value={code}
 				onChange={(e) => setCode(e.target.value)}
 			/>
 			<div>
-				<Button variant="outlined" color="primary" onClick={handleClose}>
+				<Button variant="outlined" color="primary" onClick={onCancel}>
 					Cancel
 				</Button>
 				<Button type="submit" variant="contained" color="primary">

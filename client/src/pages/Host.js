@@ -5,44 +5,29 @@ import Footer from "../components/Footer/Footer";
 import Timer from "../components/Timer";
 import { Grid, Box, Typography } from "@material-ui/core";
 import Divider from "@mui/material/Divider";
-import BottomNav from "../components/CardsCarousel/BottomNav";
+import Vote from "../components/CardsCarousel/Vote";
 
 
 const Host = () => {
 	console.log("Hosting");
 	const [game, setGame] = useState();
-	
-	const {id} = useParams();
+	const { id } = useParams();
 	console.log(id);
 
-	// let newGame = {
-	// 	title: title,
-	// 	description: description,
-	// 	playing_instructions: playing_instructions,
-	// 	link: link,
-	// 	likes: likes,
-	// 	dislikes: dislikes,
-	// 	image: image,
-	// 	secondsLeft: secondsLeft,
-	// 	code: code
-	// };
-
-	useEffect(() => {
-		console.log("in useEffect");
+  useEffect(() => {
 		fetch(`http://localhost:3100/api/game/${id}`, {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
 			},
-
-			//  body: JSON.stringify(newGame),
-		}).then((response) => {
+		})
+			.then((response) => {
 				return response.json();
-		}).then(gameData => {
+			})
+			.then((gameData) => {
 				console.log(gameData);
 				setGame(gameData);
-				// console.log(game);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -50,10 +35,9 @@ const Host = () => {
 			});
 	}, [id]);
 
-	return (
-		<>
+	return game ? (
+		<Box>
 			<Header />
-			{game ? (
 			<Box bgcolor="primary">
 				<Grid container>
 					<Grid item xs={12}>
@@ -88,22 +72,24 @@ const Host = () => {
 								maxWidth: "50em",
 							}}
 						>
-							<Typography variant="h6">
-								{game.playing_instructions}
-							</Typography>
-							<Typography variant="h6">
-								Share-Code: {game.code}
-							</Typography>
+							<Typography variant="h6">{game.playing_instructions}</Typography>
+							<Typography variant="h4">{game.code}</Typography>
 						</Box>
-						<BottomNav />
+						<Box
+							display="flex"
+							justifyContent="center"
+							alignItems="center"
+							sx={{ mb: "5em" }}
+						>
+							<Vote energiser={game} />
+						</Box>
 					</Grid>
 				</Grid>
 			</Box>
-			) : (<p>Loading</p>)
-			}
 			<Footer />
-		</>
-	);
+		</Box>
+			) : (<p>Loading</p>);
+
 };
 
 export default Host;

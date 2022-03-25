@@ -1,11 +1,11 @@
-import Energise from "./pages/Energise";
-import { useState, useEffect } from "react";
 import Home from "./pages/Home";
-import { Route, Routes } from "react-router-dom";
 import AllEnergisers from "./pages/AllEnergisers";
+import Host from "./pages/Host";
+import Energise from "./pages/Energise";
 import Theme from "./components/Theme";
+import { useState, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
-import Host from "./pages/Host"
 
 const App = () => {
 	const [energisers, setEnergisers] = useState([]);
@@ -41,12 +41,7 @@ const App = () => {
 					element={<Energise energisers={energisers} />}
 				/> */}
 				<Route path="/game/:code" element={<Energise />} />
-				<Route
-					path="/energiser/:id"
-					element={
-						<Host />
-					}
-				/>
+				<Route path="/energiser/:id" element={<Host />} />
 			</Routes>
 
 		</ThemeProvider>

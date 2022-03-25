@@ -2,13 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import Theme from "../components/Theme";
-import { ThemeProvider } from "@material-ui/core/styles";
 import Timer from "../components/Timer";
 import { Grid, Box, Typography } from "@material-ui/core";
 import Divider from "@mui/material/Divider";
-import BottomNav from "../components/CardsCarousel/BottomNav";
-import Vote from "../components/CardsCarousel/Vote";
+import Vote from "../components/CardsCarousel/Vote.js";
 
 const Energise = () => {
 	const { code } = useParams();
@@ -36,7 +33,7 @@ const Energise = () => {
 	}, [code]);
 
 	return (
-		<ThemeProvider theme={Theme}>
+		<>
 			<Header />
 			<Box key={energiser.id} bgcolor="primary">
 				<Grid container>
@@ -65,7 +62,7 @@ const Energise = () => {
 						<Divider />
 						<Box
 							sx={{
-								mb: "10em",
+								mb: "5em",
 								mt: "5em",
 								mr: "auto",
 								ml: "auto",
@@ -76,19 +73,18 @@ const Energise = () => {
 								{energiser.playing_instructions}
 							</Typography>
 						</Box>
-						<BottomNav />
-						{/* <Box
-							sx={{ ml: "auto", mr: "auto", mb: "5em", width: 500 }}
-							textAlign="center"
-							bgcolor="primary"
+						<Box
+							display="flex"
+							justifyContent="center"
+							alignItems="center"
 						>
 							<Vote energiser={energiser} />
-						</Box> */}
+						</Box>
 					</Grid>
 				</Grid>
 			</Box>
 			<Footer />
-		</ThemeProvider>
+		</>
 	);
 };
 
