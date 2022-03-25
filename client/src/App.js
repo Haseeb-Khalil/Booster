@@ -6,8 +6,9 @@ import AllEnergisers from "./pages/AllEnergisers";
 import Theme from "./components/Theme";
 import { ThemeProvider } from "@material-ui/core/styles";
 import Host from "./pages/Host"
+
 const App = () => {
-	const [energisers, setEnergisers] = useState();
+	const [energisers, setEnergisers] = useState([]);
 	const api = "http://localhost:3100/api";
 
 	useEffect(() => {
@@ -47,6 +48,7 @@ const App = () => {
 					}
 				/>
 			</Routes>
+
 		</ThemeProvider>
 	) : (
 		<div>Loading...</div>
