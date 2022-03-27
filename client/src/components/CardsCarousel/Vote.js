@@ -8,8 +8,10 @@ const Vote = ({ energiser }) => {
 	const [voteUp, setVoteUp] = useState(energiser.likes);
 	const [voteDown, setVoteDown] = useState(energiser.dislikes);
 
+	const api = process.env.API_URL || "http://localhost:3100/api";
+
 	const likeBtn = () => {
-		fetch(`http://localhost:3100/api/energiser/${energiserId}/like`, {
+		fetch(`${api}/energiser/${energiserId}/like`, {
 			method: "PUT",
 			headers: {
 				Accept: "application/json",
@@ -24,7 +26,7 @@ const Vote = ({ energiser }) => {
 	};
 
 	const dislikeBtn = () => {
-		fetch(`http://localhost:3100/api/energiser/${energiserId}/dislike`, {
+		fetch(`${api}/energiser/${energiserId}/dislike`, {
 			method: "PUT",
 			headers: {
 				Accept: "application/json",
