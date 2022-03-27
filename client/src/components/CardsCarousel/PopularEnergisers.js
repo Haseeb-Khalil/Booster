@@ -90,7 +90,7 @@ function PopularEnergisers() {
 														href={`/energiser/${energiser.id}`}
 														color="primary"
 													>
-														Select
+														Host now
 													</Button>
 													<Vote energiser={energiser} />
 												</CardActions>

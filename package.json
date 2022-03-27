@@ -90,5 +90,9 @@
 	"engines": {
 		"node": "^12 || ^14 || ^16 || ^17",
 		"npm": "^6 || ^7 || ^8"
+	},
+	"resolutions": {
+		"//": "See https://github.com/facebook/create-react-app/issues/11773",
+		"react-error-overlay": "6.0.9"
 	}
 }
