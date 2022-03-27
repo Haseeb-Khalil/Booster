@@ -11,7 +11,7 @@ const Energise = () => {
 	const { code } = useParams();
 	console.log(code);
 	const [energiser, setEnergiser] = useState([]);
-	const api = "http://localhost:3100/api";
+	const api = process.env.API_URL || "http://localhost:3100/api";
 
 	useEffect(() => {
 		console.log("Energise");
@@ -73,11 +73,7 @@ const Energise = () => {
 								{energiser.playing_instructions}
 							</Typography>
 						</Box>
-						<Box
-							display="flex"
-							justifyContent="center"
-							alignItems="center"
-						>
+						<Box display="flex" justifyContent="center" alignItems="center">
 							<Vote energiser={energiser} />
 						</Box>
 					</Grid>

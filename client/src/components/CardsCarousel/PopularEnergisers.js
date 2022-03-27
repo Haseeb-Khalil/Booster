@@ -18,9 +18,9 @@ import "swiper/css/pagination";
 
 function PopularEnergisers() {
 	const [popular, setPopular] = useState([]);
-	const api = "http://localhost:3100/api/energisers/popular";
+	const api = process.env.API_URL || "http://localhost:3100/api";
 	useEffect(() => {
-		fetch(api)
+		fetch(api + "/energisers/popular")
 			.then((res) => {
 				if (!res.ok) {
 					throw new Error(res.statusText);
