@@ -64,7 +64,7 @@ principles are followed:
 - APIs must be secure. Make sure we are not handling security on the frontend.
 
 ### Using environment variables
-1. Rename `.env.example` to `.env`
+1. Copy `.env.example` and rename to `.env`
 2. Add vars
 3. Reference in either client or server `process.env.VARIABLE_NAME`.
 
