@@ -11,8 +11,7 @@ const Energise = () => {
 	const { code } = useParams();
 	console.log(code);
 	const [energiser, setEnergiser] = useState([]);
-	const api = process.env.API_URL || "http://localhost:3100/api";
-
+	const api = process.env.API_URL || "/api";
 	useEffect(() => {
 		console.log("Energise");
 		fetch(api + `/game/${code}`)
