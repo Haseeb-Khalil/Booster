@@ -7,9 +7,11 @@ import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 
+console.log("API_URL ---->" + process.env.API_URL);
 const App = () => {
 	const [energisers, setEnergisers] = useState([]);
-	const api = process.env.API_URL || "http://localhost:3100/api";
+	
+	const api = process.env.API_URL || "/api";
 
 	useEffect(() => {
 		fetch(api + "/energisers")

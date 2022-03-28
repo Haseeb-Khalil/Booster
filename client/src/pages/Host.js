@@ -12,7 +12,7 @@ const Host = () => {
 	const [game, setGame] = useState();
 	const { id } = useParams();
 	console.log(id);
-	const api = process.env.API_URL || "http://localhost:3100/api";
+	const api = process.env.API_URL || "/api";
 	useEffect(() => {
 		fetch(`${api}/game/${id}`, {
 			method: "POST",
