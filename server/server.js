@@ -16,4 +16,7 @@ server.on("listening", () => {
 
 process.on("SIGTERM", () => server.close(() => disconnectDb()));
 
-connectDb().then(() => server.listen(port));
+connectDb().then(() => {
+	console.log("LUKE AND HASEEB ARE HERE!!!!!")
+	return server.listen(port)
+});
