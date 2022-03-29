@@ -135,7 +135,6 @@ router.post("/game/:energiserId", function (req, res) {
 
 // GET ALL THE Energisers
 router.get("/energisers", function (req, res) {
-	console.log("WE ARE HERE LUKE AND HASEEB")
 	pool
 		.query(
 			"SELECT id, title, description, playing_instructions, link, likes, dislikes, image FROM energisers"
