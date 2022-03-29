@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { io } from "socket.io-client";
 
+console.log("API_URL ---->" + process.env.API_URL);
 const App = () => {
 
 const [onlineCount, setOnlineCount] = useState(0);
@@ -19,7 +20,8 @@ const [onlineCount, setOnlineCount] = useState(0);
 
 	},[]);
 	const [energisers, setEnergisers] = useState([]);
-	const api = "http://localhost:3100/api";
+	
+	const api = process.env.API_URL || "/api";
 
 	useEffect(() => {
 		fetch(api + "/energisers")
@@ -49,7 +51,6 @@ const [onlineCount, setOnlineCount] = useState(0);
 				<Route path="/game/:code" element={<Energise onlineCount={onlineCount} />} />
 				<Route path="/energiser/:id" element={<Host onlineCount={onlineCount}  />} />
 			</Routes>
-
 		</ThemeProvider>
 	) : (
 		<div>Loading...</div>

@@ -7,15 +7,15 @@ import { Grid, Box, Typography } from "@material-ui/core";
 import Divider from "@mui/material/Divider";
 import Vote from "../components/CardsCarousel/Vote";
 
-
 const Host = ({ onlineCount }) => {
+
 	console.log("Hosting");
 	const [game, setGame] = useState();
 	const { id } = useParams();
 	console.log(id);
-
-  useEffect(() => {
-		fetch(`http://localhost:3100/api/game/${id}`, {
+	const api = process.env.API_URL || "/api";
+	useEffect(() => {
+		fetch(`${api}/game/${id}`, {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
@@ -89,8 +89,9 @@ const Host = ({ onlineCount }) => {
 			</Box>
 			<Footer />
 		</Box>
-			) : (<p>Loading</p>);
-
+	) : (
+		<p>Loading</p>
+	);
 };
 
 export default Host;

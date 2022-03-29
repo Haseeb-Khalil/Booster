@@ -11,8 +11,7 @@ const Energise = ({ onlineCount }) => {
 	const { code } = useParams();
 	console.log(code);
 	const [energiser, setEnergiser] = useState([]);
-	const api = "http://localhost:3100/api";
-
+	const api = process.env.API_URL || "/api";
 	useEffect(() => {
 		console.log("Energise");
 		fetch(api + `/game/${code}`)
@@ -74,11 +73,7 @@ const Energise = ({ onlineCount }) => {
 								{energiser.playing_instructions}
 							</Typography>
 						</Box>
-						<Box
-							display="flex"
-							justifyContent="center"
-							alignItems="center"
-						>
+						<Box display="flex" justifyContent="center" alignItems="center">
 							<Vote energiser={energiser} />
 						</Box>
 					</Grid>
