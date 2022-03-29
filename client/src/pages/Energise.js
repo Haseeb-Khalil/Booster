@@ -7,7 +7,7 @@ import { Grid, Box, Typography } from "@material-ui/core";
 import Divider from "@mui/material/Divider";
 import Vote from "../components/CardsCarousel/Vote.js";
 
-const Energise = () => {
+const Energise = ({ onlineCount }) => {
 	const { code } = useParams();
 	console.log(code);
 	const [energiser, setEnergiser] = useState([]);
@@ -35,6 +35,7 @@ const Energise = () => {
 	return (
 		<>
 			<Header />
+			<h3>{onlineCount} - Users are Online</h3>
 			<Box key={energiser.id} bgcolor="primary">
 				<Grid container>
 					<Grid item xs={12}>

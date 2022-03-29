@@ -8,7 +8,7 @@ import Divider from "@mui/material/Divider";
 import Vote from "../components/CardsCarousel/Vote";
 
 
-const Host = () => {
+const Host = ({ onlineCount }) => {
 	console.log("Hosting");
 	const [game, setGame] = useState();
 	const { id } = useParams();
@@ -38,6 +38,7 @@ const Host = () => {
 	return game ? (
 		<Box>
 			<Header />
+			<h3>{ onlineCount } - Users are Online</h3>
 			<Box bgcolor="primary">
 				<Grid container>
 					<Grid item xs={12}>
