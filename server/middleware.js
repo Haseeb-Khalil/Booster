@@ -1,25 +1,20 @@
 import helmet from "helmet";
 import path from "path";
 
-export const configuredHelmet = () => {
-
-	const directives = {
-		defaultSrc: ["'self'"],
-		objectSrc: ["'none'"],
-		scriptSrc: ["'self'", "unpkg.com", "polyfill.io"],
-		styleSrc: ["'self'", "https: 'unsafe-inline'"],
-		imgSrc: ["self", "i.imgur.co", "images.unsplash.com"],
-		upgradeInsecureRequests: [],
-	}
-
-	console.log('DIRECTIVES ----> ', directives)
-
-	return helmet({
+export const configuredHelmet = () => 
+	helmet({
 		contentSecurityPolicy: {
-			directives
+			directives: {
+				defaultSrc: ["'self'"],
+				objectSrc: ["'none'"],
+				scriptSrc: ["'self'", "unpkg.com", "polyfill.io"],
+				styleSrc: ["'self'", "https: 'unsafe-inline'"],
+				imgSrc: ["self", "i.imgur.co", "images.unsplash.com"],
+				upgradeInsecureRequests: [],
+			}
 		},
 	});
-}
+
 
 export const httpsOnly = () => (req, res, next) => {
 	if (!req.secure) {
