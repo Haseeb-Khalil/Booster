@@ -2,85 +2,85 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import Theme from "../components/Theme";
-import { ThemeProvider } from "@material-ui/core/styles";
 import Timer from "../components/Timer";
 import { Grid, Box, Typography } from "@material-ui/core";
 import Divider from "@mui/material/Divider";
-import BottomNav from "../components/CardsCarousel/BottomNav";
+import Vote from "../components/CardsCarousel/Vote.js";
 
-const Energise = () => {
-	const { id } = useParams();
-	const [energisers, setEnergisers] = useState([]);
-	const api = "http://localhost:3100/api";
-
+const Energise = ({ onlineCount }) => {
+	const { code } = useParams();
+	console.log(code);
+	const [energiser, setEnergiser] = useState([]);
+	const api = process.env.API_URL || "/api";
 	useEffect(() => {
-		fetch(api + "/energisers")
+		console.log("Energise");
+		fetch(api + `/game/${code}`)
 			.then((res) => {
+				console.log(res);
 				if (!res.ok) {
 					throw new Error(res.statusText);
 				}
 				return res.json();
 			})
 			.then((data) => {
-				setEnergisers(data);
+				setEnergiser(data);
+				console.log(data);
 			})
 			.catch((err) => {
 				console.error(err);
 			});
-	}, []);
+	}, [code]);
 
 	return (
-		<ThemeProvider theme={Theme}>
+		<>
 			<Header />
-			{energisers
-				.filter((energiser) => energiser.id === parseInt(id))
-				.map((item) => (
-					<Box key={item.id} bgcolor="primary">
-						<Grid container>
-							<Grid item xs={12}>
-								<Grid
-									item
-									xs={11}
-									style={{ display: "flex", gap: "1rem", alignItems: "center" }}
-								>
-									<Box xs={2} sx={{ ml: "10px", mt: "5px" }}>
-										<Timer />
-									</Box>
-									<Box sx={{ ml: "auto", mr: "auto" }} textAlign="center">
-										<Typography variant="h3">{item.title}</Typography>
-									</Box>
-								</Grid>
-								<Box textAlign="center" sx={{ m: 6 }}>
-									<img src={item.image} height="480px" alt={item.title} />
-								</Box>
-								<Box
-									textAlign="center"
-									sx={{ mr: "auto", ml: "auto", maxWidth: "50em" }}
-								>
-									<Typography variant="h4">{item.description}</Typography>
-								</Box>
-								<Divider />
-								<Box
-									sx={{
-										mb: "10em",
-										mt: "5em",
-										mr: "auto",
-										ml: "auto",
-										maxWidth: "50em",
-									}}
-								>
-									<Typography variant="h6">
-										{item.playing_instructions}
-									</Typography>
-								</Box>
-								<BottomNav />
-							</Grid>
+			<h3>{onlineCount} - Users are Online</h3>
+			<Box key={energiser.id} bgcolor="primary">
+				<Grid container>
+					<Grid item xs={12}>
+						<Grid
+							item
+							xs={11}
+							style={{ display: "flex", gap: "1rem", alignItems: "center" }}
+						>
+							<Box xs={2} sx={{ ml: "10px", mt: "5px" }}>
+								<Timer duration={900} remaining={energiser.secondsLeft} />
+							</Box>
+							<Box sx={{ ml: "auto", mr: "auto" }} textAlign="center">
+								<Typography variant="h3">{energiser.title}</Typography>
+							</Box>
 						</Grid>
-					</Box>
-				))}
+						<Box textAlign="center" sx={{ m: 6 }}>
+							<img src={energiser.image} height="480px" alt={energiser.title} />
+						</Box>
+						<Box
+							textAlign="center"
+							sx={{ mr: "auto", ml: "auto", maxWidth: "50em" }}
+						>
+							<Typography variant="h4">{energiser.description}</Typography>
+						</Box>
+						<Divider />
+						<Box
+							sx={{
+								mb: "5em",
+								mt: "5em",
+								mr: "auto",
+								ml: "auto",
+								maxWidth: "50em",
+							}}
+						>
+							<Typography variant="h6">
+								{energiser.playing_instructions}
+							</Typography>
+						</Box>
+						<Box display="flex" justifyContent="center" alignItems="center">
+							<Vote energiser={energiser} />
+						</Box>
+					</Grid>
+				</Grid>
+			</Box>
 			<Footer />
-		</ThemeProvider>
+		</>
 	);
 };
 

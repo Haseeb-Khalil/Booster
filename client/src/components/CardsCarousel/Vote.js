@@ -3,62 +3,57 @@ import { IconButton } from "@material-ui/core";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import ShareIcon from "@material-ui/icons/Share";
-const Vote = ({ energiser } ) => {
+const Vote = ({ energiser }) => {
+	let energiserId = energiser.id;
+	const [voteUp, setVoteUp] = useState(energiser.likes);
+	const [voteDown, setVoteDown] = useState(energiser.dislikes);
 
-    const [energiserId, setEnergiserId] = useState(energiser.id);
-    const [voteUp, setVoteUp] = useState(energiser.likes);
-    const [voteDown, setVoteDown] = useState(energiser.dislikes);
+	const api = process.env.API_URL || "/api";
+	const likeBtn = () => {
+		fetch(`${api}/energiser/${energiserId}/like`, {
+			method: "PUT",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				setVoteUp(data[0].likes);
+			})
+			.catch((err) => console.log(err));
+	};
 
-    const likeBtn=()=>{
-        fetch(`http://localhost:3100/api/energiser/${energiserId}/like`,
-           {
-            method: "PUT",
-            headers:{
-              "Accept":"application/json",
-              "Content-Type":"application/json",
-            },
+	const dislikeBtn = () => {
+		fetch(`${api}/energiser/${energiserId}/dislike`, {
+			method: "PUT",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				setVoteDown(data[0].dislikes);
+			})
+			.catch((err) => console.log(err));
+	};
 
-          })
-          .then((res) => res.json())
-          .then((data) => {
-            //   console.log(data[0].likes);
-              setVoteUp(data[0].likes);
-            })
-            .catch((err)=>console.log(err));
-        };
-
-    const dislikeBtn=()=>{
-            fetch(`http://localhost:3100/api/energiser/${energiserId}/dislike`,
-               {
-                method: "PUT",
-                headers:{
-                  "Accept":"application/json",
-                  "Content-Type":"application/json",
-                },
-              })
-              .then((res) => res.json())
-              .then((data) => {
-                //   console.log(data[0].dislikes);
-                  setVoteDown(data[0].dislikes);
-                })
-                .catch((err)=>console.log(err));
-            };
-
-  return (
-    <section>
-    <IconButton aria-label="thumbs-up" onClick={()=>likeBtn()}>
-        <ThumbUpOffAltIcon />
-        {voteUp}
-    </IconButton>
-    <IconButton aria-label="thumbs-down" onClick={()=>dislikeBtn()}>
-        <ThumbDownOffAltIcon />
-        {voteDown}
-    </IconButton>
-    <IconButton aria-label="share">
-        <ShareIcon />
-    </IconButton>
-    </section>
-  );
+	return (
+		<section>
+			<IconButton aria-label="thumbs-up" onClick={() => likeBtn()}>
+				<ThumbUpOffAltIcon />
+				{voteUp}
+			</IconButton>
+			<IconButton aria-label="thumbs-down" onClick={() => dislikeBtn()}>
+				<ThumbDownOffAltIcon />
+				{voteDown}
+			</IconButton>
+			<IconButton aria-label="share">
+				<ShareIcon />
+			</IconButton>
+		</section>
+	);
 };
 
 export default Vote;

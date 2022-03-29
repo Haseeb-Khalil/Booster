@@ -63,6 +63,13 @@ principles are followed:
 - Code must be reviewed by senior developers before being pushed to production;
 - APIs must be secure. Make sure we are not handling security on the frontend.
 
+### Using environment variables
+1. Copy `.env.example` and rename to `.env`
+2. Add vars
+3. Reference in either client or server `process.env.VARIABLE_NAME`.
+
+**NOTE**: Only environment variables that are explicitly referenced in your React app will be added to your final bundle, so it is safe to mix frontend and backend env vars, so long as you do not use backend vars in your React app!
+
 ### Troubleshooting
 
 See the guidance in the [wiki].
