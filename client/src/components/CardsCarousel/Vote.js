@@ -8,8 +8,7 @@ const Vote = ({ energiser }) => {
 	const [voteUp, setVoteUp] = useState(energiser.likes);
 	const [voteDown, setVoteDown] = useState(energiser.dislikes);
 
-	const api = process.env.API_URL || "http://localhost:3100/api";
-
+	const api = process.env.API_URL || "/api";
 	const likeBtn = () => {
 		fetch(`${api}/energiser/${energiserId}/like`, {
 			method: "PUT",

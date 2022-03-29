@@ -24,6 +24,7 @@ if (app.get("env") === "production") {
 	app.enable("trust proxy");
 	app.use(httpsOnly());
 } else {
+	console.log("running locally")
 	app.use(
 		cors({
 			origin: "http://localhost:3000",
