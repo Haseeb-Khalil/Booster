@@ -5,7 +5,9 @@ import Energise from "./pages/Energise";
 import Theme from "./components/Theme";
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@mui/material/styles";
+import CircularProgress from "@mui/material/CircularProgress";
+
 
 const App = () => {
 	const [energisers, setEnergisers] = useState([]);
@@ -36,16 +38,12 @@ const App = () => {
 					path="/energisers"
 					element={<AllEnergisers energisers={energisers} />}
 				/>
-				{/* <Route
-					path="/energiser/:id"
-					element={<Energise energisers={energisers} />}
-				/> */}
 				<Route path="/game/:code" element={<Energise />} />
 				<Route path="/energiser/:id" element={<Host />} />
 			</Routes>
 		</ThemeProvider>
 	) : (
-		<div>Loading...</div>
+		<CircularProgress color="success" />
 	);
 };
 
