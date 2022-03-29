@@ -85,6 +85,8 @@
 		"react-countdown-circle-timer": "^3.0.9",
 		"react-icons": "^4.3.1",
 		"react-material-ui-carousel": "^3.2.0",
+		"socket.io": "^4.4.1",
+		"socket.io-client": "^4.4.1",
 		"styled-components": "^5.3.3",
 		"swiper": "^8.0.7"
 	},
