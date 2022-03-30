@@ -14,9 +14,9 @@ const App = () => {
 	const api = process.env.API_URL || "/api";
 	const [onlineCount, setOnlineCount] = useState(0);
 	const [energisers, setEnergisers] = useState([]);
-
+	console.log("hello");
 	useEffect(() => {
-		const socket = io("http://localhost:3100" || "/api");
+		const socket = io(api || "http://localhost:3100");
 		console.log(socket);
 		socket.on("incomingUsers", (attend) => {
 			setOnlineCount(attend);
@@ -46,7 +46,12 @@ const App = () => {
 				<Route path="/" element={<Home energisers={energisers} />} />
 				<Route
 					path="/energisers"
-					element={<AllEnergisers energisers={energisers} setEnergisers={setEnergisers} />}
+					element={
+						<AllEnergisers
+							energisers={energisers}
+							setEnergisers={setEnergisers}
+						/>
+					}
 				/>
 				<Route
 					path="/game/:code"
