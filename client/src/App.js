@@ -17,7 +17,7 @@ const App = () => {
 	const [energisers, setEnergisers] = useState([]);
 
 	useEffect(() => {
-		const socket = io("https://cyf-booster.herokuapp.com");
+		const socket = io("https://cyf-booster.herokuapp.com/game");
 		// console.log(socket);
 		socket.on("incomingUsers", (attend) => {
 			setOnlineCount(attend);
