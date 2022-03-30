@@ -1,51 +1,48 @@
-import React, { useState } from "react";
+import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
-import ModalDialog from "./ModalDialog";
+import {
+	Button,
+	Link,
+	Box,
+	Typography,
+	AppBar,
+	Toolbar,
+	IconButton,
+	Menu,
+	ButtonGroup,
+	Container,
+	MenuItem,
+} from "@mui/material";
+
+import MenuIcon from "@mui/icons-material/Menu";
 import ElectricBoltRoundedIcon from "@mui/icons-material/ElectricBoltRounded";
 import { red } from "@material-ui/core/colors";
+import ModalDialog from "./ModalDialog";
 import cyf_brand from "../../assets/cyf_brand.png";
 import "./navbar.css";
-import { Box, Link } from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({
-	icon: {
-		marginTop: theme.spacing(-6),
-		marginLeft: theme.spacing(6),
-	},
-	title: {
-		flexGrow: 1,
-		marginTop: theme.spacing(-6),
-	},
-	loginButton: {
-		marginTop: theme.spacing(-10),
-		marginLeft: theme.spacing(1),
-	},
-
-	appBar: {
-		maxHeight: theme.spacing(10),
-		boxShadow: "none",
-	},
-}));
 
 const Navbar = () => {
 	const navigate = useNavigate();
-	const classes = useStyles();
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = React.useState(false);
+	const [anchorEl, setAnchorEl] = React.useState(null);
+
+	const handleOpenNavMenu = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleCloseNavMenu = () => {
+		setAnchorEl(null);
+	};
 
 	const handleOpen = () => {
 		setOpen(true);
 	};
 
 	const handleClose = (code) => {
-		if(code){
+		if (code) {
 			navigate(`/game/${code}`);
 		}
 		setOpen(false);
-
 	};
 
 	const handleHost = (e) => {
@@ -54,50 +51,81 @@ const Navbar = () => {
 	};
 
 	return (
-		<AppBar className={classes.appBar} position="static" color="secondary">
-			<Link href="https://codeyourfuture.io/" target="_blank">
-				<img className="cyfLogo" src={cyf_brand} alt="cyf_brand" />
-			</Link>
-			<Toolbar>
-				<ElectricBoltRoundedIcon
-					className={classes.icon}
-					sx={{ color: red[500] }}
-				/>
-				<Link
-					color="primary"
-					variant="h6"
-					className={classes.title}
-					href="/"
-					underline="none"
-				>
-					booster
-				</Link>
-
-				<Link underline="none" sx={{ marginLeft: "10px" }}>
-					<Button
-						variant="outlined"
-						color="primary"
-						className={classes.loginButton}
-						onClick={handleHost}
-					>
-						host
-					</Button>
-				</Link>
-				<Button
-					variant="outlined"
-					color="primary"
-					onClick={handleOpen}
-					className={classes.loginButton}
-				>
-					join
-				</Button>
-			</Toolbar>
-			<ModalDialog
-				open={open}
-				handleClose={handleClose}
-			/>
+		<AppBar position="fixed" color="primary">
+			<Container disableGutters maxWidth="lg">
+				<Toolbar disableGutters>
+					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+						<Link href="https://codeyourfuture.io/" target="_blank">
+							<img className="cyfLogo" src={cyf_brand} alt="cyf_brand" />
+						</Link>
+					</Box>
+					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "flex" } }}>
+						<ElectricBoltRoundedIcon sx={{ color: red[800] }} />
+						<Link
+							variant="h5"
+							href="/"
+							underline="none"
+							sx={{ color: red[800] }}
+						>
+							booster
+						</Link>
+					</Box>
+					<Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
+						<ButtonGroup variant="text" aria-label="text button group">
+							<Button color="secondary" onClick={handleHost}>
+								host
+							</Button>
+							<Button color="secondary" onClick={handleOpen}>
+								join
+							</Button>
+						</ButtonGroup>
+					</Box>
+					<Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
+						<IconButton
+							size="large"
+							aria-label="account of current user"
+							aria-controls="menu-appbar"
+							aria-haspopup="true"
+							onClick={handleOpenNavMenu}
+							color="inherit"
+						>
+							<MenuIcon sx={{ color: red[800] }} />
+						</IconButton>
+						<Menu
+							id="menu-appbar"
+							anchorEl={anchorEl}
+							anchorOrigin={{
+								vertical: "bottom",
+								horizontal: "left",
+							}}
+							keepMounted
+							transformOrigin={{
+								vertical: "top",
+								horizontal: "left",
+							}}
+							open={Boolean(anchorEl)}
+							onClose={handleCloseNavMenu}
+							sx={{
+								display: { xs: "flex", md: "none" },
+							}}
+						>
+							<MenuItem
+								onClick={handleCloseNavMenu}
+								sx={{ display: "flex", flexDirection: "column" }}
+							>
+								<Button color="secondary" variant="text" onClick={handleHost}>
+									<Typography textAlign="center">host</Typography>
+								</Button>
+								<Button color="secondary" onClick={handleOpen}>
+									<Typography textAlign="center">JOIN</Typography>
+								</Button>
+							</MenuItem>
+						</Menu>
+					</Box>
+				</Toolbar>
+			</Container>
+			<ModalDialog open={open} handleClose={handleClose} />
 		</AppBar>
 	);
 };
-
 export default Navbar;
