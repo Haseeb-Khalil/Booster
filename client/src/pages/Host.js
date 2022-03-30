@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Button, Link, Box, Typography, Grid, Divider } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
+
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Timer from "../components/Timer";
-import { Grid, Box, Typography } from "@material-ui/core";
-import Divider from "@mui/material/Divider";
 import Vote from "../components/CardsCarousel/Vote";
 
 const Host = ({ onlineCount }) => {
@@ -90,7 +91,7 @@ const Host = ({ onlineCount }) => {
 			<Footer />
 		</Box>
 	) : (
-		<p>Loading</p>
+		<CircularProgress color="success" />
 	);
 };
 
