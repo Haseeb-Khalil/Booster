@@ -50,6 +50,8 @@ const [onlineCount, setOnlineCount] = useState(0);
 					path="/energisers"
 					element={<AllEnergisers energisers={energisers} />}
 				/>
+				<Route path="/game/:code" element={<Energise />} />
+				<Route path="/energiser/:id" element={<Host />} />
 				<Route path="/game/:code" element={<Energise onlineCount={onlineCount} />} />
 				<Route path="/energiser/:id" element={<Host onlineCount={onlineCount}  />} />
 			</Routes>

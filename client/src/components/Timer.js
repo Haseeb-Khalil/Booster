@@ -26,10 +26,11 @@ export default function Timer({ duration, remaining }) {
 			<div className="timer-wrapper">
 				<CountdownCircleTimer
 					isPlaying={true}
-					duration={duration} //900
-					initialRemainingTime={remaining} //850
+					duration={duration}
+					initialRemainingTime={remaining}
 					rotation={"counterclockwise"}
-					colors={"#004777"}
+					colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
+					colorsTime={[700, 500, 200, 0]}
 				>
 					{renderTime}
 				</CountdownCircleTimer>
