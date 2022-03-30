@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Button, Link, Box, Typography, Grid, Divider } from "@mui/material";
+
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Timer from "../components/Timer";
-import { Grid, Box, Typography } from "@material-ui/core";
-import Divider from "@mui/material/Divider";
 import Vote from "../components/CardsCarousel/Vote.js";
 
 const Energise = () => {

@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { IconButton } from "@material-ui/core";
+import { IconButton, Box } from "@mui/material";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import ShareIcon from "@material-ui/icons/Share";
+
 const Vote = ({ energiser }) => {
 	let energiserId = energiser.id;
 	const [voteUp, setVoteUp] = useState(energiser.likes);
@@ -41,7 +42,7 @@ const Vote = ({ energiser }) => {
 	};
 
 	return (
-		<section>
+		<Box sx={{ display: { sm: "none", md: "flex" } }}>
 			<IconButton aria-label="thumbs-up" onClick={() => likeBtn()}>
 				<ThumbUpOffAltIcon />
 				{voteUp}
@@ -53,7 +54,7 @@ const Vote = ({ energiser }) => {
 			<IconButton aria-label="share">
 				<ShareIcon />
 			</IconButton>
-		</section>
+		</Box>
 	);
 };
 
