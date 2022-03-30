@@ -28,6 +28,7 @@ function Cards({ listEnergisers }) {
 									image={energiser.image}
 									alt={energiser.title}
 								/>
+								{console.log(energiser.image)}
 								<CardContent>
 									<Typography gutterBottom variant="h5" component="h2">
 										{energiser.title}

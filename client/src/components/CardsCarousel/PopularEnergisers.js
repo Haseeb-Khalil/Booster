@@ -18,7 +18,7 @@ import "swiper/css/pagination";
 
 function PopularEnergisers() {
 	const [popular, setPopular] = useState([]);
-	const api = process.env.API_URL || "http://localhost:3100/api";
+	const api = process.env.API_URL || "/api";
 	useEffect(() => {
 		fetch(api + "/energisers/popular")
 			.then((res) => {
