@@ -5,7 +5,6 @@ import cors from "cors";
 
 import router from "./api";
 import {
-	configuredHelmet,
 	httpsOnly,
 	logErrors,
 	pushStateRouting,
@@ -17,7 +16,7 @@ const staticDir = path.join(__dirname, "static");
 const app = express();
 
 app.use(express.json());
-app.use(configuredHelmet());
+// app.use(configuredHelmet()); TODO: add this back
 app.use(morgan("dev"));
 
 if (app.get("env") === "production") {

@@ -9,6 +9,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import CircularProgress from "@mui/material/CircularProgress";
 import { io } from "socket.io-client";
 
+
 console.log("API_URL ---->" + process.env.API_URL);
 const App = () => {
 	const [onlineCount, setOnlineCount] = useState(0);
@@ -45,15 +46,9 @@ const App = () => {
 				<Route
 					path="/energisers"
 					element={<AllEnergisers energisers={energisers} />}
-				/>
-				<Route
-					path="/game/:code"
-					element={<Energise onlineCount={onlineCount} />}
-				/>
-				<Route
-					path="/energiser/:id"
-					element={<Host onlineCount={onlineCount} />}
-				/>
+				/>	
+				<Route path="/game/:code" element={<Energise onlineCount={onlineCount} />} />
+				<Route path="/energiser/:id" element={<Host onlineCount={onlineCount}  />} />
 			</Routes>
 		</ThemeProvider>
 	) : (
