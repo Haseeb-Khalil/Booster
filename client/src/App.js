@@ -22,7 +22,6 @@ const [onlineCount, setOnlineCount] = useState(0);
 
 	},[]);
 	const [energisers, setEnergisers] = useState([]);
-	
 	const api = process.env.API_URL || "/api";
 
 	useEffect(() => {
