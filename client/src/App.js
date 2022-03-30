@@ -46,7 +46,7 @@ const App = () => {
 				<Route path="/" element={<Home energisers={energisers} />} />
 				<Route
 					path="/energisers"
-					element={<AllEnergisers energisers={energisers} />}
+					element={<AllEnergisers energisers={energisers} setEnergisers={setEnergisers} />}
 				/>
 				<Route
 					path="/game/:code"
