@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Card from "@material-ui/core/Card";
-import {
-	Button,
-	CardContent,
-	CardMedia,
-	Typography,
-	Grid,
-	Box,
-} from "@material-ui/core";
-import { CardActions } from "@mui/material";
+import { Button, Link, Box, Typography, Grid } from "@mui/material";
+import { Card, CardContent, CardMedia, CardActions } from "@mui/material";
+
 import Vote from "./Vote";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -35,17 +28,12 @@ function PopularEnergisers() {
 			});
 	}, []);
 
-	const cardStyle = {
-		display: "block",
-		transitionDuration: "0.3s",
-		height: "4vw",
-	};
 	return (
 		<>
-			<Grid sx={{ pb: 40, bgcolor: "#DDEE14" }}>
-				<Box sx={{ height: "40em", bgcolor: "#DDEE14", padding: 5 }}>
+			<Grid sx={{ pb: 10 }}>
+				<Box sx={{ height: "40em", bgcolor: "#fff", padding: 5 }}>
 					<Box sx={{ mb: 5 }}>
-						<Typography variant="h5" color="primary" align="center">
+						<Typography variant="h5" color="secondary" align="center">
 							Swipe to see our most popular energisers
 						</Typography>
 					</Box>
@@ -59,6 +47,7 @@ function PopularEnergisers() {
 							slidesPerView={3}
 							navigation
 							pagination={{ clickable: true }}
+							sx={{ slidesPerView: { xs: "1" } }}
 						>
 							<Grid component="main">
 								{popular.map((energiser, index) => {
@@ -70,6 +59,7 @@ function PopularEnergisers() {
 													height="240px"
 													image={energiser.image}
 													alt={energiser.title}
+													sx={{ display: { xs: "block", md: "flex" } }}
 												/>
 												<CardContent>
 													<Typography gutterBottom variant="h5" component="h2">
@@ -79,7 +69,11 @@ function PopularEnergisers() {
 														variant="body2"
 														color="textSecondary"
 														component="p"
-														style={cardStyle}
+														sx={{
+															display: { xs: "none", sm: "none", md: "flex" },
+															transitionDuration: "0.3s",
+															height: "5vw",
+														}}
 													>
 														{energiser.description}
 													</Typography>
@@ -88,7 +82,7 @@ function PopularEnergisers() {
 													<Button
 														variant="outlined"
 														href={`/energiser/${energiser.id}`}
-														color="primary"
+														color="secondary"
 													>
 														Host now
 													</Button>
