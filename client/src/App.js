@@ -5,8 +5,10 @@ import Energise from "./pages/Energise";
 import Theme from "./components/Theme";
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@mui/material/styles";
+import CircularProgress from "@mui/material/CircularProgress";
 import { io } from "socket.io-client";
+
 
 console.log("API_URL ---->" + process.env.API_URL);
 const App = () => {
@@ -53,7 +55,7 @@ const [onlineCount, setOnlineCount] = useState(0);
 			</Routes>
 		</ThemeProvider>
 	) : (
-		<div>Loading...</div>
+		<CircularProgress color="success" />
 	);
 };
 
