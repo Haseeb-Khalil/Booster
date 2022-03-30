@@ -9,8 +9,8 @@ import Timer from "../components/Timer";
 import Vote from "../components/CardsCarousel/Vote";
 
 const Host = ({ onlineCount }) => {
-
 	console.log("Hosting");
+	console.log(onlineCount);
 	const [game, setGame] = useState();
 	const { id } = useParams();
 	console.log(id);
@@ -39,7 +39,7 @@ const Host = ({ onlineCount }) => {
 	return game ? (
 		<Box>
 			<Header />
-			<h3>{ onlineCount } - Users are Online</h3>
+
 			<Box bgcolor="primary">
 				<Grid container>
 					<Grid item xs={12}>
@@ -50,6 +50,9 @@ const Host = ({ onlineCount }) => {
 						>
 							<Box xs={2} sx={{ ml: "10px", mt: "5px" }}>
 								<Timer duration={900} remaining={game.secondsLeft} />
+							</Box>
+							<Box>
+								<h3>{onlineCount} - Users are Online</h3>
 							</Box>
 							<Box sx={{ ml: "auto", mr: "auto" }} textAlign="center">
 								<Typography variant="h3">{game.title}</Typography>

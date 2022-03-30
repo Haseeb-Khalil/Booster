@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Button, Link, Box, Typography, Grid, Divider, Zoom,Fab  } from "@mui/material";
+import {
+	Button,
+	Link,
+	Box,
+	Typography,
+	Grid,
+	Divider,
+	Zoom,
+	Fab,
+} from "@mui/material";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 
 import Header from "../components/Header/Header";
@@ -9,6 +18,7 @@ import Timer from "../components/Timer";
 import Vote from "../components/CardsCarousel/Vote.js";
 
 const Energise = ({ onlineCount }) => {
+	console.log(onlineCount);
 	const { code } = useParams();
 	const [clicked, setClicked] = useState(false);
 	const [energiser, setEnergiser] = useState([]);
@@ -33,7 +43,7 @@ const Energise = ({ onlineCount }) => {
 	}, [code]);
 
 	const handleExpandClick = () => {
-		setClicked(((prev) => !prev));
+		setClicked((prev) => !prev);
 	};
 	return (
 		<>
