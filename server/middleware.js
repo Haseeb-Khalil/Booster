@@ -1,7 +1,7 @@
 import helmet from "helmet";
 import path from "path";
 
-export const configuredHelmet = () =>
+export const configuredHelmet = () => 
 	helmet({
 		contentSecurityPolicy: {
 			directives: {
@@ -9,10 +9,12 @@ export const configuredHelmet = () =>
 				objectSrc: ["'none'"],
 				scriptSrc: ["'self'", "unpkg.com", "polyfill.io"],
 				styleSrc: ["'self'", "https: 'unsafe-inline'"],
+				imgSrc: ["self", "i.imgur.co", "images.unsplash.com"],
 				upgradeInsecureRequests: [],
-			},
+			}
 		},
 	});
+
 
 export const httpsOnly = () => (req, res, next) => {
 	if (!req.secure) {
