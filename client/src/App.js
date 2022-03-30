@@ -9,15 +9,16 @@ import { ThemeProvider } from "@mui/material/styles";
 import CircularProgress from "@mui/material/CircularProgress";
 import { io } from "socket.io-client";
 
-console.log("API_URL ---->" + process.env.API_URL);
 const App = () => {
 	const api = process.env.API_URL || "/api";
+	// const apiHeroku = "https://cyf-booster.herokuapp.com";
+
 	const [onlineCount, setOnlineCount] = useState(0);
 	const [energisers, setEnergisers] = useState([]);
 
 	useEffect(() => {
-		const socket = io("http://localhost:3100" || "/api");
-		console.log(socket);
+		const socket = io("https://cyf-booster.herokuapp.com");
+		// console.log(socket);
 		socket.on("incomingUsers", (attend) => {
 			setOnlineCount(attend);
 		});
@@ -46,7 +47,12 @@ const App = () => {
 				<Route path="/" element={<Home energisers={energisers} />} />
 				<Route
 					path="/energisers"
-					element={<AllEnergisers energisers={energisers} setEnergisers={setEnergisers} />}
+					element={
+						<AllEnergisers
+							energisers={energisers}
+							setEnergisers={setEnergisers}
+						/>
+					}
 				/>
 				<Route
 					path="/game/:code"
