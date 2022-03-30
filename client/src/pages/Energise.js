@@ -7,12 +7,11 @@ import Footer from "../components/Footer/Footer";
 import Timer from "../components/Timer";
 import Vote from "../components/CardsCarousel/Vote.js";
 
-const Energise = () => {
+const Energise = ({ onlineCount }) => {
 	const { code } = useParams();
 	console.log(code);
 	const [energiser, setEnergiser] = useState([]);
-	const api = process.env.API_URL || "http://localhost:3100/api";
-
+	const api = process.env.API_URL || "/api";
 	useEffect(() => {
 		console.log("Energise");
 		fetch(api + `/game/${code}`)
@@ -35,6 +34,7 @@ const Energise = () => {
 	return (
 		<>
 			<Header />
+			<h3>{onlineCount} - Users are Online</h3>
 			<Box key={energiser.id} bgcolor="primary">
 				<Grid container>
 					<Grid item xs={12}>
