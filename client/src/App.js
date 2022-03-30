@@ -11,12 +11,14 @@ import { io } from "socket.io-client";
 
 console.log("API_URL ---->" + process.env.API_URL);
 const App = () => {
-	const api = process.env.API_URL || "/api";
+	// const api = process.env.API_URL || "/api";
+	const api = "https://cyf-booster.herokuapp.com";
+	console.log("hello haseeb", api);
 	const [onlineCount, setOnlineCount] = useState(0);
 	const [energisers, setEnergisers] = useState([]);
 	console.log("hello");
 	useEffect(() => {
-		const socket = io(api || "http://localhost:3100");
+		const socket = io(api);
 		console.log(socket);
 		socket.on("incomingUsers", (attend) => {
 			setOnlineCount(attend);
