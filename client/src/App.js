@@ -12,15 +12,13 @@ import { io } from "socket.io-client";
 
 console.log("API_URL ---->" + process.env.API_URL);
 const App = () => {
-
-const [onlineCount, setOnlineCount] = useState(0);
-	useEffect(()=>{
-		const socket=io("http://localhost:3100");
-		socket.on("incomingUsers",(attend)=>{
+	const [onlineCount, setOnlineCount] = useState(0);
+	useEffect(() => {
+		const socket = io("http://localhost:3100");
+		socket.on("incomingUsers", (attend) => {
 			setOnlineCount(attend);
 		});
-
-	},[]);
+	}, []);
 	const [energisers, setEnergisers] = useState([]);
 	const api = process.env.API_URL || "/api";
 
@@ -48,9 +46,7 @@ const [onlineCount, setOnlineCount] = useState(0);
 				<Route
 					path="/energisers"
 					element={<AllEnergisers energisers={energisers} />}
-				/>
-				<Route path="/game/:code" element={<Energise />} />
-				<Route path="/energiser/:id" element={<Host />} />
+				/>	
 				<Route path="/game/:code" element={<Energise onlineCount={onlineCount} />} />
 				<Route path="/energiser/:id" element={<Host onlineCount={onlineCount}  />} />
 			</Routes>
