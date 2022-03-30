@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IconButton, Box } from "@mui/material";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
@@ -8,6 +8,11 @@ const Vote = ({ energiser }) => {
 	let energiserId = energiser.id;
 	const [voteUp, setVoteUp] = useState(energiser.likes);
 	const [voteDown, setVoteDown] = useState(energiser.dislikes);
+
+	useEffect(() => {
+		setVoteUp(energiser.likes);
+		setVoteDown(energiser.dislikes);
+	},[energiser.likes, energiser.dislikes]);
 
 	const api = process.env.API_URL || "/api";
 	const likeBtn = () => {
