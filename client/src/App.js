@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import CircularProgress from "@mui/material/CircularProgress";
 import { io } from "socket.io-client";
+import Faq from "./pages/Faq";
 
 console.log("API_URL ---->" + process.env.API_URL);
 const App = () => {
@@ -38,12 +39,13 @@ const App = () => {
 			.catch((err) => {
 				console.error(err);
 			});
-	}, []);
+	}, [api]);
 
 	return energisers ? (
 		<ThemeProvider theme={Theme}>
 			<Routes>
 				<Route path="/" element={<Home energisers={energisers} />} />
+				<Route path="/faq" element={<Faq />} />
 				<Route
 					path="/energisers"
 					element={<AllEnergisers energisers={energisers} setEnergisers={setEnergisers} />}
