@@ -1,4 +1,5 @@
 # Booster App
+[![QR CODE](client/src/assets/CYF-Booster-Qr-Code.png)]
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://cyf-booster.herokuapp.com/)
 
