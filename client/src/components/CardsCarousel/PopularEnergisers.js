@@ -29,75 +29,74 @@ function PopularEnergisers() {
 	}, []);
 
 	return (
-		<>
-			<Grid sx={{ pb: 10 }}>
-				<Box sx={{ height: "40em", bgcolor: "#fff", padding: 5 }}>
-					<Box sx={{ mb: 5 }}>
-						<Typography variant="h5" color="secondary" align="center">
-							Swipe to see our most popular energisers
-						</Typography>
-					</Box>
-					<Box>
-						{" "}
-						<Swiper
-							className="container favourites__container"
-							// install Swiper modules
-							modules={[Navigation, Pagination]}
-							spaceBetween={10}
-							slidesPerView={3}
-							navigation
-							pagination={{ clickable: true }}
-							sx={{ slidesPerView: { xs: "1" } }}
-						>
-							<Grid component="main">
-								{popular.map((energiser, index) => {
-									return (
-										<SwiperSlide key={index} className="favourites">
-											<Card>
-												<CardMedia
-													component="img"
-													height="240px"
-													image={energiser.image}
-													alt={energiser.title}
-													sx={{ display: { xs: "block", md: "flex" } }}
-												/>
-												<CardContent>
-													<Typography gutterBottom variant="h5" component="h2">
-														{energiser.title}
-													</Typography>
-													<Typography
-														variant="body2"
-														color="textSecondary"
-														component="p"
-														sx={{
-															display: { xs: "none", sm: "none", md: "flex" },
-															transitionDuration: "0.3s",
-															height: "5vw",
-														}}
-													>
-														{energiser.description}
-													</Typography>
-												</CardContent>
-												<CardActions disableSpacing>
-													<Button
-														variant="outlined"
-														href={`/energiser/${energiser.id}`}
-														color="secondary"
-													>
-														Host now
-													</Button>
-													<Vote energiser={energiser} />
-												</CardActions>
-											</Card>
-										</SwiperSlide>
-									);
-								})}
-							</Grid>
-						</Swiper>
-					</Box>
-				</Box>
-			</Grid>
-		</>
+		<Box sx={{ pb: 10 }}>
+			<Box sx={{ m: 5 }}>
+				<Typography variant="h5" color="primary" align="center">
+					Swipe to see our most popular energisers
+				</Typography>
+			</Box>
+			<Box>
+				<Swiper
+					className="container favourites__container"
+					// install Swiper modules
+					modules={[Navigation, Pagination]}
+					spaceBetween={10}
+					slidesPerView={3}
+					navigation
+					pagination={{ clickable: true }}
+					sx={{ slidesPerView: { xs: "1" } }}
+				>
+					<Grid component="main">
+						{popular.map((energiser, index) => {
+							return (
+								<SwiperSlide key={index} className="favourites">
+									<Card>
+										<CardMedia
+											component="img"
+											height="400em"
+											image={energiser.image}
+											alt={energiser.title}
+											sx={{ display: { xs: "block", md: "flex" } }}
+										/>
+										<CardContent>
+											<Typography
+												gutterBottom
+												variant="h6"
+												textAlign="center"
+												color="error"
+											>
+												{energiser.title}
+											</Typography>
+											<Typography
+												variant="body1"
+												color="textSecondary"
+												sx={{
+													display: { xs: "none", sm: "none", md: "flex" },
+													transitionDuration: "0.3s",
+													height: "5vw",
+												}}
+											>
+												{energiser.description}
+											</Typography>
+										</CardContent>
+										<CardActions disableSpacing>
+											<Button
+												variant="contained"
+												href={`/energiser/${energiser.id}`}
+												color="primary"
+											>
+												<Typography variant="buttonFont">host now</Typography>
+											</Button>
+											<Vote energiser={energiser} />
+										</CardActions>
+									</Card>
+								</SwiperSlide>
+							);
+						})}
+					</Grid>
+				</Swiper>
+			</Box>
+		</Box>
 	);
 }
 

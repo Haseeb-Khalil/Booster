@@ -1,5 +1,5 @@
 body {
-  margin: 100;
+  margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,6 +10,8 @@ body {
 
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 /* Resetting the default styles */
 * {
   margin: 0;
@@ -45,30 +47,6 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: "Poppins", sans-serif;
-  background: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.7;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-weight: 500;
-}
-h2, h5 {
-  text-align: center;
-}
-h5{
-    color: lightslategray;
-}
-h1 {
-  font-size: 2.5rem;
-}
-
 /* Button styles */
 .btn {
   width: max-content;
@@ -95,4 +73,11 @@ h1 {
 
 .favourites {
 padding: 2rem;
+}
+
+/* CYF Logo  */
+.cyfLogo{
+    width: 10.13em;
+    height: 3.2em;
+    margin-top: 0.3em;
 }
