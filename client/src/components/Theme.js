@@ -74,6 +74,21 @@ Theme.typography.body1 = {
 	},
 };
 
+Theme.typography.body2 = {
+	fontFamily: "QuickSand",
+	fontSize: "1em",
+	fontWeight: "300",
+	[Theme.breakpoints.up("xs")]: {
+		fontSize: "0.5rem",
+	},
+	[Theme.breakpoints.up("sm")]: {
+		fontSize: "0.75rem",
+	},
+	[Theme.breakpoints.up("lg")]: {
+		fontSize: "1rem",
+	},
+};
+
 Theme.typography.buttonFont = {
 	fontFamily: "Electrolize",
 	fontSize: "1.2rem",
