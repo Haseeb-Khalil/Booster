@@ -2,17 +2,27 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import { Button, Link, Box, Typography, Container } from "@mui/material";
 
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-
 const HeroLayoutRoot = styled("section")(({ theme }) => ({
 	color: theme.palette.common.white,
 	position: "relative",
 	display: "flex",
 	alignItems: "center",
-	[theme.breakpoints.up("sm")]: {
-		height: "80vh",
+	[theme.breakpoints.up("xl")]: {
+		height: "100vh",
+		minHeight: 500,
+		maxHeight: 1800,
+	},
+
+	[theme.breakpoints.down("lg")]: {
+		height: "50vh",
 		minHeight: 500,
 		maxHeight: 1300,
+	},
+
+	[theme.breakpoints.down("xs")]: {
+		height: "20vh",
+		minHeight: 400,
+		maxHeight: 800,
 	},
 }));
 
@@ -54,15 +64,6 @@ function HeroLayout(props) {
 					}}
 				/>
 				<Background sx={sxBackground} />
-
-				<Box>
-					<Link color="inherit" href="#CardsSection">
-						<KeyboardArrowDownIcon
-							sx={{ position: "absolute", bottom: 1, textAlign: "center" }}
-							fontSize="large"
-						/>
-					</Link>
-				</Box>
 			</Container>
 		</HeroLayoutRoot>
 	);
