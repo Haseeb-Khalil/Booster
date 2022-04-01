@@ -1,10 +1,17 @@
 import React from "react";
-import { Button, Link, Box, Typography, Container, Grid } from "@mui/material";
+import { Link, Box, Typography, Container, Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 import { red, grey } from "@mui/material/colors";
 import ElectricBoltRoundedIcon from "@mui/icons-material/ElectricBoltRounded";
 
 export default function Footer() {
+	const navigate = useNavigate();
+	const handleHost = (e) => {
+		e.preventDefault();
+		navigate("/faq");
+	};
+
 	return (
 		<footer>
 			<Box
@@ -27,7 +34,9 @@ export default function Footer() {
 									underline="none"
 									color="text.primary"
 								>
-									<Typography variant="body1">faq</Typography>
+									<Typography variant="body1" onClick={handleHost}>
+										faq
+									</Typography>
 								</Link>
 							</Box>
 							<Box>

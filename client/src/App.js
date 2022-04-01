@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import CircularProgress from "@mui/material/CircularProgress";
 import { io } from "socket.io-client";
+import Faq from "./pages/Faq";
 
 const App = () => {
 	const api = process.env.API_URL || "/api";
@@ -39,12 +40,13 @@ const App = () => {
 			.catch((err) => {
 				console.error(err);
 			});
-	}, []);
+	}, [api]);
 
 	return energisers ? (
 		<ThemeProvider theme={Theme}>
 			<Routes>
 				<Route path="/" element={<Home energisers={energisers} />} />
+				<Route path="/faq" element={<Faq />} />
 				<Route
 					path="/energisers"
 					element={
