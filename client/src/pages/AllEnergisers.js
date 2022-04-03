@@ -64,24 +64,28 @@ function AllEnergisers({ energisers, setEnergisers }) {
 			<Typography variant="h4" gutterBottom textAlign="center" color="primary">
 				Discover the experience
 			</Typography>
-			<Grid container sx={{ py: "1%" }}>
-				<FormControl sx={{ m: 1, width: 300 }}>
-					<InputLabel id="sort-by-label">Sort by</InputLabel>
-					<Select
-						labelId="sort-by-label"
-						id="sort-by"
-						input={
-							<OutlinedInput labelWidth={60} name="sort-by" id="sort-by" />
-						}
-						onChange={(e) => sortArray(e.target.value)}
-					>
-						<MenuItem value="none">None</MenuItem>
-						<MenuItem value="alpha">Alphabetical</MenuItem>
-						<MenuItem value="popular">Most Popular</MenuItem>
-					</Select>
-				</FormControl>
-				<SearchBar search={search} setSearch={setSearch} />
-				<Box component="main">
+			<Grid container sx={{ my: "1%" }}>
+				<Box sx={{ my: "1%" }}>
+					<FormControl sx={{ px: "1%", width: 300 }}>
+						<InputLabel id="sort-by-label">Sort by</InputLabel>
+						<Select
+							labelId="sort-by-label"
+							id="sort-by"
+							input={
+								<OutlinedInput labelWidth={60} name="sort-by" id="sort-by" />
+							}
+							onChange={(e) => sortArray(e.target.value)}
+						>
+							<MenuItem value="none">None</MenuItem>
+							<MenuItem value="alpha">Alphabetical</MenuItem>
+							<MenuItem value="popular">Most Popular</MenuItem>
+						</Select>
+					</FormControl>
+				</Box>
+				<Box sx={{ my: "1%" }}>
+					<SearchBar search={search} setSearch={setSearch} />
+				</Box>
+				<Box component="main" sx={{ m: "1%" }}>
 					<Grid container spacing={5}>
 						{filteredEnergisers.map((energiser, index) => (
 							<Grid item key={index} xs={4} md={4}>

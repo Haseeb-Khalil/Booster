@@ -52,7 +52,7 @@ export default function SearchAppBar({ search, setSearch }) {
 	return (
 		<>
 			<Box sx={{ flexGrow: 1 }}>
-				<AppBar position="static" color="text" elevation={0}>
+				<AppBar position="static" color="text" elevation={2}>
 					<Toolbar>
 						<Search>
 							<SearchIconWrapper>
