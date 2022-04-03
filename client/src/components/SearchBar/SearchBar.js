@@ -9,9 +9,9 @@ import SearchIcon from "@mui/icons-material/Search";
 const Search = styled("div")(({ theme }) => ({
 	position: "relative",
 	borderRadius: theme.shape.borderRadius,
-	backgroundColor: alpha(theme.palette.common.white, 0.15),
+	backgroundColor: alpha(theme.palette.common.white, 0.25),
 	"&:hover": {
-		backgroundColor: alpha(theme.palette.common.white, 0.25),
+		backgroundColor: alpha(theme.palette.common.black, 0.25),
 	},
 	marginLeft: 0,
 	width: "100%",
@@ -32,7 +32,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-	color: "secondary",
+	color: "primary",
 	"& .MuiInputBase-input": {
 		padding: theme.spacing(1, 1, 1, 1),
 		// vertical padding + font size from searchIcon
@@ -52,14 +52,14 @@ export default function SearchAppBar({ search, setSearch }) {
 	return (
 		<>
 			<Box sx={{ flexGrow: 1 }}>
-				<AppBar position="static">
+				<AppBar position="static" color="text" elevation={0}>
 					<Toolbar>
 						<Search>
 							<SearchIconWrapper>
 								<SearchIcon />
 							</SearchIconWrapper>
 							<StyledInputBase
-								placeholder="Search for an energiser…"
+								placeholder="Search an energiser…"
 								inputProps={{ "aria-label": "search" }}
 								value={search}
 								onChange={(e) => setSearch(e.target.value)}

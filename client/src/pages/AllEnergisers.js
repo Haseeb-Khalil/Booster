@@ -1,16 +1,22 @@
 import React,{ useState } from "react";
-import Card from "@material-ui/core/Card";
+import { Button, Link, Box, Typography, Grid } from "@mui/material";
 import {
-	Button,
+	Card,
 	CardContent,
 	CardMedia,
-	Typography,
-	Grid,
-} from "@material-ui/core";
-import { CardActions } from "@mui/material";
+	CardActions,
+	FormControl,
+	Select,
+	MenuItem,
+	InputLabel,
+	OutlinedInput,
+} from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Vote from "../components/CardsCarousel/Vote";
 import SearchBar from "../components/SearchBar/SearchBar";
-
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 
 function AllEnergisers({ energisers, setEnergisers }) {
 
@@ -43,23 +49,46 @@ function AllEnergisers({ energisers, setEnergisers }) {
 	};
 
 	return (
-		<>
-		<select onChange={(e) => sortArray(e.target.value)}>
-				<option value="none">none</option>
-				<option value="alpha">alpha</option>
-				<option value="popular">popular</option>
-		</select>
-		<SearchBar search={search} setSearch={setSearch} />
-
-			<Grid component="main">
-				<Grid container spacing={5}>
-					{filteredEnergisers
-						.map((energiser, index) => (
+		<Box sx={{ pt: "4%" }}>
+			<Header />
+			<Grid container sx={{ pl: "20px" }}>
+				<HomeIcon color="success" fontSize="small" />
+				<Link href="/">
+					<Typography variant="body2">Home</Typography>
+				</Link>
+				<ArrowBackIosNewIcon color="success" fontSize="small" />
+				<Link href="/energisers">
+					<Typography variant="body2">Energisers</Typography>
+				</Link>
+			</Grid>
+			<Typography variant="h4" gutterBottom textAlign="center" color="primary">
+				Discover the experience
+			</Typography>
+			<Grid container sx={{ py: "1%" }}>
+				<FormControl sx={{ m: 1, width: 300 }}>
+					<InputLabel id="sort-by-label">Sort by</InputLabel>
+					<Select
+						labelId="sort-by-label"
+						id="sort-by"
+						input={
+							<OutlinedInput labelWidth={60} name="sort-by" id="sort-by" />
+						}
+						onChange={(e) => sortArray(e.target.value)}
+					>
+						<MenuItem value="none">None</MenuItem>
+						<MenuItem value="alpha">Alphabetical</MenuItem>
+						<MenuItem value="popular">Most Popular</MenuItem>
+					</Select>
+				</FormControl>
+				<SearchBar search={search} setSearch={setSearch} />
+				<Box component="main">
+					<Grid container spacing={5}>
+						{filteredEnergisers.map((energiser, index) => (
 							<Grid item key={index} xs={4} md={4}>
 								<Card>
 									<CardMedia
 										component="img"
-										height="240px"
+										height="400em"
 										image={energiser.image}
 										alt={energiser.title}
 									/>
@@ -88,9 +117,11 @@ function AllEnergisers({ energisers, setEnergisers }) {
 								</Card>
 							</Grid>
 						))}
-				</Grid>
+					</Grid>
+				</Box>
 			</Grid>
-		</>
+			<Footer />
+		</Box>
 	);
 }
 

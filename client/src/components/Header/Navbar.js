@@ -19,7 +19,6 @@ import ElectricBoltRoundedIcon from "@mui/icons-material/ElectricBoltRounded";
 import { red } from "@material-ui/core/colors";
 import ModalDialog from "./ModalDialog";
 import cyf_brand from "../../assets/cyf_brand.png";
-import "./navbar.css";
 
 const Navbar = () => {
 	const navigate = useNavigate();
@@ -51,18 +50,21 @@ const Navbar = () => {
 	};
 
 	return (
-		<AppBar position="fixed" color="primary">
-			<Container disableGutters maxWidth="lg">
-				<Toolbar disableGutters>
+		<AppBar position="fixed" color="text">
+			<Box >
+				<Toolbar sx={{ alignItems: "flex-end" }}>
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 						<Link href="https://codeyourfuture.io/" target="_blank">
 							<img className="cyfLogo" src={cyf_brand} alt="cyf_brand" />
 						</Link>
 					</Box>
 					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "flex" } }}>
-						<ElectricBoltRoundedIcon sx={{ color: red[800] }} />
+						<ElectricBoltRoundedIcon
+							sx={{ color: red[800] }}
+							fontSize="large"
+						/>
 						<Link
-							variant="h5"
+							variant="h4"
 							href="/"
 							underline="none"
 							sx={{ color: red[800] }}
@@ -71,12 +73,20 @@ const Navbar = () => {
 						</Link>
 					</Box>
 					<Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
-						<ButtonGroup variant="text" aria-label="text button group">
-							<Button color="secondary" onClick={handleHost}>
-								host
+						<ButtonGroup
+							variant="text"
+							aria-label="text button group"
+							color="error"
+						>
+							<Button color="error" onClick={handleHost}>
+								<Typography variant="h6" textAlign="center">
+									host
+								</Typography>
 							</Button>
-							<Button color="secondary" onClick={handleOpen}>
-								join
+							<Button color="error" onClick={handleOpen}>
+								<Typography variant="h6" textAlign="center">
+									JOIN
+								</Typography>
 							</Button>
 						</ButtonGroup>
 					</Box>
@@ -114,16 +124,20 @@ const Navbar = () => {
 								sx={{ display: "flex", flexDirection: "column" }}
 							>
 								<Button color="secondary" variant="text" onClick={handleHost}>
-									<Typography textAlign="center">host</Typography>
+									<Typography variant="h5" textAlign="center">
+										host
+									</Typography>
 								</Button>
 								<Button color="secondary" onClick={handleOpen}>
-									<Typography textAlign="center">JOIN</Typography>
+									<Typography variant="h5" textAlign="center">
+										JOIN
+									</Typography>
 								</Button>
 							</MenuItem>
 						</Menu>
 					</Box>
 				</Toolbar>
-			</Container>
+			</Box>
 			<ModalDialog open={open} handleClose={handleClose} />
 		</AppBar>
 	);

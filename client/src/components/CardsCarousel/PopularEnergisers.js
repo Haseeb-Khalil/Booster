@@ -42,13 +42,6 @@ function PopularEnergisers() {
 						{" "}
 						<Swiper
 							className="container favourites__container"
-							// install Swiper modules
-							// modules={[Navigation, Pagination]}
-							// spaceBetween={10}
-							// slidesPerView={"auto"}
-							// navigation
-							// pagination={{ clickable: true }}
-							// sx={{ slidesPerView: { xs: "1" } }}
 							effect={"coverflow"}
 							grabCursor={true}
 							centeredSlides={true}
