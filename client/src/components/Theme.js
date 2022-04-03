@@ -5,44 +5,50 @@ const Theme = createTheme({
 		h1: {
 			fontFamily: "Electrolize",
 		},
+		h2: {
+			fontFamily: "Electrolize",
+		},
 		h3: {
 			fontFamily: "Electrolize",
 		},
 		h4: {
 			fontFamily: "Electrolize",
 		},
+		h5: {
+			fontFamily: "Electrolize",
+		},
 	},
 });
 // ***  this is for h2 ***
-Theme.typography.h2 = {
-	fontFamily: "Electrolize",
-	fontSize: "6em",
-	fontWeight: "500",
-	[Theme.breakpoints.up("xs")]: {
-		fontSize: "0.85rem",
-	},
-	[Theme.breakpoints.up("sm")]: {
-		fontSize: "2rem",
-	},
-	[Theme.breakpoints.up("lg")]: {
-		fontSize: "4rem",
-	},
-};
-// *** this is for h5 ***
-Theme.typography.h5 = {
-	fontFamily: "Electrolize",
-	fontSize: "4em",
-	fontWeight: "400",
-	[Theme.breakpoints.up("xs")]: {
-		fontSize: "0.75rem",
-	},
-	[Theme.breakpoints.up("sm")]: {
-		fontSize: "1.5rem",
-	},
-	[Theme.breakpoints.up("lg")]: {
-		fontSize: "2rem",
-	},
-};
+// Theme.typography.h2 = {
+// 	fontFamily: "Electrolize",
+// 	// fontSize: "6em",
+// 	fontWeight: "500",
+// 	// [Theme.breakpoints.up("xs")]: {
+// 	// 	fontSize: "1em",
+// 	// },
+// 	// [Theme.breakpoints.up("sm")]: {
+// 	// 	fontSize: "2rem",
+// 	// },
+// 	// [Theme.breakpoints.up("lg")]: {
+// 	// 	fontSize: "4rem",
+// 	// },
+// };
+// // *** this is for h5 ***
+// Theme.typography.h5 = {
+// 	fontFamily: "Electrolize",
+// 	fontWeight: "400",
+// 	// fontSize: "4em",
+// 	// [Theme.breakpoints.up("xs")]: {
+// 	// 	fontSize: "0.75rem",
+// 	// },
+// 	// [Theme.breakpoints.up("sm")]: {
+// 	// 	fontSize: "1.5rem",
+// 	// },
+// 	// [Theme.breakpoints.up("lg")]: {
+// 	// 	fontSize: "2rem",
+// 	// },
+// };
 
 Theme.typography.h6 = {
 	fontFamily: "QuickSand",

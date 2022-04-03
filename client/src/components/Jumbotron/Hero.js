@@ -42,12 +42,15 @@ function Hero({ scrollToPopularEnergisers }) {
 			/>
 			<Grid
 				container
-				direction="row"
 				justifyContent="center"
-				alignItems="center"
+				spacing={1}
+				sx={{
+					flexDirection: { xs: "column", lg: "row" },
+					alignItems: { xs: "left", lg: "center" },
+				}}
 			>
 				<Grid item xs={6} xl={6}>
-					<Typography color="error" align="left" variant="h2" marked="center">
+					<Typography color="error" align="left" variant="h4" marked="center">
 						Welcome to booster!
 					</Typography>
 					<Typography
@@ -63,52 +66,62 @@ function Hero({ scrollToPopularEnergisers }) {
 						Create a game and share the code with your friends
 					</Typography>
 					<Button variant="contained" color="primary" onClick={handleHost}>
-						<Typography variant="buttonFont">start a game</Typography>
+						<Typography variant="button">start a game</Typography>
 					</Button>
 				</Grid>
 				<Grid
 					container
 					item
-					xs={4}
+					xs={6}
 					xl={6}
 					flexDirection="column"
 					sx={{ alignItems: "center" }}
 				>
-					<Grid item md={4}></Grid>
-					<Grid item md={4}>
+					<Grid item >
 						<Typography
 							color="error.main"
 							variant="h6"
 							textAlign="center"
-							sx={{ display: { xs: "none", sm: "flex" } }}
+							sx={{ display: { xs: "flex", sm: "flex" } }}
 						>
 							Get boosted before your meeting
 						</Typography>
 					</Grid>
-					<Grid container item md={4} direction="column" alignItems="center">
+					<Grid
+						container
+						item
+						direction="column"
+						sx={{ alignItems: { xs: "flex-left", lg: "center" } }}
+					>
 						<Grid item xs={6} md={6}>
-							<Box py={{ xs: 0.5, md: 3 }}>
+							<Box py={{ xs: 0.5, md: 2 }}>
 								<TextField
 									label="Enter the game code"
 									variant="outlined"
 									type="text"
-									color="info"
+									color="secondary"
 									size="small"
-									// inputProps={{ style: { fontSize: 20 } }} // font size of input text
-									// InputLabelProps={{ style: { fontSize: 20 } }} // font size of input label
+									error
 									value={code}
 									onChange={(e) => setCode(e.target.value)}
+									sx={{
+										"& .MuiOutlinedInput-root:hover": {
+											"& > fieldset": {
+												borderColor: "red",
+											},
+										},
+									}}
 								/>
 							</Box>
 						</Grid>
-						<Grid item xs={6} md={6}>
+						<Grid item xs={6} md={6} sx={{}}>
 							<Button
 								type="submit"
 								variant="contained"
 								color="error"
 								onClick={handleSubmit}
 							>
-								<Typography variant="buttonFont">play a game</Typography>
+								<Typography variant="button">play a game</Typography>
 							</Button>
 						</Grid>
 					</Grid>
