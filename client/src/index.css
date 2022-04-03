@@ -73,6 +73,35 @@ html {
 
 .favourites {
 padding: 2rem;
+max-width: 40vw;
+}
+
+
+/* =========================MEDIA QUERY FOR TABLETS========================== */
+
+@media screen and (max-width: 1024px) {
+  .favourites{
+    max-width: 50vw;
+    max-height: 100%;
+  }
+}
+
+/* =========================MEDIA QUERY FOR PHONES========================== */
+
+@media screen and (max-width: 600px) {
+  .favourites{
+    max-width: 100vw;
+    max-height: 100%;
+  }
+  CardMedia{
+    height: 150px;
+  }
+.actions{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 }
 
 /* CYF Logo  */
