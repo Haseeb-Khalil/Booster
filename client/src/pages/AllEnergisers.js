@@ -114,7 +114,7 @@ function AllEnergisers({ energisers, setEnergisers }) {
 											href={`/energiser/${energiser.id}`}
 											color="primary"
 										>
-											Select
+											Host Now
 										</Button>
 										<Vote energiser={energiser} />
 									</CardActions>
