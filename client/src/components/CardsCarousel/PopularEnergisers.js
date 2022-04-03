@@ -31,8 +31,13 @@ function PopularEnergisers() {
 
 	return (
 		<>
-			<Grid sx={{ pb: 10 }}>
-				<Box sx={{ height: "40em", bgcolor: "#fff", padding: 5 }}>
+			<Grid
+				sx={{ pb: 10 }}
+				style={{
+					backgroundColor: "whitesmoke",
+				}}
+			>
+				<Box sx={{ height: "40em", bgcolor: "whitesmoke", padding: 5 }}>
 					<Box sx={{ mb: 5 }}>
 						<Typography variant="h5" color="secondary" align="center">
 							Swipe to see our most popular energisers
@@ -74,8 +79,8 @@ function PopularEnergisers() {
 														{energiser.title}
 													</Typography>
 													<Typography
-														variant="body2"
-														color="textSecondary"
+														variant="body1"
+														color="primary"
 														component="p"
 														sx={{
 															display: { xs: "none", sm: "none", md: "flex" },
