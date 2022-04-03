@@ -1,75 +1,75 @@
 # Booster App
-[![QR CODE](client/src/assets/CYF-Booster-Qr-Code.png)]
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://cyf-booster.herokuapp.com/)
+* See Here: https://cyf-booster.herokuapp.com
+* An energiser application which helps Code Your Future trainees to host/Join energisers in an effortless way during the class. 
 
-- [x] Full stack ES8+ with [Babel]
-- [x] [Node] LTS support (verified working on 12.x, 14.x and 16.x LTS releases)
-- [x] [Express] server
-- [x] [React] client with [Webpack]
-- [x] Client-side routing with [React Router]
-- [x] Linting with [ESLint] and [Prettier]
-- [x] Dev mode (watch modes for client and server, proxy to avoid CORS issues)
-- [x] Production build (single deployment artifact, React loaded via CDN)
-- [x] [Heroku] deployment
-- [x] [Cloud Foundry] deployment
-- [x] [Docker] build
-- [x] [Postgres] database with [node-postgres]
+# How To use ?
 
-## Setup
+* As Host: 
+If you're willing to host an energiser for your team, you can visit the application here: https://cyf-booster.herokuapp.com and choose one from our popular energisers. You can click on "host" or "create game" button which take to you all energisers where you can sort them according to your preference to find the right energiser or you can search for an energiser. Once you click "host now" full details of energiser fifteen minutes timer and a "share code" (for example: "y5hbDTU") will appear. You can share the application link: https://cyf-booster.herokuapp.com and "share code" with your team to let them join you on the same energiser. You should be able to see how many people are online.
 
-Pick one member of the team to own the repository and pipeline. That person should do the following:
+* As User: 
+If you're trying to join a game you can open the application link: https://cyf-booster.herokuapp.com and paste the "share code" (for example: "y5hbDTU") which is shared by your host into join now field and join the host on the same energiser. You should be able to see the time left for the energiser, description and playing instructions. If you enjoy the energiser give it a like.
 
-1.  Click the "Use this template" button above (see [GitHub's docs][1]) to create your team repository, select "Include all branches" and name it something appropriate for your project.
-2.  In your new repo, go to "Settings", then "Branches", then switch the default branch to `postgres` (_optional_: you can now delete the old `main` branch and rename `postgres` to `main`, `master` or whatever else you'd like) - see [GitHub's docs][2] again
-3.  In your repo, click the "Deploy to Heroku" button at the top of the README and create a Heroku account when prompted.
-4.  Fill in the name of the application, select Europe and then click "Deploy App".
-5.  Once it has deployed successfully, click the "Manage app" button to view the application details.
-6.  Go to the "Deploy" tab, select "Connect to GitHub" and choose your repo.
-7.  Click "Enable automatic deploys".
+# Why we made Booster App?
 
-Whenever you commit to main (or e.g. merge a [pull request]) it will get automatically deployed!
+* At CodeYourFuture, we run lots and lots of meetings, often with people who don’t know each other well or at all. We begin our meetings with an energiser  - a game to get the group together. But because we have so many meetings, it can get hard to think of all these energisers and it’s hard to know which are good.
 
-You should now make sure all of the project team are [collaborators] on the repository.
+# What problem does it solve?
 
-## Scripts
+* This application helps CodeYourFuture trainees to host and join energisers effortlessly. 
+* Thanks to a share code feature which helps gather users on same page. 
+* Most importantly it keeps track of energiser time so you don't run over.
 
-Various scripts are provided in the package file, but many are helpers for other scripts; here are the ones you'll
-commonly use:
+# What did we(The Unstoppables) learn?
 
-- `dev`: starts the frontend and backend in dev mode, with file watching (note that the backend runs on port 3100, and
-  the frontend is proxied to it).
-- `lint`: runs ESLint and Prettier against all the code in the project.
-- `serve`: builds and starts the app in production mode locally.
+Our team called "The Unstoppables" worked in period of Four weeks to create an MVP. 
+* As this was our first project as a team, we learned how to work in a team to deliver an MVP in given time frame. 
+* We worked using agile methodologies to reach our goal. We divided our time-frame into four sprints. 
+* We had daily stand-ups to track our daily progress and to unblock any blockers. 
+* We had weekly backlog refinement meetings to keep track of our application's backlog and what to priorities. 
+* We had Retrospective meetings at the start of each sprint to make sure what and how it can be improved.
+* We used Trello, Github board to keep track of our progress and write user stories. 
+* We used google forms to do user research.
+* We learned new technologies like: Material-Ui, Socket-io
 
-### Debugging
 
-While running the dev mode using `npm run dev`, you can attach the Node debugger to the server process via port 9229.
-If you're using VS Code, a debugging configuration is provided for this.
+# Features
 
-There is also a VS Code debugging configuration for the Chrome debugger, which requires the recommended Chrome
-extension, for debugging the client application.
+Some of the main features of application are below.
 
-### Security
+* Timer: During energisers in our classes we felt that it can be very hard to keep up with time while playing an energiser. Thanks to timer in our application which helps both users and host to keep track of time. Timer starts when host clicks to host an energiser. It is synced for both users and host and users can not change it.
 
-If the project handles **any kind of** Personally Identifiable Information (PII) then make sure the following
-principles are followed:
+* Popular Energisers: Thanks to the slider on the home page which lets see/host the top ten popular energisers based on their likes in our application. It is a very convenient and time saving way of finding a good energiser. 
 
-- Only collect **strictly necessary** PII;
-- Access to PII should be as restricted as possible;
-- Access to PII should only be possible after authentication. Authentication **must be done** via GitHub. **Ad hoc
-  authentication solutions are not allowed**;
-- Admins must be able to control who has access to the platform and at which levels using only GitHub groups;
-- There must be an audit mechanism in place. It is required by law to know who accessed what and when;
-- Code must be reviewed by senior developers before being pushed to production;
-- APIs must be secure. Make sure we are not handling security on the frontend.
+* Share Code: When a Host clicks an energiser it starts the energiser time displays the full description, playing instructions and a random share code for each time(only visible on host screen). Which can be shared with users to join the host for the same energiser. It is there to help both host and users read the instructions carefully on their own screen.
 
-### Using environment variables
-1. Copy `.env.example` and rename to `.env`
-2. Add vars
-3. Reference in either client or server `process.env.VARIABLE_NAME`.
+* Like and Dislike: Both host and user are able to see likes and dislikes of an energiser and use them to vote for the energiser they enjoyed.
 
-**NOTE**: Only environment variables that are explicitly referenced in your React app will be added to your final bundle, so it is safe to mix frontend and backend env vars, so long as you do not use backend vars in your React app!
+* Search, Sort: While looking for an energiser it can be time consuming to find the right energiser. Search and Sort functionality is there to help you find the right energiser for hosting. Energisers can be searched by words included in their title and can be sorted by an alphabetical or most popular order.
+
+* Number of people online: When you host or join an energiser you should be able to see the number of people online.
+
+https://cyf-booster.herokuapp.com
+
+<img src="client/src/assets/CYF-Booster-Qr-Code.png"  width="75" height="75">  
+
+
+
+# Technologies Used
+
+- [x] JavaScript
+- [x] React
+- [x] Node
+- [x] SQL(Postgres)
+- [x] CSS
+- [x] HTML
+- [x] Material ui
+- [x] Socket io
+- [x] Heroku
+- [x] VS-Code Live Share(For Debugging)
+- [x] Postman (For Testing Endpoints)
+- [x] Trello & Github
 
 ### Troubleshooting
 
