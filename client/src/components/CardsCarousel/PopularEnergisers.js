@@ -3,9 +3,10 @@ import { Button, Link, Box, Typography, Grid } from "@mui/material";
 import { Card, CardContent, CardMedia, CardActions } from "@mui/material";
 
 import Vote from "./Vote";
-import { Navigation, Pagination } from "swiper";
+import { EffectCoverflow , Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
@@ -42,12 +43,26 @@ function PopularEnergisers() {
 						<Swiper
 							className="container favourites__container"
 							// install Swiper modules
-							modules={[Navigation, Pagination]}
-							spaceBetween={10}
-							slidesPerView={3}
-							navigation
-							pagination={{ clickable: true }}
-							sx={{ slidesPerView: { xs: "1" } }}
+							// modules={[Navigation, Pagination]}
+							// spaceBetween={10}
+							// slidesPerView={"auto"}
+							// navigation
+							// pagination={{ clickable: true }}
+							// sx={{ slidesPerView: { xs: "1" } }}
+							effect={"coverflow"}
+							grabCursor={true}
+							centeredSlides={true}
+							slidesPerView={"auto"}
+							coverflowEffect={{
+								rotate: 50,
+								stretch: 0,
+								depth: 100,
+								modifier: 1,
+								slideShadows: true,
+							}}
+							pagination={true}
+							navigation={true}
+							modules={[EffectCoverflow, Navigation, Pagination]}
 						>
 							<Grid component="main">
 								{popular.map((energiser, index) => {
@@ -78,7 +93,7 @@ function PopularEnergisers() {
 														{energiser.description}
 													</Typography>
 												</CardContent>
-												<CardActions disableSpacing>
+												<CardActions disableSpacing className="actions">
 													<Button
 														variant="outlined"
 														href={`/energiser/${energiser.id}`}
