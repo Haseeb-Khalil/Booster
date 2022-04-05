@@ -19,6 +19,7 @@ function Blog (){
 				py={{ xs: 5, sm: 8 }}
 				bgcolor="error.main"
 				color="error.contrastText"
+				sx={{ display: { xs: "none", lg: "block" } }}
 			>
 				<Typography py={{ xs: 1, sm: 5 }} variant="h4" textAlign="center">
 					How does booster work?

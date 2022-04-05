@@ -88,7 +88,7 @@ function AllEnergisers({ energisers, setEnergisers }) {
 				<Box component="main" sx={{ m: "1%" }}>
 					<Grid container spacing={5}>
 						{filteredEnergisers.map((energiser, index) => (
-							<Grid item key={index} xs={4} md={4}>
+							<Grid item key={index} xs={12} md={4}>
 								<Card>
 									<CardMedia
 										component="img"
@@ -104,6 +104,7 @@ function AllEnergisers({ energisers, setEnergisers }) {
 											variant="body2"
 											color="textSecondary"
 											component="p"
+											height="4em"
 										>
 											{energiser.description}
 										</Typography>

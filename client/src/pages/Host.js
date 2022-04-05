@@ -1,6 +1,6 @@
 import React, { useState, useEffect,useRef } from "react";
 import { useParams } from "react-router-dom";
-import { Button, Link, Box, Typography, Grid, Divider } from "@mui/material";
+import { Button, Box, Typography, Grid, Divider } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
@@ -10,10 +10,8 @@ import Timer from "../components/Timer";
 import Vote from "../components/CardsCarousel/Vote";
 
 const Host = ({ onlineCount }) => {
-	const [value, setValue] = useState("My copy text");
 	const [copied, setCopied] = useState(false);
 	const textAreaRef = useRef(null);
-
 	const supervillains = require("supervillains");
 	const username = supervillains.random();
 	const [game, setGame] = useState();
