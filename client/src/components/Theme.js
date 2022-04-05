@@ -19,36 +19,6 @@ const Theme = createTheme({
 		},
 	},
 });
-// ***  this is for h2 ***
-// Theme.typography.h2 = {
-// 	fontFamily: "Electrolize",
-// 	// fontSize: "6em",
-// 	fontWeight: "500",
-// 	// [Theme.breakpoints.up("xs")]: {
-// 	// 	fontSize: "1em",
-// 	// },
-// 	// [Theme.breakpoints.up("sm")]: {
-// 	// 	fontSize: "2rem",
-// 	// },
-// 	// [Theme.breakpoints.up("lg")]: {
-// 	// 	fontSize: "4rem",
-// 	// },
-// };
-// // *** this is for h5 ***
-// Theme.typography.h5 = {
-// 	fontFamily: "Electrolize",
-// 	fontWeight: "400",
-// 	// fontSize: "4em",
-// 	// [Theme.breakpoints.up("xs")]: {
-// 	// 	fontSize: "0.75rem",
-// 	// },
-// 	// [Theme.breakpoints.up("sm")]: {
-// 	// 	fontSize: "1.5rem",
-// 	// },
-// 	// [Theme.breakpoints.up("lg")]: {
-// 	// 	fontSize: "2rem",
-// 	// },
-// };
 
 Theme.typography.h6 = {
 	fontFamily: "QuickSand",
@@ -94,20 +64,4 @@ Theme.typography.body2 = {
 		fontSize: "1rem",
 	},
 };
-
-Theme.typography.buttonFont = {
-	fontFamily: "Electrolize",
-	fontSize: "1.2rem",
-	[Theme.breakpoints.up("xs")]: {
-		fontSize: "0.5rem",
-	},
-	[Theme.breakpoints.up("sm")]: {
-		fontSize: "0.7rem",
-	},
-	[Theme.breakpoints.up("lg")]: {
-		fontSize: "1rem",
-	},
-};
-
-
 export default Theme;

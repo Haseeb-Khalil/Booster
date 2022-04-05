@@ -102,7 +102,7 @@ const Energise = ({ onlineCount }) => {
 								</Fab>
 								<Zoom in={clicked}>
 									<Typography variant="h6" textAlign="left">
-										Online - {onlineCount}
+										{onlineCount} Online Users
 									</Typography>
 								</Zoom>
 								<Zoom in={!clicked}>
