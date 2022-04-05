@@ -106,7 +106,7 @@ const Host = ({ onlineCount }) => {
 						) : null}
 					</Grid>
 					<Grid item xs={4} textAlign="center" sx={{ m: 6 }}>
-						<img src={game.image} height="480px" alt={game.title} />
+						<img src={game.image} height="400em" alt={game.title} />
 					</Grid>
 					<Grid
 						item

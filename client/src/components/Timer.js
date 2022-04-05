@@ -31,6 +31,8 @@ export default function Timer({ duration, remaining }) {
 					rotation={"counterclockwise"}
 					colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
 					colorsTime={[700, 500, 200, 0]}
+					size="150"
+					strokeWidth="12"
 				>
 					{renderTime}
 				</CountdownCircleTimer>

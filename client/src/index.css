@@ -10,7 +10,7 @@ body {
 
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Roboto&family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 /* Resetting the default styles */
 * {
@@ -90,18 +90,25 @@ max-width: 40vw;
 
 @media screen and (max-width: 600px) {
   .favourites{
-    max-width: 100vw;
-    max-height: 100%;
+      max-width: 100vw;
+      max-height: 100%;
   }
   CardMedia{
-    height: 150px;
+      height: 150px;
   }
-.actions{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+  .actions{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .value {
+  font-size: 1em;
+  }
+  img{
+    width: 50%;
+    height: 50%;
+  }
 }
 
 /* CYF Logo  */
@@ -110,3 +117,27 @@ max-width: 40vw;
     height: 3.2em;
     margin-top: 0.3em;
 }
+
+/* TIMER */
+.timer-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.timer {
+  font-family: "Electrolize";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text {
+  font-family: "Roboto";
+  text-align: center;
+}
+
+.value {
+  font-size: 2em;
+}
+
+/* Energiser Image */
