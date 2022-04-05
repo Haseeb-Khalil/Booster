@@ -49,7 +49,7 @@ function AllEnergisers({ energisers, setEnergisers }) {
 	};
 
 	return (
-		<Box sx={{ pt: "4%" }}>
+		<Box>
 			<Header />
 			<Grid container sx={{ pl: "20px" }}>
 				<HomeIcon color="success" fontSize="small" />

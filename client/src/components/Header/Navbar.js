@@ -50,8 +50,8 @@ const Navbar = () => {
 	};
 
 	return (
-		<AppBar position="fixed" color="text">
-			<Box >
+		<Box sx={{ flexGrow: 1 }}>
+			<AppBar position="sticky" color="text" sx={{ pr: "1.5em" }}>
 				<Toolbar sx={{ alignItems: "flex-end" }}>
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 						<Link href="https://codeyourfuture.io/" target="_blank">
@@ -97,7 +97,7 @@ const Navbar = () => {
 							aria-controls="menu-appbar"
 							aria-haspopup="true"
 							onClick={handleOpenNavMenu}
-							color="inherit"
+							color="primary"
 						>
 							<MenuIcon sx={{ color: red[800] }} />
 						</IconButton>
@@ -123,13 +123,13 @@ const Navbar = () => {
 								onClick={handleCloseNavMenu}
 								sx={{ display: "flex", flexDirection: "column" }}
 							>
-								<Button color="secondary" variant="text" onClick={handleHost}>
-									<Typography variant="h5" textAlign="center">
+								<Button color="primary" variant="text" onClick={handleHost}>
+									<Typography variant="button" textAlign="center">
 										host
 									</Typography>
 								</Button>
-								<Button color="secondary" onClick={handleOpen}>
-									<Typography variant="h5" textAlign="center">
+								<Button color="primary" onClick={handleOpen}>
+									<Typography variant="button" textAlign="center">
 										JOIN
 									</Typography>
 								</Button>
@@ -137,9 +137,9 @@ const Navbar = () => {
 						</Menu>
 					</Box>
 				</Toolbar>
-			</Box>
-			<ModalDialog open={open} handleClose={handleClose} />
-		</AppBar>
+				<ModalDialog open={open} handleClose={handleClose} />
+			</AppBar>
+		</Box>
 	);
 };
 export default Navbar;

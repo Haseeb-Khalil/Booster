@@ -14,20 +14,21 @@ import PersonPinIcon from "@mui/icons-material/PersonPin";
 
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
+import HomeIcon from "@mui/icons-material/Home";
+import Stack from "@mui/material/Stack";
 import Timer from "../components/Timer";
 import Vote from "../components/CardsCarousel/Vote.js";
 
 const Energise = ({ onlineCount }) => {
-	console.log(onlineCount);
+	const superheroes = require("superheroes");
+	const username = superheroes.random();
 	const { code } = useParams();
 	const [clicked, setClicked] = useState(false);
 	const [energiser, setEnergiser] = useState([]);
 	const api = process.env.API_URL || "/api";
 	useEffect(() => {
-		console.log("Energise");
 		fetch(api + `/game/${code}`)
 			.then((res) => {
-				console.log(res);
 				if (!res.ok) {
 					throw new Error(res.statusText);
 				}
@@ -35,7 +36,6 @@ const Energise = ({ onlineCount }) => {
 			})
 			.then((data) => {
 				setEnergiser(data);
-				console.log(data);
 			})
 			.catch((err) => {
 				console.error(err);
@@ -46,76 +46,115 @@ const Energise = ({ onlineCount }) => {
 		setClicked((prev) => !prev);
 	};
 	return (
-		<>
+		<Box>
 			<Header />
-			<Box
+			<Grid
+				container
+				columns={6}
+				flexDirection="column"
 				key={energiser.id}
-				bgcolor="primary"
-				sx={{ ml: "10px", mt: "200px" }}
+				sx={{
+					backgroundImage:
+						"url(https://images.unsplash.com/photo-1495366554757-8568e69d7f80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80)",
+					backgroundSize: "cover",
+					pt: "1rem",
+					pl: "1rem",
+					pr: "1rem",
+					mr: "1rem",
+				}}
+				spacing={1}
 			>
-				<Box sx={{ ml: "3%", mr: "auto", mt: "10px" }}>
-					<Fab color="primary" variant="extended" size="medium" label="Expand">
-						<PersonPinIcon
-							onClick={handleExpandClick}
-							color="success"
-							fontSize="150px"
-						/>
-					</Fab>
-				</Box>
-				<Box sx={{ ml: "0%", mr: "90%", mt: "10px" }}>
-					<Zoom in={clicked}>
-						<Typography variant="h5" textAlign="center">
-							Online - {onlineCount}
-						</Typography>
-					</Zoom>
-				</Box>
-
-				<Box sx={{ ml: "45%", mr: "50%", mt: "10px" }}>
-					<Timer duration={900} remaining={energiser.secondsLeft} />
-				</Box>
-
-				<Grid container direction="column" alignItems="center">
-					<Grid item xs={1} md={4}></Grid>
-					<Grid
-						item
-						xs={8}
-						md={8}
-						style={{ display: "flex", gap: "1rem", alignItems: "center" }}
-					>
-						<Box sx={{ ml: "auto", mr: "auto" }} textAlign="center">
-							<Typography variant="h3">{energiser.title}</Typography>
-						</Box>
+				{/* Navigation button, Online Users, Welcome, Timer */}
+				<Grid
+					item
+					container
+					flexDirection="row"
+					justifyContent="flex-end"
+					flexWrap="nowrap"
+					sx={{ px: "3em" }}
+				>
+					<Grid item container flexDirection="column">
+						<Grid item>
+							<Stack direction="row">
+								<Button
+									size="small"
+									variant="contained"
+									startIcon={<HomeIcon />}
+								>
+									Home
+								</Button>
+							</Stack>
+						</Grid>
+						<Grid
+							item
+							container
+							justifyContent="space-between"
+							alignItems="baseline"
+						>
+							<Grid item>
+								<Fab
+									color="default"
+									variant="extended"
+									size="small"
+									label="Expand"
+								>
+									<PersonPinIcon onClick={handleExpandClick} color="success" />
+								</Fab>
+								<Zoom in={clicked}>
+									<Typography variant="h6" textAlign="left">
+										Online - {onlineCount}
+									</Typography>
+								</Zoom>
+								<Zoom in={!clicked}>
+									<Typography variant="h6" color="text">
+										Welcome to the game, {username}
+									</Typography>
+								</Zoom>
+							</Grid>
+						</Grid>
 					</Grid>
-					<Box textAlign="center" sx={{ m: 6 }}>
-						<img src={energiser.image} height="480px" alt={energiser.title} />
-					</Box>
-					<Box
-						textAlign="center"
-						sx={{ mr: "auto", ml: "auto", maxWidth: "50em" }}
-					>
-						<Typography variant="h4">{energiser.description}</Typography>
-					</Box>
-					<Divider />
-					<Box
-						sx={{
-							mb: "5em",
-							mt: "5em",
-							mr: "auto",
-							ml: "auto",
-							maxWidth: "50em",
-						}}
-					>
-						<Typography variant="h6">
-							{energiser.playing_instructions}
-						</Typography>
-					</Box>
-					<Box display="flex" justifyContent="center" alignItems="center">
-						<Vote energiser={energiser} />
-					</Box>
+					<Grid item>
+						<Timer duration={900} remaining={energiser.secondsLeft} />
+					</Grid>
 				</Grid>
-			</Box>
+				{/* Energiser Title */}
+				<Grid item container flexDirection="column" align="center">
+					<Typography variant="h4" sx={{ color: "white" }}>
+						{energiser.title}
+					</Typography>
+				</Grid>
+				{/* Image */}
+				<Grid item align="center">
+					<img
+						className="energiser.image"
+						src={energiser.image}
+						height="380em"
+						alt={energiser.title}
+					/>
+				</Grid>
+				{/* Description */}
+				<Grid item align="center">
+					<Typography variant="h6" sx={{ mr: "50px" }}>
+						{energiser.description}
+					</Typography>
+				</Grid>
+				{/* Text */}
+				<Grid item align="center">
+					<Typography variant="h5" sx={{ color: "yellow", mr: "50px" }}>
+						how to play
+					</Typography>
+					<Divider />
+					<Typography variant="h6" sx={{ color: "white", mr: "50px" }}>
+						{energiser.playing_instructions}
+					</Typography>
+				</Grid>
+				{/* Vote */}
+				<Grid item align="center">
+					<Vote energiser={energiser} />
+				</Grid>
+			</Grid>
 			<Footer />
-		</>
+		</Box>
 	);
 };
 
