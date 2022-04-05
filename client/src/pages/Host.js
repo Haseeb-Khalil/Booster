@@ -40,7 +40,6 @@ const Host = ({ onlineCount }) => {
 			});
 	}, [id]);
 
-
 	return game ? (
 		<Box>
 			<Header />
@@ -86,15 +85,15 @@ const Host = ({ onlineCount }) => {
 					</Grid>
 					<Grid item xs={2}>
 						<CopyToClipboard text={game.code} onCopy={() => setCopied(true)}>
-							<Button
-								variant="contained"
-								sx={{ ml: "2em" }}
-								onClick={() => setCopied(true)}
-							>
-								<Typography ref={textAreaRef} color="text" variant="body1">
-									{game.code}
-								</Typography>
-							</Button>
+								<Button
+									variant="contained"
+									sx={{ ml: "2em", textTransform: "none" }}
+									onClick={() => setCopied(true)}
+								>
+									<Typography ref={textAreaRef} color="text">
+										{game.code}
+									</Typography>
+								</Button>
 						</CopyToClipboard>
 						<Typography color="primary" variant="body2">
 							Click to share the game code
