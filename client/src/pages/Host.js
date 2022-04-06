@@ -88,7 +88,7 @@ const Host = ({ onlineCount }) => {
 									sx={{ ml: "2em", textTransform: "none" }}
 									onClick={() => setCopied(true)}
 								>
-									<Typography ref={textAreaRef} color="text">
+									<Typography ref={textAreaRef} color="text" variant="h4">
 										{game.code}
 									</Typography>
 								</Button>
